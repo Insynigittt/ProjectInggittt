@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head><meta charset="UTF-8"><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(){this.triggerEvents=["keydown","mousedown","mousemove","touchmove","touchstart","touchend","wheel"],this.userEventHandler=this._triggerListener.bind(this),this.touchStartHandler=this._onTouchStart.bind(this),this.touchMoveHandler=this._onTouchMove.bind(this),this.touchEndHandler=this._onTouchEnd.bind(this),this.clickHandler=this._onClick.bind(this),this.interceptedClicks=[],window.addEventListener("pageshow",t=>{this.persisted=t.persisted}),window.addEventListener("DOMContentLoaded",()=>{this._preconnect3rdParties()}),this.delayedScripts={normal:[],async:[],defer:[]},this.trash=[],this.allJQueries=[]}_addUserInteractionListener(t){if(document.hidden){t._triggerListener();return}this.triggerEvents.forEach(e=>window.addEventListener(e,t.userEventHandler,{passive:!0})),window.addEventListener("touchstart",t.touchStartHandler,{passive:!0}),window.addEventListener("mousedown",t.touchStartHandler),document.addEventListener("visibilitychange",t.userEventHandler)}_removeUserInteractionListener(){this.triggerEvents.forEach(t=>window.removeEventListener(t,this.userEventHandler,{passive:!0})),document.removeEventListener("visibilitychange",this.userEventHandler)}_onTouchStart(t){"HTML"!==t.target.tagName&&(window.addEventListener("touchend",this.touchEndHandler),window.addEventListener("mouseup",this.touchEndHandler),window.addEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.addEventListener("mousemove",this.touchMoveHandler),t.target.addEventListener("click",this.clickHandler),this._renameDOMAttribute(t.target,"onclick","rocket-onclick"),this._pendingClickStarted())}_onTouchMove(t){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler),t.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(t.target,"rocket-onclick","onclick"),this._pendingClickFinished()}_onTouchEnd(t){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler)}_onClick(t){t.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(t.target,"rocket-onclick","onclick"),this.interceptedClicks.push(t),t.preventDefault(),t.stopPropagation(),t.stopImmediatePropagation(),this._pendingClickFinished()}_replayClicks(){window.removeEventListener("touchstart",this.touchStartHandler,{passive:!0}),window.removeEventListener("mousedown",this.touchStartHandler),this.interceptedClicks.forEach(t=>{t.target.dispatchEvent(new MouseEvent("click",{view:t.view,bubbles:!0,cancelable:!0}))})}_waitForPendingClicks(){return new Promise(t=>{this._isClickPending?this._pendingClickFinished=t:t()})}_pendingClickStarted(){this._isClickPending=!0}_pendingClickFinished(){this._isClickPending=!1}_renameDOMAttribute(t,e,r){t.hasAttribute&&t.hasAttribute(e)&&(event.target.setAttribute(r,event.target.getAttribute(e)),event.target.removeAttribute(e))}_triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}_preconnect3rdParties(){let t=[];document.querySelectorAll("script[type=rocketlazyloadscript]").forEach(e=>{if(e.hasAttribute("src")){let r=new URL(e.src).origin;r!==location.origin&&t.push({src:r,crossOrigin:e.crossOrigin||"module"===e.getAttribute("data-rocket-type")})}}),t=[...new Map(t.map(t=>[JSON.stringify(t),t])).values()],this._batchInjectResourceHints(t,"preconnect")}async _loadEverythingNow(){this.lastBreath=Date.now(),this._delayEventListeners(this),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async);try{await this._triggerDOMContentLoaded(),await this._triggerWindowLoad()}catch(t){console.error(t)}window.dispatchEvent(new Event("rocket-allScriptsLoaded")),this._waitForPendingClicks().then(()=>{this._replayClicks()}),this._emptyTrash()}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach(t=>{t.hasAttribute("data-rocket-src")?t.hasAttribute("async")&&!1!==t.async?this.delayedScripts.async.push(t):t.hasAttribute("defer")&&!1!==t.defer||"module"===t.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(t):this.delayedScripts.normal.push(t):this.delayedScripts.normal.push(t)})}async _transformScript(t){return new Promise((await this._littleBreath(),navigator.userAgent.indexOf("Firefox/")>0||""===navigator.vendor)?e=>{let r=document.createElement("script");[...t.attributes].forEach(t=>{let e=t.nodeName;"type"!==e&&("data-rocket-type"===e&&(e="type"),"data-rocket-src"===e&&(e="src"),r.setAttribute(e,t.nodeValue))}),t.text&&(r.text=t.text),r.hasAttribute("src")?(r.addEventListener("load",e),r.addEventListener("error",e)):(r.text=t.text,e());try{t.parentNode.replaceChild(r,t)}catch(i){e()}}:async e=>{function r(){t.setAttribute("data-rocket-status","failed"),e()}try{let i=t.getAttribute("data-rocket-type"),n=t.getAttribute("data-rocket-src");t.text,i?(t.type=i,t.removeAttribute("data-rocket-type")):t.removeAttribute("type"),t.addEventListener("load",function r(){t.setAttribute("data-rocket-status","executed"),e()}),t.addEventListener("error",r),n?(t.removeAttribute("data-rocket-src"),t.src=n):t.src="data:text/javascript;base64,"+window.btoa(unescape(encodeURIComponent(t.text)))}catch(s){r()}})}async _loadScriptsFromList(t){let e=t.shift();return e&&e.isConnected?(await this._transformScript(e),this._loadScriptsFromList(t)):Promise.resolve()}_preloadAllScripts(){this._batchInjectResourceHints([...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async],"preload")}_batchInjectResourceHints(t,e){var r=document.createDocumentFragment();t.forEach(t=>{let i=t.getAttribute&&t.getAttribute("data-rocket-src")||t.src;if(i){let n=document.createElement("link");n.href=i,n.rel=e,"preconnect"!==e&&(n.as="script"),t.getAttribute&&"module"===t.getAttribute("data-rocket-type")&&(n.crossOrigin=!0),t.crossOrigin&&(n.crossOrigin=t.crossOrigin),t.integrity&&(n.integrity=t.integrity),r.appendChild(n),this.trash.push(n)}}),document.head.appendChild(r)}_delayEventListeners(t){let e={};function r(t,r){!function t(r){!e[r]&&(e[r]={originalFunctions:{add:r.addEventListener,remove:r.removeEventListener},eventsToRewrite:[]},r.addEventListener=function(){arguments[0]=i(arguments[0]),e[r].originalFunctions.add.apply(r,arguments)},r.removeEventListener=function(){arguments[0]=i(arguments[0]),e[r].originalFunctions.remove.apply(r,arguments)});function i(t){return e[r].eventsToRewrite.indexOf(t)>=0?"rocket-"+t:t}}(t),e[t].eventsToRewrite.push(r)}function i(t,e){let r=t[e];Object.defineProperty(t,e,{get:()=>r||function(){},set(i){t["rocket"+e]=r=i}})}r(document,"DOMContentLoaded"),r(window,"DOMContentLoaded"),r(window,"load"),r(window,"pageshow"),r(document,"readystatechange"),i(document,"onreadystatechange"),i(window,"onload"),i(window,"onpageshow")}_delayJQueryReady(t){let e;function r(r){if(r&&r.fn&&!t.allJQueries.includes(r)){r.fn.ready=r.fn.init.prototype.ready=function(e){return t.domReadyFired?e.bind(document)(r):document.addEventListener("rocket-DOMContentLoaded",()=>e.bind(document)(r)),r([])};let i=r.fn.on;r.fn.on=r.fn.init.prototype.on=function(){if(this[0]===window){function t(t){return t.split(" ").map(t=>"load"===t||0===t.indexOf("load.")?"rocket-jquery-load":t).join(" ")}"string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=t(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach(e=>{delete Object.assign(arguments[0],{[t(e)]:arguments[0][e]})[e]})}return i.apply(this,arguments),this},t.allJQueries.push(r)}e=r}r(window.jQuery),Object.defineProperty(window,"jQuery",{get:()=>e,set(t){r(t)}})}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._littleBreath(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),window.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._littleBreath(),document.rocketonreadystatechange&&document.rocketonreadystatechange()}async _triggerWindowLoad(){await this._littleBreath(),window.dispatchEvent(new Event("rocket-load")),await this._littleBreath(),window.rocketonload&&window.rocketonload(),await this._littleBreath(),this.allJQueries.forEach(t=>t(window).trigger("rocket-jquery-load")),await this._littleBreath();let t=new Event("rocket-pageshow");t.persisted=this.persisted,window.dispatchEvent(t),await this._littleBreath(),window.rocketonpageshow&&window.rocketonpageshow({persisted:this.persisted})}_handleDocumentWrite(){let t=new Map;document.write=document.writeln=function(e){let r=document.currentScript;r||console.error("WPRocket unable to document.write this: "+e);let i=document.createRange(),n=r.parentElement,s=t.get(r);void 0===s&&(s=r.nextSibling,t.set(r,s));let a=document.createDocumentFragment();i.setStart(a,0),a.appendChild(i.createContextualFragment(e)),n.insertBefore(a,s)}}async _littleBreath(){Date.now()-this.lastBreath>45&&(await this._requestAnimFrame(),this.lastBreath=Date.now())}async _requestAnimFrame(){return document.hidden?new Promise(t=>setTimeout(t)):new Promise(t=>requestAnimationFrame(t))}_emptyTrash(){this.trash.forEach(t=>t.remove())}static run(){let t=new RocketLazyLoadScripts;t._addUserInteractionListener(t)}}RocketLazyLoadScripts.run();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+<title>10 Bahasa Pemrograman Terpopuler untuk Dipelajari 2023</title>
+<meta name="description" content="Bisa bahasa pemrograman kini menjadi skill penting untuk dapat lebih banyak cuan. Yuk, cari tahu 10 bahasa pemrograman paling populer!" />
+<link rel="canonical" href="https://www.hostinger.co.id/tutorial/bahasa-pemrograman" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="10 Bahasa Pemrograman Terpopuler untuk Dipelajari 2023" />
+<meta property="og:description" content="Bisa bahasa pemrograman kini menjadi skill penting untuk dapat lebih banyak cuan. Yuk, cari tahu 10 bahasa pemrograman paling populer!" />
+<meta property="og:url" content="https://www.hostinger.co.id/tutorial/bahasa-pemrograman" />
+<meta property="og:site_name" content="Hostinger Tutorial" />
+<meta property="article:published_time" content="2022-04-14T02:58:52+00:00" />
+<meta property="article:modified_time" content="2023-04-19T10:58:15+00:00" />
+<meta property="og:image" content="https://www.hostinger.com/tutorials/wp-content/themes/tutorialsthemeuplift/public/images/no_image.jpg" /><meta property="og:image" content="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/bahasa-pemrograman-terbaik-untuk-dipelajari.png" />
+<meta property="og:image:width" content="720" />
+<meta property="og:image:height" content="316" />
+<meta property="og:image:type" content="image/png" />
+<meta name="author" content="Faradilla A." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://www.hostinger.com/tutorials/wp-content/themes/tutorialsthemeuplift/public/images/no_image.jpg" />
+<meta name="twitter:label1" content="Written by" />
+<meta name="twitter:data1" content="Faradilla A." />
+<meta name="twitter:label2" content="Est. reading time" />
+<meta name="twitter:data2" content="15 minutes" />
+<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://www.hostinger.co.id/tutorial/bahasa-pemrograman","url":"https://www.hostinger.co.id/tutorial/bahasa-pemrograman","name":"10 Bahasa Pemrograman Terpopuler untuk Dipelajari 2023","isPartOf":{"@id":"https://www.hostinger.co.id/tutorial/#website"},"primaryImageOfPage":{"@id":"https://www.hostinger.co.id/tutorial/bahasa-pemrograman#primaryimage"},"image":{"@id":"https://www.hostinger.co.id/tutorial/bahasa-pemrograman#primaryimage"},"thumbnailUrl":"https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/bahasa-pemrograman-terbaik-untuk-dipelajari.png","datePublished":"2022-04-14T02:58:52+00:00","dateModified":"2023-04-19T10:58:15+00:00","author":{"@id":"https://www.hostinger.co.id/tutorial/#/schema/person/dc81c834824ba2e9bebffe5ff280f686"},"description":"Bisa bahasa pemrograman kini menjadi skill penting untuk dapat lebih banyak cuan. Yuk, cari tahu 10 bahasa pemrograman paling populer!","breadcrumb":{"@id":"https://www.hostinger.co.id/tutorial/bahasa-pemrograman#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://www.hostinger.co.id/tutorial/bahasa-pemrograman"]}]},{"@type":"ImageObject","inLanguage":"en-US","@id":"https://www.hostinger.co.id/tutorial/bahasa-pemrograman#primaryimage","url":"https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/bahasa-pemrograman-terbaik-untuk-dipelajari.png","contentUrl":"https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/bahasa-pemrograman-terbaik-untuk-dipelajari.png","width":720,"height":316,"caption":"bahasa pemrograman terbaik untuk dipelajari"},{"@type":"BreadcrumbList","@id":"https://www.hostinger.co.id/tutorial/bahasa-pemrograman#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.hostinger.co.id/tutorial"},{"@type":"ListItem","position":2,"name":"10 Bahasa Pemrograman Terpopuler untuk Dipelajari 2023"}]},{"@type":"WebSite","@id":"https://www.hostinger.co.id/tutorial/#website","url":"https://www.hostinger.co.id/tutorial/","name":"Hostinger Tutorial","description":"","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://www.hostinger.co.id/tutorial/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"Person","@id":"https://www.hostinger.co.id/tutorial/#/schema/person/dc81c834824ba2e9bebffe5ff280f686","name":"Faradilla A.","image":{"@type":"ImageObject","inLanguage":"en-US","@id":"https://www.hostinger.co.id/tutorial/#/schema/person/image/","url":"https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2021/08/T029Z4XM6-U01CPGXARQR-8c60d4e8d6f9-512-150x150.jpg","contentUrl":"https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2021/08/T029Z4XM6-U01CPGXARQR-8c60d4e8d6f9-512-150x150.jpg","caption":"Faradilla A."},"description":"Faradilla, yang lebih akrab disapa Ninda, adalah Content Manager di Hostinger. Ia suka mengikuti tren seputar teknologi, digital marketing, dan belajar bahasa. Melalui tutorial Hostinger ini, Ninda ingin berbagi informasi dan membantu pembaca menyelesaikan masalah yang dialami.","jobTitle":"SEO Content Analyst","url":"https://www.hostinger.co.id/tutorial/author/faradilla"}]}</script>
+
+<link rel='dns-prefetch' href='//facebook.net' />
+<link rel="alternate" type="application/rss+xml" title="Hostinger Tutorial &raquo; Feed" href="https://www.hostinger.co.id/tutorial/feed" />
+<link rel="alternate" type="application/rss+xml" title="Hostinger Tutorial &raquo; Comments Feed" href="https://www.hostinger.co.id/tutorial/comments/feed" />
+<link rel="alternate" type="application/rss+xml" title="Hostinger Tutorial &raquo; 10 Bahasa Pemrograman Terpopuler untuk Dipelajari 2023 Comments Feed" href="https://www.hostinger.co.id/tutorial/bahasa-pemrograman/feed" />
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='https://www.hostinger.co.id/tutorial/wp-includes/css/dist/block-library/style.min.css?ver=6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='classic-theme-styles-css' href='https://www.hostinger.co.id/tutorial/wp-includes/css/classic-themes.min.css?ver=6.2' type='text/css' media='all' />
+<style id='global-styles-inline-css' type='text/css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+</style>
+<link data-minify="1" rel='stylesheet' id='ppress-frontend-css' href='https://www.hostinger.co.id/tutorial/wp-content/cache/min/11/tutorial/wp-content/plugins/wp-user-avatar/assets/css/frontend.min.css?ver=1681360788' type='text/css' media='all' />
+<link rel='stylesheet' id='ppress-flatpickr-css' href='https://www.hostinger.co.id/tutorial/wp-content/plugins/wp-user-avatar/assets/flatpickr/flatpickr.min.css?ver=4.9.0' type='text/css' media='all' />
+<link rel='stylesheet' id='ppress-select2-css' href='https://www.hostinger.co.id/tutorial/wp-content/plugins/wp-user-avatar/assets/select2/select2.min.css?ver=6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='ez-toc-css' href='https://www.hostinger.co.id/tutorial/wp-content/plugins/easy-table-of-contents/assets/css/screen.min.css?ver=2.0.46' type='text/css' media='all' />
+<style id='ez-toc-inline-css' type='text/css'>
+div#ez-toc-container p.ez-toc-title {font-size: 120%;}div#ez-toc-container p.ez-toc-title {font-weight: 500;}div#ez-toc-container ul li {font-size: 95%;}div#ez-toc-container nav ul ul li ul li {font-size: 90%!important;}
+</style>
+<link data-minify="1" rel='stylesheet' id='understrap-styles-css' href='https://www.hostinger.co.id/tutorial/wp-content/cache/min/11/tutorial/wp-content/themes/tutorialsthemeuplift/public/css/theme.min.css?ver=1681360788' type='text/css' media='all' />
+<link data-minify="1" rel='stylesheet' id='prismCSS-css' href='https://www.hostinger.co.id/tutorial/wp-content/cache/min/11/tutorial/wp-content/themes/tutorialsthemeuplift/resources/prism.css?ver=1681360788' type='text/css' media='all' />
+<script type='text/javascript' id='yoast-seo-base-site-url_js-js-extra'>
+/* <![CDATA[ */
+var yoastSeoBaseSiteUrl = {"base_url":"https:\/\/www.hostinger.co.id\/tutorial"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type='text/javascript' data-rocket-src='https://www.hostinger.co.id/tutorial/wp-content/cache/min/11/tutorial/wp-content/themes/tutorialsthemeuplift/resources/js/yoast-seo-base-site-url.js?ver=1681360788' id='yoast-seo-base-site-url_js-js' defer></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type='text/javascript' data-rocket-src='https://www.hostinger.co.id/tutorial/wp-content/cache/min/11/tutorial/wp-content/plugins/stop-user-enumeration/frontend/js/frontend.js?ver=1681360788' id='stop-user-enumeration-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' data-rocket-src='https://www.hostinger.co.id/tutorial/wp-includes/js/jquery/jquery.min.js?ver=3.6.3' id='jquery-core-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' data-rocket-src='https://www.hostinger.co.id/tutorial/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.0' id='jquery-migrate-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' data-rocket-src='https://www.hostinger.co.id/tutorial/wp-content/plugins/wp-user-avatar/assets/flatpickr/flatpickr.min.js?ver=4.9.0' id='ppress-flatpickr-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' data-rocket-src='https://www.hostinger.co.id/tutorial/wp-content/plugins/wp-user-avatar/assets/select2/select2.min.js?ver=4.9.0' id='ppress-select2-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' id='ez-toc-scroll-scriptjs-js-after'>window.addEventListener('DOMContentLoaded', function() {
+jQuery(document).ready(function(){document.querySelectorAll(".ez-toc-section").forEach(t=>{t.setAttribute("ez-toc-data-id","#"+decodeURI(t.getAttribute("id")))}),jQuery("a.ez-toc-link").click(function(){let t=jQuery(this).attr("href"),e=jQuery("#wpadminbar"),i=0;60>30&&(i=60),e.length&&(i+=e.height()),jQuery('[ez-toc-data-id="'+decodeURI(t)+'"]').length>0&&(i=jQuery('[ez-toc-data-id="'+decodeURI(t)+'"]').offset().top-i),jQuery("html, body").animate({scrollTop:i},500)})});
+});</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type='text/javascript' data-rocket-src='https://www.hostinger.co.id/tutorial/wp-content/cache/min/11/tutorial/wp-content/themes/tutorialsthemeuplift/resources/prism.js?ver=1681360788' id='prismJS-js' defer></script>
+<link rel="https://api.w.org/" href="https://www.hostinger.co.id/tutorial/wp-json/" /><link rel="alternate" type="application/json" href="https://www.hostinger.co.id/tutorial/wp-json/wp/v2/posts/17302" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.hostinger.co.id/tutorial/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.hostinger.co.id/tutorial/wp-includes/wlwmanifest.xml" />
+<meta name="generator" content="WordPress 6.2" />
+<link rel='shortlink' href='https://www.hostinger.co.id/tutorial/?p=17302' />
+<link rel="alternate" type="application/json+oembed" href="https://www.hostinger.co.id/tutorial/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.hostinger.co.id%2Ftutorial%2Fbahasa-pemrograman" />
+<link rel="alternate" type="text/xml+oembed" href="https://www.hostinger.co.id/tutorial/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.hostinger.co.id%2Ftutorial%2Fbahasa-pemrograman&#038;format=xml" />
+
+<script type="rocketlazyloadscript">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KL4FQVG');</script>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.hostinger.co.id/tutorial/bahasa-pemrograman"
+    },
+    "headline": "10 Bahasa Pemrograman Terpopuler untuk Dipelajari 2023",
+    "datePublished": "2022-04-14T09:58:52+0700",
+    "dateModified": "2023-04-19T17:58:15+0700",
+    "author": {
+        "@type": "Person",
+        "name": "Faradilla A."
+    },
+    "description": "Seiring dengan meningkatnya demand terhadap web dan software development seperti sekarang ini, menguasai bahas",
+    "image": {
+        "@type": "ImageObject",
+        "url": "https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/bahasa-pemrograman-terbaik-untuk-dipelajari.png",
+        "width": 720,
+        "height": 316
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "Hostinger Tutorial",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2017/04/hostinger-logo-id.png",
+            "width": 436,
+            "height": 56
+        }
+    }
+}
+</script>
+
+<script type="rocketlazyloadscript">
+            document.addEventListener('DOMContentLoaded', function () {
+                let anchorTags = document.querySelectorAll('.ez-toc-link');
+                anchorTags.forEach(function(element) {
+                    element.text = element.text.replace(':','');
+                });
+            }, false);
+        </script>
+<link rel="icon" href="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2017/06/cropped-cropped-hostinger-fav-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2017/06/cropped-cropped-hostinger-fav-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2017/06/cropped-cropped-hostinger-fav-180x180.png" />
+<meta name="msapplication-TileImage" content="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2017/06/cropped-cropped-hostinger-fav-270x270.png" />
+<style type="text/css" id="wp-custom-css">
+			#ez-toc-container nav ul li {
+    padding-top: 10px;
+}		</style>
+<noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript></head>
+<body class="post-template-default single single-post postid-17302 single-format-standard wp-embed-responsive">
+<div id="navigation-new">
+<hmenu-new :menu-items="[{&quot;id&quot;:&quot;mainMenu&quot;,&quot;title&quot;:&quot;Website Hosting&quot;,&quot;items&quot;:[{&quot;title&quot;:&quot;Hosting&quot;,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-hosting&quot;,&quot;dropDown&quot;:true,&quot;items&quot;:[{&quot;title&quot;:&quot;Web Hosting&quot;,&quot;text&quot;:&quot;Untuk website skala kecil dan medium.&quot;,&quot;logo&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/icons\/navbar\/hosting\/shared-hosting.svg&quot;,&quot;href&quot;:&quot;\/web-hosting&quot;,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-web-hosting&quot;},{&quot;title&quot;:&quot;Website Builder&quot;,&quot;text&quot;:&quot;Create your website with ease.&quot;,&quot;logo&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/icons\/navbar\/hosting\/website-builder.svg&quot;,&quot;href&quot;:&quot;\/website-builder&quot;,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-website-builder&quot;},{&quot;title&quot;:&quot;Cloud Hosting&quot;,&quot;text&quot;:&quot;Untuk website skala besar.&quot;,&quot;logo&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/icons\/navbar\/hosting\/cloud-hosting.svg&quot;,&quot;href&quot;:&quot;\/cloud-hosting&quot;,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-cloud-hosting&quot;},{&quot;title&quot;:&quot;WordPress Hosting&quot;,&quot;text&quot;:&quot;Hosting teroptimasi untuk WordPress.&quot;,&quot;logo&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/icons\/navbar\/hosting\/wordpress-hosting.svg&quot;,&quot;href&quot;:&quot;\/wordpress-hosting&quot;,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-wordpress-hosting&quot;}],&quot;opened&quot;:false},{&quot;title&quot;:&quot;VPS&quot;,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-vps&quot;,&quot;dropDown&quot;:true,&quot;items&quot;:[{&quot;title&quot;:&quot;VPS Hosting&quot;,&quot;text&quot;:&quot;Server virtual yang flexible dengan dedicated resource untuk website dan web aplikasi.&quot;,&quot;logo&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/icons\/navbar\/hosting\/vps-hosting.svg&quot;,&quot;href&quot;:&quot;\/hosting-vps&quot;,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-vps-hosting&quot;},{&quot;title&quot;:&quot;CyberPanel VPS Hosting&quot;,&quot;text&quot;:&quot;Control panel dengan Open\/LiteSpeed Webserver.&quot;,&quot;logo&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/icons\/navbar\/hosting\/cyberpanel-hosting.svg&quot;,&quot;href&quot;:&quot;\/cyberpanel-vps-hosting&quot;,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-cyberpanel-hosting&quot;},{&quot;title&quot;:&quot;Minecraft Server Hosting&quot;,&quot;text&quot;:&quot;Bermain bersama komunitas Minecraft.&quot;,&quot;logo&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/icons\/navbar\/hosting\/minecraft-hosting.svg&quot;,&quot;href&quot;:&quot;\/minecraft-server-hosting&quot;,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-minecraft-hosting&quot;}],&quot;opened&quot;:false},{&quot;title&quot;:&quot;Email&quot;,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-email&quot;,&quot;dropDown&quot;:true,&quot;items&quot;:[{&quot;title&quot;:&quot;Google Workspace&quot;,&quot;text&quot;:&quot;Paket layanan terbaik Google untuk kerja tim.&quot;,&quot;logo&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/icons\/navbar\/email\/google-workspace-hosting.svg&quot;,&quot;href&quot;:&quot;\/google-workspace&quot;,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-google-workspace&quot;},{&quot;title&quot;:&quot;Email Hosting&quot;,&quot;text&quot;:&quot;Promosikan bisnis &amp; jangkau banyak pelanggan.&quot;,&quot;logo&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/icons\/navbar\/email\/email-hosting.svg&quot;,&quot;href&quot;:&quot;\/email-hosting&quot;,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-email-hosting&quot;}],&quot;opened&quot;:false},{&quot;title&quot;:&quot;Domain&quot;,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-domain&quot;,&quot;dropDown&quot;:true,&quot;items&quot;:[{&quot;title&quot;:&quot;Cari Domain&quot;,&quot;text&quot;:&quot;Temukan domain impian Anda.&quot;,&quot;logo&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/icons\/navbar\/domain\/domain-checker.svg&quot;,&quot;href&quot;:&quot;\/domain-murah&quot;,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-domain-checker&quot;},{&quot;title&quot;:&quot;WHOIS Lookup&quot;,&quot;text&quot;:&quot;Cari info WHOIS Domain.&quot;,&quot;logo&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/icons\/navbar\/domain\/whois-database.svg&quot;,&quot;href&quot;:&quot;\/whois&quot;,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-whois&quot;},{&quot;title&quot;:&quot;Transfer Domain&quot;,&quot;text&quot;:&quot;Transfer domain murah dan mudah.&quot;,&quot;logo&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/icons\/navbar\/domain\/domain-transfer.svg&quot;,&quot;href&quot;:&quot;\/transfer-domain&quot;,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-transfer-domain&quot;}],&quot;opened&quot;:false},{&quot;title&quot;:&quot;Masuk&quot;,&quot;href&quot;:&quot;\/cpanel-login&quot;,&quot;nameIsLogin&quot;:true,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-cpanel-login&quot;,&quot;material&quot;:&quot;lock&quot;}]},{&quot;id&quot;:&quot;secondaryMenu&quot;,&quot;title&quot;:&quot;Article topics&quot;,&quot;items&quot;:[{&quot;title&quot;:&quot;WordPress&quot;,&quot;href&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wordpress&quot;},{&quot;title&quot;:&quot;VPS&quot;,&quot;href&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/vps&quot;},{&quot;title&quot;:&quot;Web Development&quot;,&quot;href&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/web-development&quot;},{&quot;title&quot;:&quot;Video&quot;,&quot;href&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/video&quot;},{&quot;title&quot;:&quot;Webinar&quot;,&quot;href&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/webinar&quot;}]}]" cart-path="/cart" home-path="/" blog-path="https://www.hostinger.co.id/tutorial" tutorials-name="Tutorial" cart="Cart" theme-tld=".co.id">
+</hmenu-new>
+</div>
+<div class="h-pb-2 h-pt-2 justify-content-center primary l700 position-relative w-100 position-absolute" id="submenu">
+<div class="container d-flex w-100 align-items-center height-16px justify-content-between">
+<div class="d-flex">
+<span class="ml-0-md mr-40-md d-block transition-all-3 letter-spacing-1px text-nowrap
+                              hover-opacity-6">
+<a href="https://www.hostinger.co.id/tutorial/wordpress" data-wpel-link="internal">WordPress</a>
+</span>
+<span class="ml-0-md mr-40-md d-block transition-all-3 letter-spacing-1px text-nowrap
+                              hover-opacity-6">
+<a href="https://www.hostinger.co.id/tutorial/vps" data-wpel-link="internal">VPS</a>
+</span>
+<span class="ml-0-md mr-40-md d-block transition-all-3 letter-spacing-1px text-nowrap
+                              hover-opacity-6">
+<a href="https://www.hostinger.co.id/tutorial/web-development" data-wpel-link="internal">Web Development</a>
+</span>
+<span class="ml-0-md mr-40-md d-block transition-all-3 letter-spacing-1px text-nowrap
+                              hover-opacity-6">
+<a href="https://www.hostinger.co.id/tutorial/video" data-wpel-link="internal">Video</a>
+</span>
+<span class="ml-0-md mr-40-md d-block transition-all-3 letter-spacing-1px text-nowrap
+                              hover-opacity-6">
+<a href="https://www.hostinger.co.id/tutorial/webinar" data-wpel-link="internal">Webinar</a>
+</span>
+</div>
+<div class="d-flex align-items-center">
+<form id="searchbox" method="get" action="https://www.hostinger.co.id/tutorial/" role="search" class="w-100">
+<input class="label text-content-grey w-100 mr-20 pr-40" id="s" name="s" type="text" placeholder="Cari" value="" />
+</form>
+<i onclick="toggleSearch()" id="searchIcon" class="position-relative material-icons ml-auto cursor-pointer">
+search
+</i>
+</div>
+</div>
+</div>
+<script type="rocketlazyloadscript">
+    var searchbox = document.getElementById("searchbox");
+    var searchBoxVisible = false;
+    if (searchbox) {
+        searchbox.style.display = "none";
+    }
+
+    function toggleSearch() {
+        if (searchbox.style.display === "none") {
+            searchbox.style.display = "block";
+            searchbox.classList.add("fade-in");
+            document.getElementById("s").focus();
+            searchBoxVisible = true;
+        } else {
+            searchbox.style.display = "none";
+            searchBoxVisible = false;
+
+        }
+    }
+
+    function onClickOutside(e) {
+        if (searchBoxVisible && e.target.id !== "searchbox" && e.target.id !== "searchIcon" && e.target.id !== "s") {
+            searchbox.style.display = "none";
+        }
+    }
+
+    window.addEventListener("click", onClickOutside);
+</script>
+<div id="gdpr-consent">
+<gdpr-banner-bottom :strings="{&quot;banner&quot;:{&quot;body&quot;:{&quot;firstHeading&quot;:&quot;Kami Peduli dengan Privasi Anda&quot;,&quot;firstBody&quot;:&quot;Kami dan mitra kami menggunakan cookie untuk menyimpan dan mengakses data pribadi, seperti data browsing, agar dapat memberikan konten dan iklan yang didasarkan pada minat Anda dan juga menganalisis trafik situs. Informasi selengkapnya mengenai tujuan dan alasan kami menggunakan cookie atau menggunakan preferensi Anda dapat diketahui dengan mengeklik tombol 'Pengaturan Cookie' di bawah ini. Anda dapat mengunjungi kembali persetujuan yang dipilih atau menolak persetujuan kapan saja dengan mengeklik link yang terhubung ke pengaturan cookie di Kebijakan Cookie. Kami bekerja sama dengan kerangka industri untuk mengirimkan informasi yang relevan dengan minat Anda ke semua website terkait. Preferensi cookie dapat diatur di &lt;span id='hgr-cookie_consent-show_settings_btn' class='link fs-14 fs-15-sm cursor-pointer'&gt;Pengaturan Cookie&lt;\/span&gt;.&quot;,&quot;secondHeading&quot;:&quot;Kami dan mitra kami mengolah data:&quot;,&quot;secondBody&quot;:&quot;Penyimpanan dan\/atau akses informasi di suatu perangkat. Iklan yang dipersonalisasikan. Konten yang dipersonalisasikan. Penilaian iklan dan konten, insight audiens, dan pengembangan produk. Untuk informasi selengkapnya, silakan &lt;a id='hgr-cookie_consent-cookie_policy_btn' class='link fs-14 fs-15-sm cursor-pointer' target='_blank' ref='someLink' rel='noopener noreferrer nofollow' href='\/kebijakan-cookie'&gt;baca Kebijakan Cookie&lt;\/a&gt; kami.&quot;},&quot;acceptBtn&quot;:&quot;Setujui Cookie&quot;,&quot;settingsBtn&quot;:&quot;Pengaturan cookie&quot;},&quot;popup&quot;:{&quot;header&quot;:{&quot;title&quot;:&quot;Cookies settings&quot;,&quot;body&quot;:&quot;Kami mengolah data Anda untuk mengirimkan konten atau iklan dan menilai pengiriman konten atau iklan tersebut untuk memperoleh insight tentang website kami. Kami mungkin membagikan informasi ini dengan mitra kami. Cookie yang diatur oleh Hostinger dilabeli sebagai \&quot;pihak pertama\&quot;; Anda dipersilakan untuk mengatur preferensi terkait cookie pihak pertama dengan mengaktifkan setiap kategori cookie pihak pertama di bawah ini. Cookie yang tersisa adalah cookie pihak ketiga; Anda dipersilakan untuk mengatur preferensi dalam kaitannya dengan setiap tujuan dengan mengaktifkan pilihan di bawah ini atau berdasarkan vendor dengan mengeklik \&quot;List of IAB Vendors\&quot; di bawah ini. Pilihan-pilihan ini akan dikirimkan secara global ke website lain yang berpartisipasi dalam Transparency and Consent Framework. &lt;a id='hgr-cookie_consent-settings-cookie_policy_btn' class='link fs-14' target='_blank' rel='noopener noreferrer nofollow' href='\/kebijakan-cookie'&gt;Kebijakan Cookie&lt;\/a&gt;.&quot;,&quot;btn&quot;:&quot;Setujui semua cookie&quot;},&quot;cookies&quot;:[{&quot;title&quot;:&quot;Mandatory cookie&quot;,&quot;body&quot;:&quot;Berperan penting dalam memastikan website bekerja dengan baik.&quot;,&quot;btn&quot;:&quot;Selalu aktif&quot;},{&quot;title&quot;:&quot;Cookie statistik&quot;,&quot;body&quot;:&quot;Berperan penting dalam meningkatkan fungsi dan struktur website yang didasarkan pada penggunaan data oleh website.&quot;,&quot;cookieName&quot;:&quot;statistics&quot;},{&quot;title&quot;:&quot;Cookie pemasaran&quot;,&quot;body&quot;:&quot;Bertujuan mengumpulkan informasi untuk menampilkan iklan atau konten di browser tertentu dengan membuat kelompok target yang berbeda.&quot;,&quot;cookieName&quot;:&quot;advertising&quot;}],&quot;buttonTxt&quot;:&quot;Setujui Cookie yang Dipilih&quot;}}">
+</div>
+<div class="h-pt-3">
+<div class="container">
+<div class="row col-12 col-lg-9">
+<div class="text-h-primary label position-relative top-3rem">
+</div>
+</div>
+</div>
+</div> <div class="pt-30 pt-0-lg pb-40">
+<div id="blog-post-container" class="w-100 flex-column d-flex flex-lg-row position-relative pt-20-lg">
+<div id="post" class="d-flex flex-column flex-lg-row col-12 col-lg-9 col-xxl-7 offset-lg-1 offset-xxl-2 position-relative justify-content-center sidebar-left__wrapper">
+<div class="stories-margin mt-150-lg sidebar-left">
+<div class="widget-area row d-table mr-50-lg" style="height: 100%">
+<div class="dynamic-sidebar col-12 col-md-6 col-lg-12 sticky-widget mx-auto px-0 pb-30">
+<div id="custom_html-6" class="widget_text widget widget_custom_html sticky-banner-margin"><div class="textwidget custom-html-widget"><div id="om-sfya15onc0woyl6fmvbn-holder"></div>
+<div id="om-tfvex27jvgr4liofxwur-holder"></div>
+<div id="om-eho1w5nyucy6xsloyubp-holder"></div>
+<div id="om-gqhupb8dvkxkadn1vujo-holder"></div>
+</div></div> </div>
+</div>
+</div> <div class="post-content">
+<div class="d-flex label text-content-grey mb-20 mb-sm-30 flex-wrap">
+<div class="d-flex align-items-center h-mr-2 category">
+<a class="category-name mr-5" href="https://www.hostinger.co.id/tutorial/lainnya" id="category-name" data-wpel-link="internal">
+Lainnya </a>
+</div>
+<div class="d-flex align-items-center mr-sm-4 mr-1">
+<p class="post-info">
+Apr 19, 2023 </p>
+</div>
+<div class="d-flex align-items-center mr-sm-4 mr-1">
+<p class="ml-2 post-info">
+Faradilla A. </p>
+</div>
+<div class="d-flex align-items-center">
+<p class="ml-2 post-info">9menit Dibaca </p>
+</div>
+</div>
+<h1>10 Bahasa Pemrograman Terpopuler untuk Dipelajari 2023</h1>
+<div class="social-container d-flex d-xl-none">
+<a class="social-link text-light-black cursor-pointer d-flex align-items-center justify-content-center">
+<svg width="28" height="28" class="link" viewBox="0 0 28 14" onclick="copyToClipboard('www.hostinger.co.id/tutorial/bahasa-pemrograman');linkClick(event)" xmlns="http://www.w3.org/2000/svg">
+<path d="M6.364 0.5C2.85 0.5 0 3.41 0 7C0 10.59 2.85 13.5 6.364 13.5H11.454V10.9H6.364C4.254 10.9 2.545 9.154 2.545 7C2.545 4.846 4.255 3.1 6.364 3.1H11.454V0.5H6.364V0.5ZM16.545 0.5V3.1H21.636C23.746 3.1 25.455 4.846 25.455 7C25.455 9.154 23.745 10.9 21.636 10.9H16.546V13.5H21.636C25.15 13.5 28 10.59 28 7C28 3.41 25.15 0.5 21.636 0.5H16.546H16.545ZM7.636 5.7V8.3H20.364V5.7H7.636Z" />
+</svg>
+<div id="copyLink" style="display: none;" class="copy-link">Salin link</div>
+<div id="copiedLink" style="display: none;" class="copied-link">Disalin!</div>
+</a>
+<a href="https://twitter.com/intent/tweet?text=10 Bahasa Pemrograman Terpopuler untuk Dipelajari 2023&amp;url=www.hostinger.co.id/tutorial/bahasa-pemrograman" class="social-link" target="_blank" rel="nofollow noopener noreferrer" data-wpel-link="exclude">
+<svg width="28" height="28" class="twitter" viewBox="0 0 28 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M28 3.222C26.97 3.685 25.862 3.996 24.7 4.137C25.9034 3.4078 26.801 2.26638 27.226 0.925C26.0996 1.60097 24.8652 2.07794 23.577 2.335C23.0427 1.75645 22.3944 1.29475 21.673 0.978948C20.9515 0.663145 20.1725 0.500076 19.385 0.5C16.212 0.5 13.641 3.1 13.641 6.306C13.641 6.761 13.693 7.206 13.789 7.629C9.016 7.387 4.784 5.075 1.95 1.56C1.43967 2.44841 1.17205 3.45545 1.174 4.48C1.17133 5.43314 1.40284 6.37235 1.84817 7.21507C2.2935 8.05778 2.93903 8.7782 3.728 9.313C2.81494 9.28354 1.92242 9.03451 1.126 8.587V8.66C1.126 11.474 3.106 13.82 5.734 14.353C4.8886 14.5858 4.00082 14.62 3.14 14.453C3.871 16.76 5.993 18.439 8.506 18.486C7.31857 19.431 5.95501 20.1305 4.49471 20.5435C3.0344 20.9566 1.50652 21.075 0 20.892C2.62075 22.596 5.68001 23.502 8.806 23.5C19.372 23.5 25.148 14.652 25.148 6.98C25.1481 6.72925 25.1428 6.47852 25.132 6.228C26.2588 5.40415 27.23 4.38627 28 3.222V3.222Z" />
+</svg>
+</a>
+<a href="https://www.facebook.com/sharer/sharer.php?u=www.hostinger.co.id/tutorial/bahasa-pemrograman" class="social-link" target="_blank" rel="nofollow noopener noreferrer" data-wpel-link="exclude">
+<svg width="28" height="28" class="facebook" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3307_57195)">
+<path d="M24.889 1.60787e-07H3.11C2.7015 1.39669e-07 2.29701 0.0804758 1.91962 0.23683C1.54224 0.393185 1.19935 0.622355 0.910544 0.911252C0.621741 1.20015 0.392681 1.54311 0.236448 1.92055C0.0802144 2.29799 -0.000131188 2.70251 1.60787e-07 3.111V24.89C1.39669e-07 25.2985 0.0804758 25.703 0.23683 26.0804C0.393185 26.4578 0.622355 26.8007 0.911252 27.0895C1.20015 27.3783 1.54311 27.6073 1.92055 27.7636C2.29799 27.9198 2.70251 28.0001 3.111 28H14.966V17.172H11.321V12.932H14.966V9.815C14.966 6.2 17.176 4.229 20.403 4.229C21.4898 4.22651 22.5759 4.28092 23.657 4.392V8.172H21.436C19.678 8.172 19.336 9.003 19.336 10.229V12.928H23.536L22.99 17.167H19.31V28H24.889C25.2976 28.0001 25.7022 27.9198 26.0797 27.7635C26.4572 27.6072 26.8002 27.378 27.0891 27.0891C27.378 26.8002 27.6072 26.4572 27.7635 26.0797C27.9198 25.7022 28.0001 25.2976 28 24.889V3.11C28 2.7015 27.9195 2.29701 27.7632 1.91962C27.6068 1.54224 27.3776 1.19935 27.0887 0.910544C26.7999 0.621741 26.4569 0.392681 26.0795 0.236448C25.702 0.0802144 25.2975 -0.000131188 24.889 1.60787e-07Z" />
+</g>
+<defs>
+<clipPath id="clip0_3307_57195">
+<rect width="28" height="28" fill="white" />
+</clipPath>
+</defs>
+</svg>
+</a>
+<a href="https://www.linkedin.com/sharing/share-offsite/?url=www.hostinger.co.id/tutorial/bahasa-pemrograman" class="social-link" target="_blank" rel="nofollow noopener noreferrer" data-wpel-link="exclude">
+<svg width="28" height="28" class="linkedin h-p-0-lg h-mb-3-lg" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3302_57044)">
+<path d="M24.889 1.60787e-07H3.11C2.7015 1.39669e-07 2.29701 0.0804758 1.91962 0.23683C1.54224 0.393185 1.19935 0.622355 0.910544 0.911252C0.621741 1.20015 0.392681 1.54311 0.236448 1.92055C0.0802144 2.29799 -0.000131188 2.70251 1.60787e-07 3.111V24.89C1.39669e-07 25.2985 0.0804758 25.703 0.23683 26.0804C0.393185 26.4578 0.622355 26.8007 0.911252 27.0895C1.20015 27.3783 1.54311 27.6073 1.92055 27.7636C2.29799 27.9198 2.70251 28.0001 3.111 28H24.89C25.2985 28 25.703 27.9195 26.0804 27.7632C26.4578 27.6068 26.8007 27.3776 27.0895 27.0887C27.3783 26.7999 27.6073 26.4569 27.7636 26.0795C27.9198 25.702 28.0001 25.2975 28 24.889V3.11C28 2.7015 27.9195 2.29701 27.7632 1.91962C27.6068 1.54224 27.3776 1.19935 27.0887 0.910544C26.7999 0.621741 26.4569 0.392681 26.0795 0.236448C25.702 0.0802144 25.2975 -0.000131188 24.889 1.60787e-07ZM9.333 21.778H5.41V10.888H9.334V21.778H9.333ZM7.302 8.893C6.102 8.893 5.302 8.093 5.302 7.026C5.302 5.959 6.1 5.16 7.433 5.16C8.633 5.16 9.433 5.96 9.433 7.026C9.433 8.094 8.633 8.893 7.301 8.893H7.302ZM23.333 21.778H19.535V15.826C19.535 14.18 18.522 13.801 18.142 13.801C17.762 13.801 16.497 14.054 16.497 15.826V21.778H12.572V10.888H16.497V12.408C17.002 11.522 18.015 10.888 19.914 10.888C21.814 10.888 23.334 12.408 23.334 15.826V21.778H23.333Z" />
+</g>
+<defs>
+<clipPath id="clip0_3302_57044">
+<rect width="28" height="28" fill="white" />
+</clipPath>
+</defs>
+</svg>
+</a>
+<a href="mailto:?subject=10 Bahasa Pemrograman Terpopuler untuk Dipelajari 2023&amp;body=Article:%20www.hostinger.co.id/tutorial/bahasa-pemrograman" class="social-link" target="_blank" rel="nofollow noopener noreferrer">
+<svg width="28" height="28" class="mail h-p-0-lg h-mb-3-lg" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.8 3.00001C2.12163 2.99621 1.4654 3.24121 0.955496 3.68864C0.445591 4.13608 0.117389 4.7549 0.033 5.42801L14 14L27.967 5.42801C27.8826 4.7549 27.5544 4.13608 27.0445 3.68864C26.5346 3.24121 25.8784 2.99621 25.2 3.00001H2.8ZM0 8.15901V22.25C0 23.77 1.253 25 2.8 25H25.2C26.747 25 28 23.77 28 22.25V8.15901L14.741 16.296C14.5178 16.4323 14.2615 16.5043 14 16.5043C13.7385 16.5043 13.4822 16.4323 13.259 16.296L0 8.16001V8.15901Z" />
+</svg>
+</a>
+</div>
+<script type="rocketlazyloadscript">
+    function linkHover() {
+        var socialLinkHover = document.getElementById("copyLink");
+        if (socialLinkHover.style.display === "none") {
+            socialLinkHover.style.display = "inline-block";
+        } else {
+            socialLinkHover.style.display = "none";
+        }
+    }
+
+    function linkClick(e) {
+        var parent = e.target.parentElement;
+        var socialLinkClick = Array.from(parent.children).find(elem => elem.id == "copiedLink");
+        if (socialLinkClick.style.display === "none") {
+            socialLinkClick.style.display = "inline-block";
+            document.getElementById("copyLink").style.display = "none";
+        } else {
+            socialLinkClick.style.display = "none";
+        }
+        setTimeout(() => { socialLinkClick.style.display = "none" }, 2000);
+    }
+
+    function copyToClipboard(str) {
+        var el = document.createElement('textarea');
+        el.value = str;
+        el.setAttribute('readonly', '');
+        el.style = {
+            position: 'absolute',
+            left: '-9999px'
+        };
+
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+    }
+</script> <div id="thumbnail-image" class="d-flex justify-content-center">
+<img width="720" height="316" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20720%20316'%3E%3C/svg%3E" class="attachment-1110x454 size-1110x454 wp-post-image" alt="10 Bahasa Pemrograman Terpopuler untuk Dipelajari 2023" decoding="async" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/bahasa-pemrograman-terbaik-untuk-dipelajari.webp 720w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/bahasa-pemrograman-terbaik-untuk-dipelajari-300x132.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/bahasa-pemrograman-terbaik-untuk-dipelajari-150x66.webp 150w" data-lazy-sizes="(max-width: 720px) 100vw, 720px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/bahasa-pemrograman-terbaik-untuk-dipelajari.webp" /><noscript><img width="720" height="316" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/bahasa-pemrograman-terbaik-untuk-dipelajari.webp" class="attachment-1110x454 size-1110x454 wp-post-image" alt="10 Bahasa Pemrograman Terpopuler untuk Dipelajari 2023" decoding="async" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/bahasa-pemrograman-terbaik-untuk-dipelajari.webp 720w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/bahasa-pemrograman-terbaik-untuk-dipelajari-300x132.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/bahasa-pemrograman-terbaik-untuk-dipelajari-150x66.webp 150w" sizes="(max-width: 720px) 100vw, 720px" /></noscript> </div>
+<p>Seiring dengan meningkatnya demand terhadap web dan software development seperti sekarang ini, menguasai bahasa pemrograman adalah salah satu skill yang sudah pasti akan membuka banyak sekali peluang bagi Anda.</p>
+<p>Dengan mempelajari bahasa coding, Anda bisa mengasah kemampuan teknis serta pemecahan masalah, dan tentu saja mendapatkan peluang kerja dengan gaji tinggi.</p>
+<p>Nah, saat ini, ada lebih dari 700 bahasa pemrograman yang bisa Anda pelajari. Di antaranya, yang paling populer adalah <a href="https://pypl.github.io/PYPL.html" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">Python</a>, Java, JavaScript, dan C++. Dari sekian banyak pilihan, Anda mungkin bingung, mana yang harus dipelajari?</p>
+<p>Jangan khawatir, karena di artikel ini, kami akan membahas 10 bahasa pemrograman terbaik untuk dipelajari di tahun 2023 agar Anda bisa memilih yang paling sesuai dengan tujuan Anda. Yuk, simak dan persiapkan diri Anda untuk upgrade skill!</p>
+<figure class="wp-block-image size-large"><a href="https://app.monstercampaigns.com/c/gjgsqpyyzdhyhfotopqn/" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer"><img decoding="async" width="1024" height="283" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%20283'%3E%3C/svg%3E" alt="" class="wp-image-27595" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/12/hPanel-Demo-ID.webp 1024w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/12/hPanel-Demo-ID-300x83.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/12/hPanel-Demo-ID-150x41.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/12/hPanel-Demo-ID-768x212.webp 768w" data-lazy-sizes="(max-width: 1024px) 100vw, 1024px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/12/hPanel-Demo-ID-1024x283.webp" /><noscript><img decoding="async" width="1024" height="283" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/12/hPanel-Demo-ID-1024x283.webp" alt="" class="wp-image-27595" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/12/hPanel-Demo-ID.webp 1024w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/12/hPanel-Demo-ID-300x83.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/12/hPanel-Demo-ID-150x41.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/12/hPanel-Demo-ID-768x212.webp 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></noscript></a></figure>
+<div id="ez-toc-container" class="ez-toc-v2_0_46 counter-hierarchy ez-toc-counter ez-toc-grey ez-toc-container-direction">
+<div class="ez-toc-title-container">
+<p class="ez-toc-title"></p>
+<span class="ez-toc-title-toggle"></span></div>
+<nav><ul class='ez-toc-list ez-toc-list-level-1 '><li class='ez-toc-page-1 ez-toc-heading-level-2'><a class="ez-toc-link ez-toc-heading-1" href="#Macam-Macam_Bahasa_Pemrograman_Terbaik_untuk_Dipelajari" title="Macam-Macam Bahasa Pemrograman Terbaik untuk Dipelajari">Macam-Macam Bahasa Pemrograman Terbaik untuk Dipelajari</a><ul class='ez-toc-list-level-3'><li class='ez-toc-heading-level-3'><a class="ez-toc-link ez-toc-heading-2" href="#1_Python" title="1. Python">1. Python</a></li><li class='ez-toc-page-1 ez-toc-heading-level-3'><a class="ez-toc-link ez-toc-heading-3" href="#2_C" title="2. C#">2. C#</a></li><li class='ez-toc-page-1 ez-toc-heading-level-3'><a class="ez-toc-link ez-toc-heading-4" href="#3_C" title="3. C++">3. C++</a></li><li class='ez-toc-page-1 ez-toc-heading-level-3'><a class="ez-toc-link ez-toc-heading-5" href="#4_JavaScript" title="4. JavaScript">4. JavaScript</a></li><li class='ez-toc-page-1 ez-toc-heading-level-3'><a class="ez-toc-link ez-toc-heading-6" href="#5_PHP" title="5. PHP">5. PHP</a></li><li class='ez-toc-page-1 ez-toc-heading-level-3'><a class="ez-toc-link ez-toc-heading-7" href="#6_Swift" title="6. Swift">6. Swift</a></li><li class='ez-toc-page-1 ez-toc-heading-level-3'><a class="ez-toc-link ez-toc-heading-8" href="#7_Java" title="7. Java">7. Java</a></li><li class='ez-toc-page-1 ez-toc-heading-level-3'><a class="ez-toc-link ez-toc-heading-9" href="#8_Go" title="8. Go">8. Go</a></li><li class='ez-toc-page-1 ez-toc-heading-level-3'><a class="ez-toc-link ez-toc-heading-10" href="#9_SQL" title="9. SQL">9. SQL</a></li><li class='ez-toc-page-1 ez-toc-heading-level-3'><a class="ez-toc-link ez-toc-heading-11" href="#10_Ruby" title="10. Ruby">10. Ruby</a></li></ul></li></ul></nav></div>
+<figure class="wp-block-image size-large"><a href="/" target="_blank" rel="noreferrer noopener" data-wpel-link="internal"><img decoding="async" width="1024" height="300" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%20300'%3E%3C/svg%3E" alt="" class="wp-image-29634" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/02/ID-Web-hosting_in-text-banner.webp 1024w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/02/ID-Web-hosting_in-text-banner-300x88.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/02/ID-Web-hosting_in-text-banner-150x44.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/02/ID-Web-hosting_in-text-banner-768x225.webp 768w" data-lazy-sizes="(max-width: 1024px) 100vw, 1024px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/02/ID-Web-hosting_in-text-banner-1024x300.webp" /><noscript><img decoding="async" width="1024" height="300" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/02/ID-Web-hosting_in-text-banner-1024x300.webp" alt="" class="wp-image-29634" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/02/ID-Web-hosting_in-text-banner.webp 1024w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/02/ID-Web-hosting_in-text-banner-300x88.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/02/ID-Web-hosting_in-text-banner-150x44.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/02/ID-Web-hosting_in-text-banner-768x225.webp 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></noscript></a></figure>
+<h2 class="wp-block-heading" id="h-macam-macam-bahasa-pemrograman-terbaik-untuk-dipelajari"><span class="ez-toc-section" id="Macam-Macam_Bahasa_Pemrograman_Terbaik_untuk_Dipelajari"></span>Macam-Macam Bahasa Pemrograman Terbaik untuk Dipelajari<span class="ez-toc-section-end"></span></h2>
+<p>Di bawah ini kami punya rekomendasi bahasa pemrograman terpopuler yang bisa Anda pelajari untuk mulai terjun ke dunia programming.</p>
+<p>Mulai dari bahasa tingkat rendah, tingkat menengah, tingkat tinggi, bahkan dari yang paling mudah sampai yang paling sulit, semuanya kami bahas lengkap di sini. Langsung saja, berikut jenis bahasa pemrograman yang banyak digunakan programmer.</p>
+<h3 class="wp-block-heading" id="h-1-python"><span class="ez-toc-section" id="1_Python"></span>1. Python<span class="ez-toc-section-end"></span></h3>
+<figure class="wp-block-image size-full"><img decoding="async" width="1024" height="515" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%20515'%3E%3C/svg%3E" alt="python" class="wp-image-17373" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/python.webp 1024w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/python-300x151.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/python-150x75.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/python-768x386.webp 768w" data-lazy-sizes="(max-width: 1024px) 100vw, 1024px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/python.webp" /><noscript><img decoding="async" width="1024" height="515" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/python.webp" alt="python" class="wp-image-17373" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/python.webp 1024w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/python-300x151.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/python-150x75.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/python-768x386.webp 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></noscript></figure>
+<p><a href="/tutorial/python-adalah" data-wpel-link="internal">Python adalah</a> bahasa pemrograman&nbsp;tingkat tinggi yang bisa digunakan untuk berbagai tujuan. Bahasa ini bisa digunakan untuk berbagai task, mulai dari analisis dan visualisasi data hingga pengembangan website, prototype, dan otomatisasi.</p>
+<p>Python populer di kalangan developer software karena sangat cocok sebagai bahasa skrip. Bahasa ini pun memungkinkan usernya menggunakan <a href="https://hackr.io/blog/programming-paradigms" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">berbagai paradigma pemrograman</a>, termasuk bahasa yang berorientasi pada objek (object-oriented), imperatif, prosedural, dan fungsional.</p>
+<p>Selain itu, Python bersifat open-source, sehingga programmer bisa memodifikasi source codenya agar sesuai dengan kebutuhan mereka.</p>
+<p>Python adalah salah satu bahasa pemrograman termudah karena sintaksisnya sangat mirip dengan bahasa Inggris. Kalau Anda ingin memulai karier sebagai developer atau engineer software,&nbsp;<a href="/tutorial/belajar-coding-online-gratis" data-wpel-link="internal">belajar coding</a>&nbsp;dengan Python bisa jadi titik awal yang bagus.</p>
+<p>Apalagi, posisi kerja sebagai developer Python saat ini sedang sangat dibutuhkan dan dicari. Di antaranya adalah data scientist, software engineer, dan artificial intelligence (AI) researcher.</p>
+<figure class="wp-block-table"><table><tbody><tr><td><strong>Level Paling Cocok</strong></td><td>Pemula.</td></tr><tr><td><strong>Tingkat Kesulitan</strong></td><td>Mudah dipelajari, dibaca, dan ditulis.</td></tr><tr><td><strong>Skill yang Dibutuhkan</strong></td><td>Pengetahuan dasar front-end bisa memudahkan proses pembelajaran.</td></tr><tr><td><strong>Penggunaan</strong></td><td>Pengembangan back-end web.<br>Aplikasi desktop.<br>Data science.<br>Otomatisasi.<br>Penerapan deep learning.<br>Machine learning dan komputasi saintifik.</td></tr><tr><td><strong>Pendapatan Rata-Rata Developer</strong></td><td><a href="https://www.glassdoor.com/Salaries/jakarta-python-developer-salary-SRCH_IL.0,7_IC2709872_KO8,24.htm" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">Sekitar Rp84 juta/tahun</a></td></tr><tr><td><strong>Popularitas</strong></td><td>Disukai oleh&nbsp;<a href="https://insights.stackoverflow.com/survey/2020#technology-most-loved-dreaded-and-wanted-languages-loved" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">66,7%</a>&nbsp;developer Stack Overflow.<br><a href="https://pypl.github.io/PYPL.html" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">No. 1</a>&nbsp;bahasa pemrograman terpopuler di PYPL Januari 2022.<br><a href="https://www.tiobe.com/tiobe-index/" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">No. 1</a> bahasa pemrograman terbaik di TIOBE Januari 2022.<br><a href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">No. 1</a>&nbsp;bahasa pemrograman paling diminati oleh pekerja profesional.<br><a href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">No. 6</a>&nbsp;bahasa pemrograman paling diminati oleh developer pelajar.</td></tr><tr><td><strong>Kelebihan</strong></td><td>Open-source.<br>Sangat mudah diskalakan.<br>Framework graphical user interface (GUI) yang lengkap.<br>Kompatibel dengan Mac dan Windows.<br>Dukungan komunitas yang terus berkembang.</td></tr><tr><td><strong>Kekurangan</strong></td><td>Lebih lambat karena merupakan interpreted language.<br>Menggunakan banyak memori.<br>Tidak ideal untuk pengembangan versi seluler.</td></tr></tbody></table></figure>
+<h3 class="wp-block-heading" id="h-2-c"><span class="ez-toc-section" id="2_C"></span>2. C#<span class="ez-toc-section-end"></span></h3>
+<figure class="wp-block-image size-full"><img decoding="async" width="1024" height="515" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%20515'%3E%3C/svg%3E" alt="c" class="wp-image-17374" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/c.webp 1024w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/c-300x151.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/c-150x75.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/c-768x386.webp 768w" data-lazy-sizes="(max-width: 1024px) 100vw, 1024px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/c.webp" /><noscript><img decoding="async" width="1024" height="515" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/c.webp" alt="c" class="wp-image-17374" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/c.webp 1024w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/c-300x151.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/c-150x75.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/c-768x386.webp 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></noscript></figure>
+<p>C# adalah bahasa pemograman berbasis objek, yaitu model yang mengatur desain software menurut objek.</p>
+<p>C# adalah salah satu bahasa pemrograman terbaik karena performanya cepat dan lebih stabil. Bahasa coding ini juga lebih mudah daripada pendahulunya, C dan C++, karena memiliki sintaksis yang simpel dan hierarki class yang tersusun dengan baik.</p>
+<p>Awalnya, C# digunakan sebagai bahasa Microsoft untuk <strong>.NET framework</strong>, kemudian kini kompatibel dengan Windows dan Linux. Bisa dibilang, ini adalah bahasa pemrograman terbaik yang layak dipelajari untuk mengembangkan aplikasi desktop berbasis GUI.</p>
+<p>Programmer juga bisa menggunakan C# di berbagai environment, termasuk software perangkat seluler dan enterprise. Dengan kata lain, mereka bisa membuat aplikasi Android dan iOS serta mengembangkan game 2D dan 3D di Unity.</p>
+<p>C# sangat diminati karena banyak perusahaan software yang terus mencari coder berbakat yang ahli menggunakan C#. Beberapa posisi kerja terbaik untuk developer C# adalah software engineer dan developer game atau aplikasi mobile.</p>
+<figure class="wp-block-table"><table><tbody><tr><td><strong>Level Paling Cocok</strong></td><td>Pemula dan menengah.</td></tr><tr><td><strong>Tingkat Kesulitan</strong></td><td>Sedang.</td></tr><tr><td><strong>Skill yang Dibutuhkan</strong></td><td>Pengetahuan dasar bahasa pemrograman C dan object-oriented bisa memperlancar proses belajar.</td></tr><tr><td><strong>Penggunaan</strong></td><td>Aplikasi web.<br>Aplikasi mobile.<br>Pengembangan game dan VR.<br>Aplikasi Linux dan Mac.</td></tr><tr><td><strong>Pendapatan Rata-Rata <strong>Programmer</strong></strong></td><td><a href="https://id.indeed.com/career/.net-developer/salaries" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">Sekitar Rp100 juta/tahun</a></td></tr><tr><td><strong>Popularitas</strong></td><td>Disukai oleh&nbsp;<a href="https://insights.stackoverflow.com/survey/2020#technology-most-loved-dreaded-and-wanted-languages-loved" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">59,7%</a>&nbsp;developer Stack Overflow.<br><a href="https://pypl.github.io/PYPL.html" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">No. 5</a>&nbsp;bahasa pemrograman terpopuler di PYPAL Januari 2022.<br><a href="https://www.tiobe.com/tiobe-index/" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">No. 5</a>&nbsp;bahasa pemrograman terbaik di TIOBE Januari 2022.<br><a href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">No. 4</a>&nbsp;bahasa pemrograman paling diminati oleh developer pelajar.</td></tr><tr><td><strong>Kelebihan</strong></td><td>Waktu kompilasi dan eksekusi cepat.<br>Sangat cocok untuk semua jenis pengembangan Windows.<br>Lebih aman daripada C dan C++, karena tidak menggunakan pointer.<br>Komunitas pengembang&nbsp;<strong>.NET</strong> yang besar.<br>Framework yang sangat beragam.</td></tr><tr><td><strong>Kekurangan</strong></td><td>Cukup sulit dipelajari daripada bahasa lainnya.<br>Kurang kompatibel lintas platform karena bergantung pada environment <strong>.NET</strong>.</td></tr></tbody></table></figure>
+<h3 class="wp-block-heading" id="h-3-c"><span class="ez-toc-section" id="3_C"></span>3. C++<span class="ez-toc-section-end"></span></h3>
+<figure class="wp-block-image size-full"><img decoding="async" width="1024" height="515" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%20515'%3E%3C/svg%3E" alt="c++" class="wp-image-17375" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/c-1.webp 1024w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/c-1-300x151.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/c-1-150x75.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/c-1-768x386.webp 768w" data-lazy-sizes="(max-width: 1024px) 100vw, 1024px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/c-1.webp" /><noscript><img decoding="async" width="1024" height="515" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/c-1.webp" alt="c++" class="wp-image-17375" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/c-1.webp 1024w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/c-1-300x151.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/c-1-150x75.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/c-1-768x386.webp 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></noscript></figure>
+<p>C++ adalah versi yang lebih tinggi dari C dan menjadi salah satu bahasa pemrograman terpopuler dalam computer science. Selain itu, C++ memiliki fungsi yang serbaguna sehingga menjadi salah satu yang terbaik untuk dipelajari.</p>
+<p>Bahasa ini cepat dan canggih, sehingga developer bisa membuat aplikasi dengan performa terbaik, seperti video game, software grafis, dan web browser.</p>
+<p>Dengan memadukan karakteristik bahasa level rendah dan tinggi, bahasa ini sangat cocok untuk programming sistem, memungkinkan abstraksi project yang lebih kecil. Selain itu, C++ adalah bahasa coding multiparadigma yang mendukung pemrograman OOP, generik, dan imperatif.</p>
+<p>Di sisi lain, mempelajari C++ mungkin akan menjadi tantangan bagi pemula karena memiliki sintaksis yang lebih rumit daripada bahasa pemrograman lainnya.</p>
+<p>Untuk peluang di dunia kerja, skill C++ sangat penting bagi banyak tenaga IT profesional, seperti developer software dan arsitek programming.</p>
+<p>Developer C++ kini sedang banyak dibutuhkan karena bahasa ini menjadi salah satu bahasa coding yang paling rumit dipelajari. Jadi, pastikan untuk mencantumkannya di <a href="/tutorial/cv-web-developer" data-wpel-link="internal">CV web developer</a> Anda guna menambah peluang kerja.</p>
+<figure class="wp-block-table"><table><tbody><tr><td><strong><strong>Level Paling Cocok</strong></strong></td><td>Coder berpengalaman.</td></tr><tr><td><strong>Tingkat Kesulitan</strong></td><td>Sulit.</td></tr><tr><td><strong>Skill yang Dibutuhkan</strong></td><td>Problem-solving, fungsi komputer, pengetahuan pemrograman dasar.</td></tr><tr><td><strong>Penggunaan</strong></td><td>Program komputer.<br>Sistem operasi.<br>Pengembangan aplikasi mobile.<br>Pengembangan video game.<br>Pengembangan aplikasi sisi klien dan server.<br>Machine learning.</td></tr><tr><td><strong>Pendapatan Rata-Rata <strong>Programmer</strong></strong></td><td><a href="https://id.indeed.com/career/c++-developer/salaries/Jakarta" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">Sekitar Rp106 juta/tahun</a></td></tr><tr><td><strong>Popularitas</strong></td><td>Disukai oleh&nbsp;<a href="https://insights.stackoverflow.com/survey/2020#technology-most-loved-dreaded-and-wanted-languages-loved" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">43,4%</a>&nbsp;developer Stack Overflow.<br><a href="https://pypl.github.io/PYPL.html" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">No. 4</a>&nbsp;bahasa pemrograman terpopuler di PYPL Januari 2022.<br><a href="https://www.tiobe.com/tiobe-index/" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">No. 4</a>&nbsp;bahasa pemrograman terbaik di TIOBE Januari 2022.</td></tr><tr><td><strong>Kelebihan</strong></td><td>Open-source.<br>Sangat serbaguna.<br>Cepat dan canggih.<br>Kontrol yang lebih menyeluruh.<br>Sangat cocok untuk lintas perangkat dan lintas platform.<br>Skill bahasa ini bisa menjadi dasar untuk belajar bahasa lain.</td></tr><tr><td><strong>Kekurangan</strong></td><td>Bisa sangat sulit bagi pemula.<br>Salah menggunakan pointer bisa menyebabkan error.<br>Strukturnya object-oriented sehingga kurang efisien daripada bahasa pemrograman berbasis OOP lainnya.<br>Kurangnya garbage collection.</td></tr></tbody></table></figure>
+<h3 class="wp-block-heading" id="h-4-javascript"><span class="ez-toc-section" id="4_JavaScript"></span>4. JavaScript<span class="ez-toc-section-end"></span></h3>
+<figure class="wp-block-image size-full"><img decoding="async" width="1024" height="519" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%20519'%3E%3C/svg%3E" alt="javascript" class="wp-image-17376" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/javascript.webp 1024w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/javascript-300x152.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/javascript-150x76.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/javascript-768x389.webp 768w" data-lazy-sizes="(max-width: 1024px) 100vw, 1024px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/javascript.webp" /><noscript><img decoding="async" width="1024" height="519" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/javascript.webp" alt="javascript" class="wp-image-17376" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/javascript.webp 1024w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/javascript-300x152.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/javascript-150x76.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/javascript-768x389.webp 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></noscript></figure>
+<p>Selain HTML dan&nbsp;<a href="/tutorial/apa-itu-css" data-wpel-link="internal">CSS</a>, JavaScript menjadi bahasa pemrograman terbaik untuk dipelajari apabila Anda tertarik dengan front-end web.&nbsp;<a href="https://w3techs.com/technologies/history_overview/client_side_language/all" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">97,8% dari semua website</a>&nbsp;menggunakan JavaScript untuk skrip sisi kliennya, sehingga bahasa ini menjadi yang paling populer untuk tujuan pengembangan tersebut.</p>
+<p>Bahasa skrip ini sering digunakan untuk meningkatkan interaktivitas halaman web.&nbsp;Web developer bisa menambahkan elemen dinamis di landing page mereka, seperti grafik animasi, tombol yang bisa diklik, dan efek mouseover.</p>
+<p>Kemudian selain itu, <a href="/tutorial/apa-itu-javascript" data-wpel-link="internal">JavaScript adalah</a> bahasa yang sangat cocok untuk mengembangkan aplikasi web karena menawarkan desain yang intuitif.</p>
+<p>Jadi, secara keseluruhan, JavaScript relatif mudah dipelajari sehingga bisa menjadi pilihan yang tepat bagi Anda yang berencana <a href="/tutorial/cara-menjadi-web-developer" data-wpel-link="internal">menjadi web developer</a>.&nbsp;Developer JavaScript juga bisa mencoba peruntungannya sebagai UI/UX designer, developer full-stack, dan software engineer.</p>
+<figure class="wp-block-table"><table><tbody><tr><td><strong>Level Paling Cocok</strong></td><td>Pemula.</td></tr><tr><td><strong>Tingkat Kesulitan</strong></td><td>Relatif mudah.</td></tr><tr><td><strong>Skill yang Dibutuhkan</strong></td><td>Kemampuan coding dasar dan pemahaman terhadap <a href="https://www.hostinger.com/tutorials/what-is-html" data-wpel-link="exclude" target="_blank" rel="follow noopener noreferrer">HTML</a>&nbsp;dan CSS.</td></tr><tr><td><strong>Penggunaan</strong></td><td>Web development front-end.<br>Pengembangan game.<br>Aplikasi web.</td></tr><tr><td><strong>Pendapatan <strong>Rata-Rata </strong>Developer</strong></td><td>Gaji rata-rata programmer JavaScript adalah&nbsp;<a href="https://id.indeed.com/career/javascript-developer/salaries/Jakarta" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">sekitar Rp111 juta/tahun</a>, sedangkan web developer adalah&nbsp;<a href="https://www.glassdoor.com/Salaries/indonesia-javascript-developer-salary-SRCH_IL.0,9_IN113_KO10,30.htm" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer">sekitar Rp61 juta/tahun</a>.</td></tr><tr><td><strong>Popularitas</strong></td><td>Disukai oleh&nbsp;<a href="https://insights.stackoverflow.com/survey/2020#technology-most-loved-dreaded-and-wanted-languages-loved" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">58,3%</a>&nbsp;developer Stack Overflow.<br><a href="https://pypl.github.io/PYPL.html" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">No. 3</a>&nbsp;bahasa pemrograman terpopuler di PYPL Januari 2022.<br><a href="https://www.tiobe.com/tiobe-index/" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">No. 7</a>&nbsp;bahasa pemrograman terbaik di TIOBE Januari 2022.<br><a href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">No. 4</a>&nbsp;bahasa pemrograman paling diminati oleh pekerja profesional.<br><a href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">No. 2</a>&nbsp;bahasa pemrograman paling diminati oleh developer pelajar.</td></tr><tr><td><strong>Kelebihan</strong></td><td>Open-source.<br>JavaScript sisi klien sangat cepat karena tidak memerlukan kompilasi.<br>Sangat cocok dengan bahasa pemrograman terbaik lainnya.<br>Bagus untuk meningkatkan pengalaman dan engagement pengguna website.</td></tr><tr><td><strong>Kekurangan</strong></td><td><a href="https://www.securecoding.com/blog/most-common-security-vulnerabilities-using-javascript/" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">Masalah keamanan</a>.<br>Performa lintas browser tidak stabil.</td></tr></tbody></table></figure>
+<h3 class="wp-block-heading" id="h-5-php"><span class="ez-toc-section" id="5_PHP"></span>5. PHP<span class="ez-toc-section-end"></span></h3>
+<figure class="wp-block-image size-full"><img decoding="async" width="1024" height="515" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%20515'%3E%3C/svg%3E" alt="php" class="wp-image-17378" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/php.webp 1024w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/php-300x151.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/php-150x75.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/php-768x386.webp 768w" data-lazy-sizes="(max-width: 1024px) 100vw, 1024px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/php.webp" /><noscript><img decoding="async" width="1024" height="515" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/php.webp" alt="php" class="wp-image-17378" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/php.webp 1024w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/php-300x151.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/php-150x75.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/php-768x386.webp 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></noscript></figure>
+<p><a href="/tutorial/apa-itu-php/" data-wpel-link="internal">PHP&nbsp;adalah</a> salah satu bahasa back-end pertama yang penting untuk dipelajari menurut sejumlah web developer.&nbsp;Selain itu, PHP digunakan oleh&nbsp;<a href="https://w3techs.com/technologies/details/pl-php" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">78,1% dari semua website</a>&nbsp;karena merupakan bahasa utama untuk WordPress.</p>
+<p>PHP lebih mudah dipelajari dibandingkan dengan bahasa pemrograman lainnya.&nbsp;Selain memiliki banyak sekali resource yang tersedia untuk pemula, sintaksis PHP tidaklah rumit.</p>
+<p>Terlebih lagi, bahasa ini menawarkan&nbsp;<a href="/tutorial/framework-php" data-wpel-link="internal">framework PHP yang sangat baik</a>&nbsp;untuk pengembangan website dan aplikasi.&nbsp;Beberapa yang terbaik di antaranya adalah Laravel, Symfony, dan&nbsp;<a href="/tutorial/tutorial-codeigniter-indonesia-lengkap" data-wpel-link="internal">CodeIgniter</a>.</p>
+<p>Untuk peluang kerja, PHP adalah bahasa programming open-source yang banyak diminati meskipun termasuk yang tertua di industri.&nbsp;Programmer PHP bisa menggunakan bahasa ini untuk menulis skrip command-line serta skrip sisi server dan mengembangkan aplikasi desktop.</p>
+<figure class="wp-block-table"><table><tbody><tr><td><strong>Level Paling Cocok</strong></td><td>Pemula.</td></tr><tr><td><strong>Tingkat Kesulitan</strong></td><td>Sangat mudah dipelajari.</td></tr><tr><td><strong>Skill yang Dibutuhkan</strong></td><td>Kemampuan dasar coding, terutama CSS dan HTML, bisa mempermudah proses belajar.</td></tr><tr><td><strong>Penggunaan</strong></td><td>Web development.<br>Aplikasi desktop.<br>Program komputer.</td></tr><tr><td><strong>Pendapatan Rata-Rata <strong>Programmer</strong></strong></td><td><a href="https://id.indeed.com/career/php-developer/salaries" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">Sekitar Rp85 juta/tahun</a></td></tr><tr><td><strong>Popularitas</strong></td><td>Disukai oleh&nbsp;<a href="https://insights.stackoverflow.com/survey/2020#technology-most-loved-dreaded-and-wanted-languages-loved" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">37,3%</a>&nbsp;developer Stack Overflow.<br><a href="https://pypl.github.io/PYPL.html" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">No. 6</a>&nbsp;bahasa pemrograman terpopuler di PYPL Januari 2022.<br><a href="https://www.tiobe.com/tiobe-index/" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">No. 11</a>&nbsp;bahasa pemrograman terbaik di TIOBE Januari 2022.</td></tr><tr><td><strong>Kelebihan</strong></td><td>Open-source.<br>PHP 7 dan versi lebih tinggi memiliki kecepatan yang bagus.<br>Dirancang dengan matang untuk web development.<br>Mendukung OOP dan pemrograman fungsional.<br>Dukungan komunitas yang sangat baik.</td></tr><tr><td><strong>Kekurangan</strong></td><td><a href="https://www.phpclasses.org/blog/post/338-6-Common-PHP-Security-Issues-And-Their-Remedies.html" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">Masalah keamanan</a>.<br>Membuat website dengan PHP lebih lambat daripada dengan bahasa lainnya.<br>Lebih sedikit tool debugging.</td></tr></tbody></table></figure>
+<h3 class="wp-block-heading" id="h-6-swift"><span class="ez-toc-section" id="6_Swift"></span>6. Swift<span class="ez-toc-section-end"></span></h3>
+<figure class="wp-block-image size-full"><img decoding="async" width="1024" height="515" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%20515'%3E%3C/svg%3E" alt="swift" class="wp-image-17379" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/swift.webp 1024w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/swift-300x151.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/swift-150x75.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/swift-768x386.webp 768w" data-lazy-sizes="(max-width: 1024px) 100vw, 1024px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/swift.webp" /><noscript><img decoding="async" width="1024" height="515" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/swift.webp" alt="swift" class="wp-image-17379" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/swift.webp 1024w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/swift-300x151.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/swift-150x75.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/swift-768x386.webp 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></noscript></figure>
+<p>Swift adalah salah satu bahasa pemrograman yang paling baru di industri ini.&nbsp;Saat pertama kali diluncurkan, Swift menjadi alternatif untuk Objective-C, yang merupakan bahasa utama produk Apple.</p>
+<p>Developer beralih ke Swift karena menawarkan fitur-fitur modern, seperti pemrograman konkuren (concurrent) dan pengelolaan memori otomatis.&nbsp;Swift juga lebih mudah ditulis dan lebih cepat daripada Objective-C.</p>
+<p>Jadi, bisa dibilang Swift adalah bahasa programming terbaik dalam pengembangan produk Apple dan salah satu bahasa dengan pertumbuhan tercepat.</p>
+<p>Kalau Anda tertarik untuk mengembangkan produk Apple, sebaiknya pilih Swift sebagai bahasa pertama yang Anda pelajari.</p>
+<p>Selain itu, keahlian dalam pengembangan aplikasi iOS saat ini sangat diminati karena Apple terus menjadi <a href="https://www.counterpointresearch.com/global-handset-market-operating-profit-q2-2021/" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">penghasil keuntungan dan pendapatan terbesar</a> dalam bisnis smartphone.</p>
+<figure class="wp-block-table"><table><tbody><tr><td><strong>Level Paling Cocok</strong></td><td>Pemula.</td></tr><tr><td><strong>Tingkat Kesulitan</strong></td><td>Mudah dibaca dan dipelajari.</td></tr><tr><td><strong>Skill yang Dibutuhkan</strong></td><td>Tidak ada.</td></tr><tr><td><strong>Penggunaan</strong></td><td>Software development, terutama untuk aplikasi macOS dan iOS.</td></tr><tr><td><strong>Pendapatan Rata-Rata <strong>Programmer</strong></strong></td><td><a href="https://id.indeed.com/career/ios-developer/salaries" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">Sekitar Rp127 juta/tahun</a></td></tr><tr><td><strong>Popularitas</strong></td><td>Disukai oleh&nbsp;<a href="https://insights.stackoverflow.com/survey/2020#technology-most-loved-dreaded-and-wanted-languages-loved" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">59,5%</a>&nbsp;developer Stack Overflow.<br><a href="https://pypl.github.io/PYPL.html" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">No. 9</a>&nbsp;bahasa pemrograman terpopuler di PYPL Januari 2022.<br><a href="https://www.tiobe.com/tiobe-index/" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">No. 10</a>&nbsp;bahasa pemrograman terbaik di TIOBE Januari 2022.<br><a href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">No. 7</a>&nbsp;bahasa pemrograman paling diminati oleh developer pelajar.</td></tr><tr><td><strong>Kelebihan</strong></td><td>Open-source.<br><a href="https://www.apple.com/swift/" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">2,6x lebih cepat</a>&nbsp;dari Objective-C.<br>Lebih mudah dibaca karena clean code (rapi dan mudah dibaca).<br>Interoperable dengan Objective-C.<br>Footprint memori lebih sedikit.</td></tr><tr><td><strong>Kekurangan</strong></td><td>Sering dianggap sebagai bahasa pemrograman yang belum matang meskipun perkembangannya pesat.<br>Kurangnya dukungan untuk versi lama iOS.</td></tr></tbody></table></figure>
+<h3 class="wp-block-heading" id="h-7-java"><span class="ez-toc-section" id="7_Java"></span>7. Java<span class="ez-toc-section-end"></span></h3>
+<figure class="wp-block-image size-full"><img decoding="async" width="1024" height="547" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%20547'%3E%3C/svg%3E" alt="java" class="wp-image-17380" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/java.webp 1024w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/java-300x160.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/java-150x80.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/java-768x410.webp 768w" data-lazy-sizes="(max-width: 1024px) 100vw, 1024px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/java.webp" /><noscript><img decoding="async" width="1024" height="547" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/java.webp" alt="java" class="wp-image-17380" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/java.webp 1024w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/java-300x160.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/java-150x80.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/java-768x410.webp 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></noscript></figure>
+<p><a href="/tutorial/apa-itu-javascript#Perbedaan_Java_dan_JavaScript" data-wpel-link="internal">Java adalah</a> bahasa pemrograman dengan hak milik yang dipegang oleh Oracle.&nbsp;Java merupakan bahasa programming tingkat tinggi yang serbaguna, memungkinkan coder untuk membuat semua jenis aplikasi dengan mudah.</p>
+<p>Dikenal luas sebagai bahasa coding dengan tagline &#8220;tulis sekali, jalankan di mana saja&#8221;, kode Java bisa berjalan tanpa masalah di sistem operasi apa pun, di mana pun kode tersebut ditulis.</p>
+<p>Selain itu, Java termasuk bahasa coding yang mudah berkat familiaritas sintaksisnya dengan struktur object-oriented dan tugas dunia nyata.&nbsp;Kemudian framework Java yang baru, termasuk Spring dan Hibernate, membuatnya lebih mudah bagi developer untuk membuat aplikasi.</p>
+<p>Java bisa digunakan untuk berbagai hal, mulai dari software engineering hingga web development back-end, data science, dan big data.&nbsp;Bahasa ini juga sering digunakan dalam layanan keuangan karena keamanannya yang kuat.</p>
+<p>Programmer Java bisa mempelajari bahasa coding baru dengan cepat karena skill programming Java bisa diaplikasikan ke bahasa lain.&nbsp;Oleh karena itu, Java bisa menjadi bahasa pemrograman pertama yang layak dipelajari oleh semua penggemar coding.</p>
+<p>Selain itu, pekerjaan sebagai developer Java masih banyak dibutuhkan.&nbsp;Anda bisa memilih berbagai posisi kerja, termasuk software engineer, analis QA, manajer proyek, dan UX designer.</p>
+<figure class="wp-block-table"><table><tbody><tr><td><strong>Level Paling Cocok</strong></td><td>Pemula.</td></tr><tr><td><strong>Tingkat Kesulitan</strong></td><td>Cukup mudah dipelajari.</td></tr><tr><td><strong>Skill yang Dibutuhkan</strong></td><td>Pengetahuan pemrograman dasar.</td></tr><tr><td><strong>Penggunaan</strong></td><td>Mobile development.<br>Pengembangan aplikasi.<br>Aplikasi desktop.<br>Aplikasi web.<br>Pengembangan game.<br>Machine learning dan komputasi saintifik.</td></tr><tr><td><strong>Pendapatan Programmer Rata-rata</strong></td><td><a href="https://id.indeed.com/career/java-developer/salaries" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">Sekitar Rp112 juta/tahun</a></td></tr><tr><td><strong>Popularitas</strong></td><td>Disukai oleh&nbsp;<a href="https://insights.stackoverflow.com/survey/2020#technology-most-loved-dreaded-and-wanted-languages-loved" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">44,1%</a>&nbsp;developer Stack Overflow.<br><a href="https://pypl.github.io/PYPL.html" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">No. 2</a>&nbsp;bahasa pemrograman terpopuler di PYPL Januari 2022.<br><a href="https://www.tiobe.com/tiobe-index/" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">No. 3</a>&nbsp;bahasa pemrograman terbaik di TIOBE Januari 2022.<br><a href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">No. 2</a>&nbsp;bahasa pemrograman terpopuler di kalangan pekerja profesional.</td></tr><tr><td><strong>Kelebihan</strong></td><td>Sangat serbaguna.<br>Mudah dipelajari, ditulis, dikompilasi, dan didebug.<br>Framework Java baru membuat development program Java lebih cepat.<br>Memiliki berbagai <a href="/tutorial/api-adalah" data-wpel-link="internal">API</a> untuk pengembangan aplikasi.<br>Mendukung multithreading.<br>Keamanan yang lebih baik.<br>Kompatibilitas lintas platform.</td></tr><tr><td><strong>Kekurangan</strong></td><td>Waktu eksekusi lambat.<br>Memakan banyak memori.</td></tr></tbody></table></figure>
+<h3 class="wp-block-heading" id="h-8-go"><span class="ez-toc-section" id="8_Go"></span>8. Go<span class="ez-toc-section-end"></span></h3>
+<figure class="wp-block-image size-full"><img decoding="async" width="1024" height="458" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%20458'%3E%3C/svg%3E" alt="go" class="wp-image-17381" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/go.webp 1024w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/go-300x134.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/go-150x67.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/go-768x344.webp 768w" data-lazy-sizes="(max-width: 1024px) 100vw, 1024px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/go.webp" /><noscript><img decoding="async" width="1024" height="458" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/go.webp" alt="go" class="wp-image-17381" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/go.webp 1024w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/go-300x134.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/go-150x67.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/go-768x344.webp 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></noscript></figure>
+<p>Go atau Golang dibuat untuk mengembangkan API, aplikasi desktop berbasis GUI, dan aplikasi web.&nbsp;Meskipun tergolong masih baru, Go menjadi salah satu bahasa pemrograman yang berkembang paling cepat.</p>
+<p>Pemrograman konkuren adalah salah satu fitur terbaik Go.&nbsp;Fitur ini memungkinkan programmer menggunakan CPU multicore dan codebase yang sangat besar.</p>
+<p>Ditambah dengan performa yang luar biasa, Go bisa menjadi bahasa coding yang sangat cocok untuk membuat algoritme, web server, dan pipeline data.</p>
+<p>Kabar baiknya, konkurensi Go relatif lebih sederhana daripada bahasa lainnya.&nbsp;Dengan thread Goroutine yang ringan, programmer hanya perlu menambahkan sintaksis Go untuk membuat fungsi berjalan sebagai subproses.</p>
+<p>Selain itu, Go telah menjadi salah satu bahasa pemrograman paling populer untuk dipelajari.&nbsp;Meskipun berbasis sintaksis disiplin C, Go lebih mudah dipahami karena tidak begitu kompleks.</p>
+<p>Beberapa posisi kerja terbaik untuk developer Go termasuk software engineer, data scientist, web developer back-end, dan AI researcher.&nbsp;Gaji developer Go juga termasuk yang paling tinggi, dan posisinya semakin banyak dibutuhkan.</p>
+<figure class="wp-block-table"><table><tbody><tr><td><strong>Level Paling Cocok</strong></td><td>Pemula hingga menengah.</td></tr><tr><td><strong>Tingkat Kesulitan</strong></td><td>Mudah dipelajari karena sifatnya yang clean code.</td></tr><tr><td><strong>Skill yang Dibutuhkan</strong></td><td>Bisa lebih mudah dipelajari kalau Anda sudah memiliki skill coding C atau Java.</td></tr><tr><td><strong>Penggunaan</strong></td><td>Web development back-end.<br>Aplikasi web.<br>Machine learning.<br>Pemrograman sistem.<br>Big data.</td></tr><tr><td><strong>Pendapatan Rata-Rata Developer</strong></td><td><a href="https://www.jobstreet.co.id/id/job-search/golang-developer-jobs/" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">Sekitar Rp96 juta/tahun</a></td></tr><tr><td><strong>Popularitas</strong></td><td>Disukai oleh&nbsp;<a href="https://insights.stackoverflow.com/survey/2020#technology-most-loved-dreaded-and-wanted-languages-loved" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">62,3%</a>&nbsp;developer Stack Overflow.<br><a href="https://pypl.github.io/PYPL.html" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">No. 13</a>&nbsp;bahasa pemrograman terpopuler di PYPL Januari 2022.<br><a href="https://www.tiobe.com/tiobe-index/" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">No. 13</a>&nbsp;bahasa pemrograman terbaik di TIOBE Januari 2022.<br><a href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">No. 1</a>&nbsp;bahasa pemrograman paling diminati oleh developer pelajar dan pekerja profesional.</td></tr><tr><td><strong>Kelebihan</strong></td><td>Open-source.<br>Waktu eksekusi cepat.<br>Model konkurensi sederhana.<br>Keamanan yang lebih baik.<br>Dukungan testing yang sangat baik dan tool analisis statis.</td></tr><tr><td><strong>Kekurangan</strong></td><td>Dukungan library terbatas.<br>Kurangnya fungsi generik.<br>Tidak ideal untuk mengembangkan program yang kompleks.</td></tr></tbody></table></figure>
+<h3 class="wp-block-heading" id="h-9-sql"><span class="ez-toc-section" id="9_SQL"></span>9. SQL<span class="ez-toc-section-end"></span></h3>
+<figure class="wp-block-image size-full"><img decoding="async" width="1024" height="509" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%20509'%3E%3C/svg%3E" alt="sql" class="wp-image-17383" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/sql.webp 1024w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/sql-300x149.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/sql-150x75.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/sql-768x382.webp 768w" data-lazy-sizes="(max-width: 1024px) 100vw, 1024px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/sql.webp" /><noscript><img decoding="async" width="1024" height="509" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/sql.webp" alt="sql" class="wp-image-17383" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/sql.webp 1024w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/sql-300x149.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/sql-150x75.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/sql-768x382.webp 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></noscript></figure>
+<p>Structured Query Language (SQL) adalah bahasa pemrograman yang paling cocok dipelajari kalau Anda tertarik dengan data science dan komputasi statistik.&nbsp;SQL merupakan bahasa khusus domain, memungkinkan programmer membuat kueri, memanipulasi, dan menganalisis data yang disimpan dalam database relasional.</p>
+<p>SQL adalah <a href="https://insights.stackoverflow.com/survey/2020#most-popular-technologies" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">bahasa ketiga yang paling banyak digunakan</a>&nbsp;menurut statistik Stack Overflow.&nbsp;Untuk peluang kerja, perusahaan-perusahaan dari berbagai industri mungkin membutuhkan developer SQL karena perannya yang penting dalam pengelolaan database.</p>
+<p><a href="/tutorial/cara-menjadi-web-developer" data-wpel-link="internal">Web developer</a>&nbsp;menggunakan SQL untuk mengatur database website, dan marketer menggunakannya untuk membantu mengevaluasi kampanye pemasaran.&nbsp;Selain itu, ada banyak sistem pengelolaan database yang menggunakan SQL, termasuk <a href="/tutorial/apa-itu-mysql" data-wpel-link="internal">MySQL</a> dan <a href="https://www.hostinger.com/tutorials/mariadb-vs-mysql" data-wpel-link="exclude" target="_blank" rel="follow noopener noreferrer">MariaDB</a>.</p>
+<p>Bisa dibilang developer SQL memang cukup diminati.&nbsp;Untungnya, belajar SQL tidaklah sulit karena sintaksisnya menggunakan kata-kata bahasa Inggris umum.</p>
+<figure class="wp-block-table"><table><tbody><tr><td><strong>Level Paling Cocok</strong></td><td>Pemula.</td></tr><tr><td><strong>Tingkat Kesulitan</strong></td><td>Mudah dipelajari, tapi mungkin sulit ketika membuat fungsi advanced.</td></tr><tr><td><strong>Skill yang Dibutuhkan</strong></td><td>Tidak ada.</td></tr><tr><td><strong>Penggunaan</strong></td><td>Data science.<br>Pengelolaan database back-end.<br>Business intelligence tool.<br>Laporan penjualan.</td></tr><tr><td><strong>Pendapatan Rata-Rata <strong>Programmer</strong></strong></td><td><a href="https://www.glassdoor.com/Salaries/indonesia-pl-sql-developer-salary-SRCH_IL.0,9_IN113_KO10,26.htm" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">Sekitar Rp180 juta/tahun</a></td></tr><tr><td><strong>Popularitas</strong></td><td>Disukai oleh&nbsp;<a href="https://insights.stackoverflow.com/survey/2020#technology-most-loved-dreaded-and-wanted-languages-loved" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">56,6%</a>&nbsp;developer Stack Overflow.<br><a href="https://www.tiobe.com/tiobe-index/" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">No. 9</a>&nbsp;bahasa pemrograman terbaik di TIOBE Januari 2022.<br><a href="https://recruit-c7ff.kxcdn.com/recruit/wp-content/uploads/2020/05/he-developer-survey-2020.pdf" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">No. 1</a>&nbsp;bahasa pemrograman terpopuler di kalangan pekerja profesional.</td></tr><tr><td><strong>Kelebihan</strong></td><td>Pemrosesan kueri lebih cepat.<br>Portabilitas yang sangat baik.<br>Keamanan tinggi.<br>Sangat interaktif.<br>Komunitas pengguna besar.</td></tr><tr><td><strong>Kekurangan</strong></td><td>Tidak open-source.<br>Bukan bahasa pemrograman terbaik kalau Anda ingin membuat aplikasi.</td></tr></tbody></table></figure>
+<h3 class="wp-block-heading" id="h-10-ruby"><span class="ez-toc-section" id="10_Ruby"></span>10. Ruby<span class="ez-toc-section-end"></span></h3>
+<figure class="wp-block-image size-full"><img decoding="async" width="1024" height="519" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%20519'%3E%3C/svg%3E" alt="ruby" class="wp-image-17399" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/ruby.webp 1024w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/ruby-300x152.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/ruby-150x76.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/ruby-768x389.webp 768w" data-lazy-sizes="(max-width: 1024px) 100vw, 1024px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/ruby.webp" /><noscript><img decoding="async" width="1024" height="519" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/ruby.webp" alt="ruby" class="wp-image-17399" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/ruby.webp 1024w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/ruby-300x152.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/ruby-150x76.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/04/ruby-768x389.webp 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></noscript></figure>
+<p>Ruby adalah bahasa pemrograman open-source populer lainnya.&nbsp;Bahasa ini biasanya digunakan untuk pengembangan aplikasi web, tapi programmer juga bisa menggunakannya untuk analisis data dan pembuatan prototype.</p>
+<p>Karena Ruby menggunakan sintaksis seperti bahasa Inggris, Anda bisa mempelajari bahasa interpreted yang serbaguna ini dengan cukup mudah.</p>
+<p>Selain itu, framework Ruby on Rails (RoR) memberikan banyak keuntungan, termasuk keamanan yang lebih baik, tidak sering maintenance, dan cocok untuk full-stack development.</p>
+<div class="protip">
+<h4 class="title">Tips Berguna</h4>
+<p>Kalau menggunakan VPS Hostinger, Anda bisa memilih template sistem operasi dengan framework Ruby on Rails yang sudah terinstal.</p>
+</div>
+<p>Meskipun banyak yang merasa kalau Ruby sudah tidak laku, bahasa ini menjadi salah satu opsi paling stabil untuk pengembangan website.&nbsp;Jadi, kalau ingin meningkatkan skill web development dan aplikasi web, Anda bisa mencoba mempelajari Ruby.</p>
+<figure class="wp-block-table"><table><tbody><tr><td><strong>Level Paling Cocok</strong></td><td>Pemula.</td></tr><tr><td><strong>Tingkat Kesulitan</strong></td><td>Sangat mudah dipelajari.</td></tr><tr><td><strong><strong>Skill yang Dibutuhkan</strong></strong></td><td>Tidak ada.</td></tr><tr><td><strong>Penggunaan</strong></td><td>Pengembangan front-end web dan back-end web.</td></tr><tr><td><strong>Pendapatan Rata-Rata <strong>Programmer</strong></strong></td><td><a href="https://www.glassdoor.com/Salaries/indonesia-ruby-on-rails-developer-salary-SRCH_IL.0,9_IN113_KO10,33.htm" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">Sekitar Rp144 juta/tahun</a></td></tr><tr><td><strong>Popularitas</strong></td><td>Disukai oleh&nbsp;<a href="https://insights.stackoverflow.com/survey/2020#technology-most-loved-dreaded-and-wanted-languages-loved" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">42,9%</a>&nbsp;developer Stack Overflow.<br><a href="https://pypl.github.io/PYPL.html" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">No. 15</a>&nbsp;bahasa pemrograman terpopuler di PYPL Januari 2022.<br><a href="https://www.tiobe.com/tiobe-index/" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">No. 18</a>&nbsp;bahasa pemrograman terbaik di TIOBE Januari 2022.</td></tr><tr><td><strong>Kelebihan</strong></td><td>Open-source.<br>Bisa ditulis dengan cepat dan mudah didebug.<br>Garbage collection efektif.<br>Komunitas besar dan aktif.<br>Framework Ruby on Rails sangat cocok untuk&nbsp;<a href="/tutorial/cara-membuat-website" data-wpel-link="internal">membuat website</a>.</td></tr><tr><td><strong>Kekurangan</strong></td><td>Lambat.<br>Kurang fleksibel.<br>Masalah multithreading.</td></tr></tbody></table></figure>
+<h2 class="wp-block-heading" id="h-kesimpulan">Kesimpulan</h2>
+<p>Nah, bagaimana? Sekarang Anda sudah tahu jenis-jenis bahasa pemrograman terpopuler tahun 2023. Tentu saja, bahasa pemrograman yang perlu dipelajari memang akan bergantung pada kebutuhan Anda.</p>
+<p>Sebagai ringkasan, berikut bahasa pemrograman terbaik yang layak dipelajari untuk web developer:</p>
+<ul>
+<li><strong>Pemrograman sisi klien.&nbsp;</strong>JavaScript merupakan bahasa coding terbaik untuk pengembangan front-end.</li>
+<li><strong>Pemrograman sisi server.&nbsp;</strong>Python, PHP, Go, dan Ruby membantu database berkomunikasi dengan aplikasi di back-end program.</li>
+<li><strong>Pengembangan aplikasi web</strong>.&nbsp;C#, JavaScript, Java, Go, dan Ruby adalah salah satu bahasa pemrograman terbaik untuk membuat aplikasi web.</li>
+<li><strong>Pengelolaan database.&nbsp;</strong>Tentu saja SQL menjadi bahasa yang paling cocok.</li>
+</ul>
+<p>Selanjutnya, berikut bahasa coding terbaik sesuai fungsinya:</p>
+<ul>
+<li><strong>Pengembangan game.&nbsp;</strong>C++, JavaScript, dan Java menjadi bahasa pemrograman paling mumpuni untuk pengembangan game.</li>
+<li><strong>Pengembangan aplikasi mobile.&nbsp;</strong>C++ dan Java bisa memberikan performa yang sangat baik untuk aplikasi mobile yang Anda buat.&nbsp;Atau, pilih Swift kalau Anda tertarik untuk mengembangkan aplikasi dan produk iOS.</li>
+<li><strong>Aplikasi GUI.&nbsp;</strong>Python, C#, PHP, Java, dan Go adalah opsi terbaik untuk mengembangkan aplikasi desktop.</li>
+<li><strong>Pengolahan data.&nbsp;</strong>Python, SQL, dan Ruby sangat cocok untuk komputasi statistik.</li>
+<li><strong>Fungsi yang serbaguna.&nbsp;</strong>Meskipun C++ adalah bahasa yang paling serbaguna dari semua bahasa dalam daftar ini, Anda juga bisa mencoba Java.</li>
+<li><strong>Popularitas.&nbsp;</strong>Python adalah yang paling populer, diikuti oleh Java, JavaScript, C++, dan C#.</li>
+</ul>
+<p>Semoga artikel ini bisa membantu Anda memilih bahasa pemrograman yang ingin Anda pelajari dan membuat website, ya.&nbsp;Jangan lupa, pilih&nbsp;<a href="/web-hosting" data-wpel-link="internal">hosting terbaik di Hostinger</a> untuk mengembangkan website.&nbsp;Kalau ada pertanyaan, jangan ragu untuk menghubungi kami lewat komentar.</p>
+<div id="the-author-section" class="col-12 bg-ghost-white">
+<div class="d-flex flex-column flex-sm-row ml-0 justify-content-center justify-content-sm-start">
+<div class="author-avatar">
+<img width="150" height="150" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20150%20150'%3E%3C/svg%3E" class="border-radius-50" alt="Author" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2021/08/T029Z4XM6-U01CPGXARQR-8c60d4e8d6f9-512-150x150.jpg" /><noscript><img width="150" height="150" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2021/08/T029Z4XM6-U01CPGXARQR-8c60d4e8d6f9-512-150x150.jpg"
+                   class="border-radius-50"
+                   alt="Author"/></noscript>
+</div>
+<div class="author-info align-items-sm-start pl-20-sm">
+<span class="author">Penulis</span>
+<p class="author-name">Faradilla A.</p>
+</div>
+</div>
+<div class="description mt-15 mt-30-md">
+<p class="text-center text-sm-left">
+Faradilla, yang lebih akrab disapa Ninda, adalah Content Manager di Hostinger. Ia suka mengikuti tren seputar teknologi, digital marketing, dan belajar bahasa. Melalui tutorial Hostinger ini, Ninda ingin berbagi informasi dan membantu pembaca menyelesaikan masalah yang dialami. </p>
+</div>
+<div class="more-from-author">
+<a class="links-hover mt-5" href="https://www.hostinger.co.id/tutorial/author/faradilla" data-wpel-link="internal">
+Tutorial lain dari Faradilla A. </a>
+</div>
+</div>
+</div>
+<div class="social-container position-sticky d-none d-xl-block">
+<a class="social-link text-light-black cursor-pointer d-flex align-items-center justify-content-center">
+<svg width="28" height="28" class="link" viewBox="0 0 28 14" onclick="copyToClipboard('www.hostinger.co.id/tutorial/bahasa-pemrograman');linkClick(event)" xmlns="http://www.w3.org/2000/svg">
+<path d="M6.364 0.5C2.85 0.5 0 3.41 0 7C0 10.59 2.85 13.5 6.364 13.5H11.454V10.9H6.364C4.254 10.9 2.545 9.154 2.545 7C2.545 4.846 4.255 3.1 6.364 3.1H11.454V0.5H6.364V0.5ZM16.545 0.5V3.1H21.636C23.746 3.1 25.455 4.846 25.455 7C25.455 9.154 23.745 10.9 21.636 10.9H16.546V13.5H21.636C25.15 13.5 28 10.59 28 7C28 3.41 25.15 0.5 21.636 0.5H16.546H16.545ZM7.636 5.7V8.3H20.364V5.7H7.636Z" />
+</svg>
+<div id="copyLink" style="display: none;" class="copy-link">Salin link</div>
+<div id="copiedLink" style="display: none;" class="copied-link">Disalin!</div>
+</a>
+<a href="https://twitter.com/intent/tweet?text=10 Bahasa Pemrograman Terpopuler untuk Dipelajari 2023&amp;url=www.hostinger.co.id/tutorial/bahasa-pemrograman" class="social-link" target="_blank" rel="nofollow noopener noreferrer" data-wpel-link="exclude">
+<svg width="28" height="28" class="twitter" viewBox="0 0 28 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M28 3.222C26.97 3.685 25.862 3.996 24.7 4.137C25.9034 3.4078 26.801 2.26638 27.226 0.925C26.0996 1.60097 24.8652 2.07794 23.577 2.335C23.0427 1.75645 22.3944 1.29475 21.673 0.978948C20.9515 0.663145 20.1725 0.500076 19.385 0.5C16.212 0.5 13.641 3.1 13.641 6.306C13.641 6.761 13.693 7.206 13.789 7.629C9.016 7.387 4.784 5.075 1.95 1.56C1.43967 2.44841 1.17205 3.45545 1.174 4.48C1.17133 5.43314 1.40284 6.37235 1.84817 7.21507C2.2935 8.05778 2.93903 8.7782 3.728 9.313C2.81494 9.28354 1.92242 9.03451 1.126 8.587V8.66C1.126 11.474 3.106 13.82 5.734 14.353C4.8886 14.5858 4.00082 14.62 3.14 14.453C3.871 16.76 5.993 18.439 8.506 18.486C7.31857 19.431 5.95501 20.1305 4.49471 20.5435C3.0344 20.9566 1.50652 21.075 0 20.892C2.62075 22.596 5.68001 23.502 8.806 23.5C19.372 23.5 25.148 14.652 25.148 6.98C25.1481 6.72925 25.1428 6.47852 25.132 6.228C26.2588 5.40415 27.23 4.38627 28 3.222V3.222Z" />
+</svg>
+</a>
+<a href="https://www.facebook.com/sharer/sharer.php?u=www.hostinger.co.id/tutorial/bahasa-pemrograman" class="social-link" target="_blank" rel="nofollow noopener noreferrer" data-wpel-link="exclude">
+<svg width="28" height="28" class="facebook" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3307_57195)">
+<path d="M24.889 1.60787e-07H3.11C2.7015 1.39669e-07 2.29701 0.0804758 1.91962 0.23683C1.54224 0.393185 1.19935 0.622355 0.910544 0.911252C0.621741 1.20015 0.392681 1.54311 0.236448 1.92055C0.0802144 2.29799 -0.000131188 2.70251 1.60787e-07 3.111V24.89C1.39669e-07 25.2985 0.0804758 25.703 0.23683 26.0804C0.393185 26.4578 0.622355 26.8007 0.911252 27.0895C1.20015 27.3783 1.54311 27.6073 1.92055 27.7636C2.29799 27.9198 2.70251 28.0001 3.111 28H14.966V17.172H11.321V12.932H14.966V9.815C14.966 6.2 17.176 4.229 20.403 4.229C21.4898 4.22651 22.5759 4.28092 23.657 4.392V8.172H21.436C19.678 8.172 19.336 9.003 19.336 10.229V12.928H23.536L22.99 17.167H19.31V28H24.889C25.2976 28.0001 25.7022 27.9198 26.0797 27.7635C26.4572 27.6072 26.8002 27.378 27.0891 27.0891C27.378 26.8002 27.6072 26.4572 27.7635 26.0797C27.9198 25.7022 28.0001 25.2976 28 24.889V3.11C28 2.7015 27.9195 2.29701 27.7632 1.91962C27.6068 1.54224 27.3776 1.19935 27.0887 0.910544C26.7999 0.621741 26.4569 0.392681 26.0795 0.236448C25.702 0.0802144 25.2975 -0.000131188 24.889 1.60787e-07Z" />
+</g>
+<defs>
+<clipPath id="clip0_3307_57195">
+<rect width="28" height="28" fill="white" />
+</clipPath>
+</defs>
+</svg>
+</a>
+<a href="https://www.linkedin.com/sharing/share-offsite/?url=www.hostinger.co.id/tutorial/bahasa-pemrograman" class="social-link" target="_blank" rel="nofollow noopener noreferrer" data-wpel-link="exclude">
+<svg width="28" height="28" class="linkedin h-p-0-lg h-mb-3-lg" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3302_57044)">
+<path d="M24.889 1.60787e-07H3.11C2.7015 1.39669e-07 2.29701 0.0804758 1.91962 0.23683C1.54224 0.393185 1.19935 0.622355 0.910544 0.911252C0.621741 1.20015 0.392681 1.54311 0.236448 1.92055C0.0802144 2.29799 -0.000131188 2.70251 1.60787e-07 3.111V24.89C1.39669e-07 25.2985 0.0804758 25.703 0.23683 26.0804C0.393185 26.4578 0.622355 26.8007 0.911252 27.0895C1.20015 27.3783 1.54311 27.6073 1.92055 27.7636C2.29799 27.9198 2.70251 28.0001 3.111 28H24.89C25.2985 28 25.703 27.9195 26.0804 27.7632C26.4578 27.6068 26.8007 27.3776 27.0895 27.0887C27.3783 26.7999 27.6073 26.4569 27.7636 26.0795C27.9198 25.702 28.0001 25.2975 28 24.889V3.11C28 2.7015 27.9195 2.29701 27.7632 1.91962C27.6068 1.54224 27.3776 1.19935 27.0887 0.910544C26.7999 0.621741 26.4569 0.392681 26.0795 0.236448C25.702 0.0802144 25.2975 -0.000131188 24.889 1.60787e-07ZM9.333 21.778H5.41V10.888H9.334V21.778H9.333ZM7.302 8.893C6.102 8.893 5.302 8.093 5.302 7.026C5.302 5.959 6.1 5.16 7.433 5.16C8.633 5.16 9.433 5.96 9.433 7.026C9.433 8.094 8.633 8.893 7.301 8.893H7.302ZM23.333 21.778H19.535V15.826C19.535 14.18 18.522 13.801 18.142 13.801C17.762 13.801 16.497 14.054 16.497 15.826V21.778H12.572V10.888H16.497V12.408C17.002 11.522 18.015 10.888 19.914 10.888C21.814 10.888 23.334 12.408 23.334 15.826V21.778H23.333Z" />
+</g>
+<defs>
+<clipPath id="clip0_3302_57044">
+<rect width="28" height="28" fill="white" />
+</clipPath>
+</defs>
+</svg>
+</a>
+<a href="mailto:?subject=10 Bahasa Pemrograman Terpopuler untuk Dipelajari 2023&amp;body=Article:%20www.hostinger.co.id/tutorial/bahasa-pemrograman" class="social-link" target="_blank" rel="nofollow noopener noreferrer">
+<svg width="28" height="28" class="mail h-p-0-lg h-mb-3-lg" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.8 3.00001C2.12163 2.99621 1.4654 3.24121 0.955496 3.68864C0.445591 4.13608 0.117389 4.7549 0.033 5.42801L14 14L27.967 5.42801C27.8826 4.7549 27.5544 4.13608 27.0445 3.68864C26.5346 3.24121 25.8784 2.99621 25.2 3.00001H2.8ZM0 8.15901V22.25C0 23.77 1.253 25 2.8 25H25.2C26.747 25 28 23.77 28 22.25V8.15901L14.741 16.296C14.5178 16.4323 14.2615 16.5043 14 16.5043C13.7385 16.5043 13.4822 16.4323 13.259 16.296L0 8.16001V8.15901Z" />
+</svg>
+</a>
+</div>
+<script type="rocketlazyloadscript">
+    function linkHover() {
+        var socialLinkHover = document.getElementById("copyLink");
+        if (socialLinkHover.style.display === "none") {
+            socialLinkHover.style.display = "inline-block";
+        } else {
+            socialLinkHover.style.display = "none";
+        }
+    }
+
+    function linkClick(e) {
+        var parent = e.target.parentElement;
+        var socialLinkClick = Array.from(parent.children).find(elem => elem.id == "copiedLink");
+        if (socialLinkClick.style.display === "none") {
+            socialLinkClick.style.display = "inline-block";
+            document.getElementById("copyLink").style.display = "none";
+        } else {
+            socialLinkClick.style.display = "none";
+        }
+        setTimeout(() => { socialLinkClick.style.display = "none" }, 2000);
+    }
+
+    function copyToClipboard(str) {
+        var el = document.createElement('textarea');
+        el.value = str;
+        el.setAttribute('readonly', '');
+        el.style = {
+            position: 'absolute',
+            left: '-9999px'
+        };
+
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+    }
+</script> </div>
+</div>
+</div>
+<div class="related-tutorials-section">
+<div class="container">
+<div class="d-flex flex-column flex-md-row align-items-center justify-content-center h-mb-5">
+<h2 class="pb-30">
+Tutorial Terkait </h2>
+</div>
+<div class="row">
+<div class="content-item d-flex flex-column col-md-4 h-mb-2" id="post-29978">
+<div class="col-12 h-p-0 height-20rem d-contents">
+<a class="height-inherit" href="https://www.hostinger.co.id/tutorial/cara-menggunakan-file-manager-hostinger" data-wpel-link="internal">
+<img width="640" height="398" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20640%20398'%3E%3C/svg%3E" class="object-fit-cover border-radius-10px wp-post-image" alt="Cara Menggunakan File Manager Hostinger" decoding="async" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/04/cara-menggunakan-file-manager-hostinger.webp 900w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/04/cara-menggunakan-file-manager-hostinger-300x187.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/04/cara-menggunakan-file-manager-hostinger-150x93.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/04/cara-menggunakan-file-manager-hostinger-768x478.webp 768w" data-lazy-sizes="(max-width: 640px) 100vw, 640px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/04/cara-menggunakan-file-manager-hostinger.webp" /><noscript><img width="640" height="398" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/04/cara-menggunakan-file-manager-hostinger.webp" class="object-fit-cover border-radius-10px wp-post-image" alt="Cara Menggunakan File Manager Hostinger" decoding="async" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/04/cara-menggunakan-file-manager-hostinger.webp 900w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/04/cara-menggunakan-file-manager-hostinger-300x187.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/04/cara-menggunakan-file-manager-hostinger-150x93.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/04/cara-menggunakan-file-manager-hostinger-768x478.webp 768w" sizes="(max-width: 640px) 100vw, 640px" /></noscript> </a>
+</div>
+<div class="d-flex flex-column h-pt-2 h-pb-3">
+<div class="d-flex justify-content-sm-between justify-content-center h-mb-1">
+<p class="label text-h-meteorite-dark fw-800 fs-14 related-posts__date-category">
+17 Apr •
+<a class="text-h-meteorite-dark text-uppercase fw-800 fs-14 links-hover" href="https://www.hostinger.co.id/tutorial/lainnya" data-wpel-link="internal">
+Lainnya </a>
+<span class="related-posts__separator">•</span>
+</p>
+</div>
+<h5 class="text-center text-sm-left pb-10">
+<a href="https://www.hostinger.co.id/tutorial/cara-menggunakan-file-manager-hostinger" data-wpel-link="internal">
+Cara Menggunakan File Manager Hostinger </a>
+</h5>
+<p class="text-content-grey text-center text-sm-left">
+File manager adalah salah satu fitur yang bisa Anda temukan di hPanel. Kalau belum tahu bagaimana cara menggunakan File Manager Hostinger beserta... </p>
+<div class="d-flex justify-content-center justify-content-sm-start">
+<a class="subtitle  font-weight-bold hover-text-primary-400 transition-all-3" href="https://www.hostinger.co.id/tutorial/author/faradilla">
+<p class="author-name text-center text-sm-left">
+Oleh Faradilla A. </p>
+</a>
+</div>
+</div>
+</div>
+<div class="content-item d-flex flex-column col-md-4 h-mb-2" id="post-26709">
+<div class="col-12 h-p-0 height-20rem d-contents">
+<a class="height-inherit" href="https://www.hostinger.co.id/tutorial/cara-memblokir-situs-di-google-chrome" data-wpel-link="internal">
+<img width="640" height="282" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20640%20282'%3E%3C/svg%3E" class="object-fit-cover border-radius-10px wp-post-image" alt="Cara Memblokir Situs di Chrome untuk Cegah Bahaya Internet" decoding="async" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/11/cara-memblokir-website.webp 720w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/11/cara-memblokir-website-300x132.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/11/cara-memblokir-website-150x66.webp 150w" data-lazy-sizes="(max-width: 640px) 100vw, 640px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/11/cara-memblokir-website.webp" /><noscript><img width="640" height="282" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/11/cara-memblokir-website.webp" class="object-fit-cover border-radius-10px wp-post-image" alt="Cara Memblokir Situs di Chrome untuk Cegah Bahaya Internet" decoding="async" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/11/cara-memblokir-website.webp 720w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/11/cara-memblokir-website-300x132.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/11/cara-memblokir-website-150x66.webp 150w" sizes="(max-width: 640px) 100vw, 640px" /></noscript> </a>
+</div>
+<div class="d-flex flex-column h-pt-2 h-pb-3">
+<div class="d-flex justify-content-sm-between justify-content-center h-mb-1">
+<p class="label text-h-meteorite-dark fw-800 fs-14 related-posts__date-category">
+18 Nov •
+<a class="text-h-meteorite-dark text-uppercase fw-800 fs-14 links-hover" href="https://www.hostinger.co.id/tutorial/lainnya" data-wpel-link="internal">
+Lainnya </a>
+<span class="related-posts__separator">•</span>
+</p>
+</div>
+<h5 class="text-center text-sm-left pb-10">
+<a href="https://www.hostinger.co.id/tutorial/cara-memblokir-situs-di-google-chrome" data-wpel-link="internal">
+Cara Memblokir Situs di Chrome untuk Cegah Bahaya Internet </a>
+</h5>
+<p class="text-content-grey text-center text-sm-left">
+Seperti yang kita tahu, ada banyak sekali website dengan beragam jenis konten. Beberapa di antaranya terkadang kurang pantas, atau malah... </p>
+<div class="d-flex justify-content-center justify-content-sm-start">
+<a class="subtitle  font-weight-bold hover-text-primary-400 transition-all-3" href="https://www.hostinger.co.id/tutorial/author/faradilla">
+<p class="author-name text-center text-sm-left">
+Oleh Faradilla A. </p>
+</a>
+</div>
+</div>
+</div>
+<div class="content-item d-flex flex-column col-md-4 h-mb-2" id="post-24810">
+<div class="col-12 h-p-0 height-20rem d-contents">
+<a class="height-inherit" href="https://www.hostinger.co.id/tutorial/cv-web-developer" data-wpel-link="internal">
+<img width="730" height="319" class="width-100p object-fit-cover border-radius-10px" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20730%20319'%3E%3C/svg%3E" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/themes/tutorialsthemeuplift/public/images/no_image.jpg" /><noscript><img width="730" height="319" class="width-100p object-fit-cover border-radius-10px" src="https://www.hostinger.co.id/tutorial/wp-content/themes/tutorialsthemeuplift/public/images/no_image.jpg"/></noscript>
+</a>
+</div>
+<div class="d-flex flex-column h-pt-2 h-pb-3">
+<div class="d-flex justify-content-sm-between justify-content-center h-mb-1">
+<p class="label text-h-meteorite-dark fw-800 fs-14 related-posts__date-category">
+19 Oct •
+<a class="text-h-meteorite-dark text-uppercase fw-800 fs-14 links-hover" href="https://www.hostinger.co.id/tutorial/lainnya" data-wpel-link="internal">
+Lainnya </a>
+<span class="related-posts__separator">•</span>
+</p>
+</div>
+<h5 class="text-center text-sm-left pb-10">
+<a href="https://www.hostinger.co.id/tutorial/cv-web-developer" data-wpel-link="internal">
+Cara Membuat CV Web Developer yang Menarik + Templatenya </a>
+</h5>
+<p class="text-content-grey text-center text-sm-left">
+Persaingan kerja di dunia web development saat ini begitu ketat. Web developer menjadi salah satu profesi yang paling banyak dicari dan menawarkan... </p>
+<div class="d-flex justify-content-center justify-content-sm-start">
+<a class="subtitle  font-weight-bold hover-text-primary-400 transition-all-3" href="https://www.hostinger.co.id/tutorial/author/faradilla">
+<p class="author-name text-center text-sm-left">
+Oleh Faradilla A. </p>
+</a>
+</div>
+</div>
+</div> </div>
+</div>
+</div>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" data-rocket-src="https://www.hostinger.co.id/tutorial/wp-content/cache/min/11/bootstrap/v5/tp.widget.bootstrap.min.js?ver=1681360788" async></script>
+<div class="pb-80 pb-120-lg">
+<h2 class="text-center mb-40 mt-50">Apa Kata Pelanggan Kami</h2>
+<div class="container">
+<div class="trustpilot-widget" data-locale="en" data-template-id="53aa8912dec7e10d38f59f36" data-review-languages="en" data-businessunit-id="580cbf960000ff0005966f44" data-stars="4,5" data-style-height="140px" data-style-width="100%" data-theme="light">
+<a href="https://www.trustpilot.com/review/hostinger.com" target="_blank" rel="noopener follow noreferrer" data-wpel-link="exclude">Trustpilot</a>
+</div>
+</div>
+</div>
+<div class="container justify-content-center">
+<div class="comments h-pb-10 h-pt-12">
+<div class="d-flex row justify-content-between ml-0 mr-0 pb-60">
+<div class="d-flex align-items-center">
+<h3 class="d-flex fw-800 fs-44 h-100 align-items-center">Komentar</h3>
+</div>
+<div class="d-flex align-items-center">
+<a href="#comment-form" class="new-h-button-secondary mh-50 fs-16 fw-800 pl-30 pr-30 align-items-center d-none d-sm-flex ">Tinggalkan komentar</a>
+</div>
+</div>
+<div id="comment-43846" class="comment h-pt-3 h-pb-3 border-bottom border-dark ">
+<div class="d-flex ml-0 justify-content-center  justify-content-between">
+<div class="d-flex flex-wrap">
+<img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2050%2050'%3E%3C/svg%3E" class="border-radius-50" height="50px" width="50px" alt="Author" data-lazy-src="https://secure.gravatar.com/avatar/b9800e0dd5e86b2d48bfcc3fe39be4a5?s=96&d=mm&r=g"><noscript><img src="https://secure.gravatar.com/avatar/b9800e0dd5e86b2d48bfcc3fe39be4a5?s=96&d=mm&r=g"
+             class="border-radius-50"
+             height="50px" width="50px"
+             alt="Author"></noscript>
+<div class="comment-info d-flex flex-column justify-content-between pl-20-sm pl-10">
+<span class="fw-800 fs-16">Syamsul Arifin</span>
+<p class="text-muted fw-400">
+August 18 2022 </p>
+</div>
+</div>
+<div class="reply">
+<p class="h3 font-weight-bold text-h-primary h-mb-1 d-flex justify-content-between">
+<a rel="nofollow" class="comment-reply-link hover-text-primary-400 text-uppercase label" href="https://www.hostinger.co.id/tutorial/bahasa-pemrograman?replytocom=43846#comment-form" data-commentid="43846" data-postid="17302" data-belowelement="comment-43846" data-respondelement="comment-form" data-replyto="Reply to Syamsul Arifin" aria-label="Reply to Syamsul Arifin" data-wpel-link="internal">Balas</a> </p>
+</div>
+</div>
+<div class="mt-15 mt-30-md">
+<p class="text-sm-left fw-600 text-h-dark-gray">
+Ini bahasa komputer ya,ibu?
+Dulu aku mempelajari bahasa Fotran, basica, Delphi dan Excel
+Apakah bedanya ini ibu? </p>
+</div>
+</div>
+<ul class="children">
+<div id="comment-45104" class="comment h-pt-3 h-pb-3 border-bottom border-dark reply-comment flex-column flex-md-row align-items-center">
+<div class="d-flex ml-0 justify-content-center  justify-content-between">
+<div class="d-flex flex-wrap">
+<img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2050%2050'%3E%3C/svg%3E" class="border-radius-50" height="50px" width="50px" alt="Author" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2021/08/T029Z4XM6-U01CPGXARQR-8c60d4e8d6f9-512-150x150.jpg"><noscript><img src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2021/08/T029Z4XM6-U01CPGXARQR-8c60d4e8d6f9-512-150x150.jpg"
+             class="border-radius-50"
+             height="50px" width="50px"
+             alt="Author"></noscript>
+<div class="comment-info d-flex flex-column justify-content-between pl-20-sm pl-10">
+<span class="fw-800 fs-16">Faradilla Ayunindya</span>
+<p class="text-muted fw-400">
+September 07 2022 </p>
+</div>
+</div>
+<div class="reply">
+<p class="h3 font-weight-bold text-h-primary h-mb-1 d-flex justify-content-between">
+</p>
+</div>
+</div>
+<div class="mt-15 mt-30-md">
+<p class="text-sm-left fw-600 text-h-dark-gray">
+Halo Pak. Fortran dan Delphi dulu memang termasuk yang populer, tapi sekarang teknologi sudah sangat berkembang, dan 10 bahasa pemrograman seperti di artikel inilah yang paling banyak digunakan karena lebih sesuai dengan mayoritas environment pengembangan saat ini. :) </p>
+</div>
+</div>
+</li>
+</ul>
+</li>
+<div id="comment-55466" class="comment h-pt-3 h-pb-3 border-bottom border-dark ">
+<div class="d-flex ml-0 justify-content-center  justify-content-between">
+<div class="d-flex flex-wrap">
+<img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2050%2050'%3E%3C/svg%3E" class="border-radius-50" height="50px" width="50px" alt="Author" data-lazy-src="https://secure.gravatar.com/avatar/b957e1673d0fed96ee581595a6cfb736?s=96&d=mm&r=g"><noscript><img src="https://secure.gravatar.com/avatar/b957e1673d0fed96ee581595a6cfb736?s=96&d=mm&r=g"
+             class="border-radius-50"
+             height="50px" width="50px"
+             alt="Author"></noscript>
+<div class="comment-info d-flex flex-column justify-content-between pl-20-sm pl-10">
+<span class="fw-800 fs-16">dewi wulandari</span>
+<p class="text-muted fw-400">
+February 03 2023 </p>
+</div>
+</div>
+<div class="reply">
+<p class="h3 font-weight-bold text-h-primary h-mb-1 d-flex justify-content-between">
+<a rel="nofollow" class="comment-reply-link hover-text-primary-400 text-uppercase label" href="https://www.hostinger.co.id/tutorial/bahasa-pemrograman?replytocom=55466#comment-form" data-commentid="55466" data-postid="17302" data-belowelement="comment-55466" data-respondelement="comment-form" data-replyto="Reply to dewi wulandari" aria-label="Reply to dewi wulandari" data-wpel-link="internal">Balas</a> </p>
+</div>
+</div>
+<div class="mt-15 mt-30-md">
+<p class="text-sm-left fw-600 text-h-dark-gray">
+saya sebagai guru TIK tingkat SMP, sesuai kebutuhannya mana yang harus saya pelajari dari sisi klien, server, aplikasi web atau pengelolaan databse? </p>
+</div>
+</div>
+<ul class="children">
+<div id="comment-62619" class="comment h-pt-3 h-pb-3 border-bottom border-dark reply-comment flex-column flex-md-row align-items-center">
+<div class="d-flex ml-0 justify-content-center  justify-content-between">
+<div class="d-flex flex-wrap">
+<img src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2050%2050'%3E%3C/svg%3E" class="border-radius-50" height="50px" width="50px" alt="Author" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2021/08/T029Z4XM6-U01CPGXARQR-8c60d4e8d6f9-512-150x150.jpg"><noscript><img src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2021/08/T029Z4XM6-U01CPGXARQR-8c60d4e8d6f9-512-150x150.jpg"
+             class="border-radius-50"
+             height="50px" width="50px"
+             alt="Author"></noscript>
+<div class="comment-info d-flex flex-column justify-content-between pl-20-sm pl-10">
+<span class="fw-800 fs-16">Faradilla A.</span>
+<p class="text-muted fw-400">
+April 13 2023 </p>
+</div>
+</div>
+<div class="reply">
+<p class="h3 font-weight-bold text-h-primary h-mb-1 d-flex justify-content-between">
+</p>
+</div>
+</div>
+<div class="mt-15 mt-30-md">
+<p class="text-sm-left fw-600 text-h-dark-gray">
+Mungkin bisa disesuaikan dengan materi yang ada di silabus Kak Dewi, untuk tingkat SMP sepertinya bisa mulai dari yang paling umum dulu seperti Python dan PHP 😊 </p>
+</div>
+</div>
+</li>
+</ul>
+</li>
+<div id="comment-form" class="bg-white h-pt-7-lg h-pt-2 h-pb-7-lg h-mt-2 w-100">
+<div class="d-flex flex-column">
+<div id="respond" class="comment-respond">
+<h3 class="text-h-meteorite-dark fw-800 fs-44 mb-5">Tinggalkan Komentar <small><a rel="nofollow" id="cancel-comment-reply-link" href="/tutorial/bahasa-pemrograman#respond" style="display:none;" data-wpel-link="internal">Cancel reply</a></small></h3><div id="comment-error" class="error-message d-none fs-14 fs-18-sm fs-20-xl pl-15 pl-20-sm pr-15 pr-20-sm"><img width="32" height="32" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3C/svg%3E" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/themes/tutorialsthemeuplift/public/images/icons/alert.svg" /><noscript><img width="32" height="32" src="https://www.hostinger.co.id/tutorial/wp-content/themes/tutorialsthemeuplift/public/images/icons/alert.svg"/></noscript><span id="required-fields" class="d-none">Silakan isi kolom di bawah ini.</span><span id="required-checkbox" class="d-none">Silakan tandai checkbox persetujuan.</span><span id="required-form" class="d-none">Silakan isi kolom yang tersedia dan beri centang pada checkbox privasi</span></div><form action="https://www.hostinger.co.id/tutorial/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate><div id="comment-texarea-input-border" class="new-input-border position-relative mt-20 mt-30-sm"><textarea id="comment" name="comment" placeholder="Komentar*" style="outline: 0; height: 200px !important;" class="w-100 dark border-0 noresize bg-transparent h-pl-2 h-pt-2 label text-content-grey" style="height: 200px !important;"></textarea></div><p class="mb-20"></p><div id="comment-name-input-border" class="new-input-border position-relative"><input id="comment-name-input" style="outline: 0;" class="dark height-46px bg-transparent border-0 w-100 h-pl-2 label text-content-grey" id="author" name="author" type="text" placeholder="Nama*" value="" aria-required='true'></div>
+<p class="mb-20"></p><div id="comment-email-input-border" class="new-input-border position-relative"><input id="comment-email-input" style="outline: 0;" class="dark height-46px border-0 bg-transparent w-100 h-pl-2 label text-content-grey" id="email" name="email" placeholder="Email*" type="email" value="" aria-required='true'></div>
+<p class="comment-form-cookies-consent mt-20 fs-14 d-flex align-items-center"><input id="wp-comment-cookies-consent" class="mr-5 mb-2" name="wp-comment-cookies-consent" type="checkbox" value="yes" /><label for="wp-comment-cookies-consent">Dengan menggunakan formulir ini, maka Anda setuju bahwa data pribadi Anda akan diproses sesuai dengan <a href="/privasi " target="_blank" data-wpel-link="internal">Kebijakan Privasi</a> Hostinger.</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit-comment new-h-button-primary button text-white mt-40 float-right w-100 w-30-sm" value="Kirim" /> <input type='hidden' name='comment_post_ID' value='17302' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="bff962a0f6" /></p><p style="display: none !important;"><label>&#916;<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="45" /><script type="rocketlazyloadscript">document.getElementById( "ak_js_1" ).setAttribute( "value", ( new Date() ).getTime() );</script></p></form> </div>
+<p class="akismet_comment_form_privacy_notice">This site uses Akismet to reduce spam. <a href="https://akismet.com/privacy/" target="_blank" rel="nofollow noopener external noreferrer" data-wpel-link="external">Learn how your comment data is processed</a>.</p> <script type="rocketlazyloadscript" data-rocket-type="text/javascript">
+              var label = document.querySelector("[for='wpgdprc'");
+              var warning = document.getElementsByClassName("akismet_comment_form_privacy_notice");
+              if(label && warning && warning.length > 0) {
+                  label.innerText += " " + warning[0].innerText;
+                  warning[0].innerText = "";
+              }
+
+
+              document.getElementById("submit").addEventListener("click", function displayDate(event) {
+                  var textFieldContainer = document.getElementById("comment-texarea-input-border");
+                  var textField = document.getElementById("comment");
+                  var emailFieldContainer = document.getElementById("comment-email-input-border");
+                  var emailField = document.getElementById("comment-email-input");
+                  var nameFieldContainer = document.getElementById("comment-name-input-border");
+                  var nameField = document.getElementById("comment-name-input");
+                  var checkbox = document.getElementById("wp-comment-cookies-consent");
+                  var errorMessage = document.getElementById("comment-error");
+                  var errorExists = false;
+
+                  textFieldContainer.classList.remove("error");
+                  nameFieldContainer.classList.remove("error");
+                  emailFieldContainer.classList.remove("error");
+                  if(checkbox) checkbox.classList.remove("error");
+                  document.getElementById("required-fields").classList.add("d-none");
+                  document.getElementById("required-checkbox").classList.add("d-none");
+                  document.getElementById("required-form").classList.add("d-none");
+                  errorMessage.classList.add("d-none");
+
+                  if(textField && !textField.value) {
+                      textFieldContainer.classList.add("error");
+                      document.getElementById("required-fields").classList.remove("d-none");
+                      errorExists = true;
+                  }
+                  if(nameField && !nameField.value) {
+                      nameFieldContainer.classList.add("error");
+                      document.getElementById("required-fields").classList.remove("d-none");
+                      errorExists = true;
+                  }
+                  if(emailField && (!emailField.value || !emailField.value.includes('@'))) {
+                      emailFieldContainer.classList.add("error");
+                      document.getElementById("required-fields").classList.remove("d-none");
+                      errorExists = true;
+                  }
+                  if(checkbox && !checkbox.checked) {
+                      checkbox.classList.add("error");
+                      if(errorExists) {
+                          document.getElementById("required-fields").classList.add("d-none");
+                          document.getElementById("required-form").classList.remove("d-none");
+                      }
+                      else {
+                          document.getElementById("required-checkbox").classList.remove("d-none");
+                      }
+                      errorExists = true;
+                  }
+                  if(errorExists) {
+                      event.preventDefault();
+                      errorMessage.classList.remove("d-none");
+                  }
+              });
+
+              var commentForm = document.getElementById('commentform');
+
+              commentForm.addEventListener('submit', function (event) {
+                  event.preventDefault();
+
+                  var submitUrl = commentForm.getAttribute('action');
+
+                  var textField = document.getElementById('comment');
+                  var emailField = document.getElementById('comment-email-input');
+                  var nameField = document.getElementById('comment-name-input');
+                  var checkbox = document.getElementById('wp-comment-cookies-consent');
+                  var commentPostId = 17302;
+                  var commentParentField = document.getElementById('comment_parent');
+                  var commentParentId = commentParentField ? commentParentField.value : 0;
+                  var akismetCommentNonceField = document.getElementById('akismet_comment_nonce');
+                  var akismetCommentNonce = akismetCommentNonceField ? akismetCommentNonceField.value : '';
+                  var akJsField = document.getElementById('ak_js');
+                  var akJsFieldValue = akJsField ? akJsField.value : '';
+
+                  var commentFormData = [];
+
+                  if (textField && textField.value) {
+                      commentFormData.push('comment=' + encodeURIComponent(textField.value));
+                  }
+
+                  if (nameField && nameField.value) {
+                      commentFormData.push('author=' + encodeURIComponent(nameField.value));
+                  }
+
+                  if (emailField && emailField.value) {
+                      commentFormData.push('email=' + encodeURIComponent(emailField.value));
+                  }
+
+                  if (checkbox && checkbox.checked) {
+                      commentFormData.push('wp-comment-cookies-consent=yes');
+                  }
+
+                  commentFormData.push('comment_post_ID=' + commentPostId);
+                  commentFormData.push('comment_parent=' + commentParentId);
+                  commentFormData.push('akismet_comment_nonce=' + akismetCommentNonce);
+                  commentFormData.push('ak_js=' + akJsFieldValue);
+
+                  var encodedFormData = commentFormData.join('&').replace(/%20/g, '+');
+
+                  var httpClient = new XMLHttpRequest();
+
+                  httpClient.onreadystatechange = function () {
+                      if(httpClient.readyState === 4 && httpClient.status === 200) {
+                          var replyNoticeText = document.getElementById('comment-post-notice');
+
+                          replyNoticeText.classList.remove('d-none');
+                          replyNoticeText.classList.add('d-flex');
+
+                          if (textField) {
+                              textField.value = '';
+                          }
+
+                          if (nameField && nameField.value) {
+                              nameField.value = '';
+                          }
+
+                          if (emailField && emailField.value) {
+                              emailField.value = '';
+                          }
+                      }
+                  };
+
+                  httpClient.open('POST', submitUrl, true);
+                  httpClient.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                  httpClient.send(encodedFormData);
+              });
+          </script>
+</div>
+<div id="comment-post-notice" class="d-none bg-light w-100 mt-30 p-20">
+<span class="d-block icon-info w-26-px h-20"></span>
+<span class="color-primary font-14 line-height-20 ml-10 ">Thank you! Your comment has been successfully submitted. It will be approved within the next 24 hours.</span>
+</div>
+</div>
+</div>
+</div>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript'>
+      
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'tutorialsCategory': "Lainnya"
+      });
+
+      window.optinMonsterCategory = "Lainnya";
+  </script>
+<footer id="footer">
+<div id="footer-new" class="footer-new">
+<Footer-new :menu-items="{&quot;hosting&quot;:{&quot;category&quot;:&quot;Hosting&quot;,&quot;items&quot;:[{&quot;pattern&quot;:&quot;\/web-hosting&quot;,&quot;title&quot;:&quot;Web Hosting&quot;,&quot;category&quot;:&quot;Hosting&quot;,&quot;priority&quot;:1,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/hosting-vps&quot;,&quot;title&quot;:&quot;VPS Hosting&quot;,&quot;category&quot;:&quot;Hosting&quot;,&quot;priority&quot;:3,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/minecraft-server-hosting&quot;,&quot;title&quot;:&quot;Minecraft Hosting&quot;,&quot;category&quot;:&quot;Hosting&quot;,&quot;priority&quot;:4,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/cyberpanel-vps-hosting&quot;,&quot;title&quot;:&quot;CyberPanel VPS Hosting&quot;,&quot;category&quot;:&quot;Hosting&quot;,&quot;priority&quot;:4,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/cloud-hosting&quot;,&quot;title&quot;:&quot;Cloud Hosting&quot;,&quot;category&quot;:&quot;Hosting&quot;,&quot;priority&quot;:5,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/wordpress-hosting&quot;,&quot;title&quot;:&quot;WordPress Hosting&quot;,&quot;category&quot;:&quot;Hosting&quot;,&quot;priority&quot;:6,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/email-hosting&quot;,&quot;title&quot;:&quot;Email Hosting&quot;,&quot;category&quot;:&quot;Hosting&quot;,&quot;priority&quot;:7,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/cms-hosting&quot;,&quot;title&quot;:&quot;CMS Hosting&quot;,&quot;category&quot;:&quot;Hosting&quot;,&quot;priority&quot;:8,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/hosting-gratis&quot;,&quot;title&quot;:&quot;Hosting Gratis&quot;,&quot;category&quot;:&quot;Hosting&quot;,&quot;priority&quot;:11,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/toko-online&quot;,&quot;title&quot;:&quot;Toko Online&quot;,&quot;category&quot;:&quot;Hosting&quot;,&quot;priority&quot;:12,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/hosting-murah&quot;,&quot;title&quot;:&quot;Hosting Murah&quot;,&quot;category&quot;:&quot;Hosting&quot;,&quot;priority&quot;:15,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/website-builder&quot;,&quot;title&quot;:&quot;Website Builder&quot;,&quot;category&quot;:&quot;Hosting&quot;,&quot;priority&quot;:120,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/logo-maker&quot;,&quot;title&quot;:&quot;Logo Maker&quot;,&quot;category&quot;:&quot;Hosting&quot;,&quot;priority&quot;:135,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/template-website&quot;,&quot;title&quot;:&quot;Template Website&quot;,&quot;category&quot;:&quot;Hosting&quot;,&quot;priority&quot;:140,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/beli-hosting&quot;,&quot;title&quot;:&quot;Beli Hosting&quot;,&quot;category&quot;:&quot;Hosting&quot;,&quot;priority&quot;:150,&quot;pathName&quot;:null}]},&quot;domains&quot;:{&quot;category&quot;:&quot;Domain&quot;,&quot;items&quot;:[{&quot;pattern&quot;:&quot;\/domain-murah&quot;,&quot;title&quot;:&quot;Domain Murah&quot;,&quot;category&quot;:&quot;Domain&quot;,&quot;priority&quot;:1,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/transfer-domain&quot;,&quot;title&quot;:&quot;Transfer Domain&quot;,&quot;category&quot;:&quot;Domain&quot;,&quot;priority&quot;:2,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/domain-gratis&quot;,&quot;title&quot;:&quot;Domain Gratis&quot;,&quot;category&quot;:&quot;Domain&quot;,&quot;priority&quot;:3,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/tld\/domain-xyz&quot;,&quot;title&quot;:&quot;Domain .XYZ&quot;,&quot;category&quot;:&quot;Domain&quot;,&quot;priority&quot;:4,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/tld&quot;,&quot;title&quot;:&quot;Beli Domain&quot;,&quot;category&quot;:&quot;Domain&quot;,&quot;priority&quot;:7,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/whois&quot;,&quot;title&quot;:&quot;WHOIS&quot;,&quot;category&quot;:&quot;Domain&quot;,&quot;priority&quot;:8,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/ssl-gratis&quot;,&quot;title&quot;:&quot;SSL Gratis&quot;,&quot;category&quot;:&quot;Domain&quot;,&quot;priority&quot;:30,&quot;pathName&quot;:null}]},&quot;information&quot;:{&quot;category&quot;:&quot;Informasi&quot;,&quot;items&quot;:[{&quot;pattern&quot;:&quot;\/migrasi-website&quot;,&quot;title&quot;:&quot;Migrasi Website&quot;,&quot;category&quot;:&quot;Informasi&quot;,&quot;priority&quot;:1,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;https:\/\/statuspage.hostinger.com\/&quot;,&quot;title&quot;:&quot;Status Sistem&quot;,&quot;category&quot;:&quot;Informasi&quot;,&quot;priority&quot;:2,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/afiliasi&quot;,&quot;title&quot;:&quot;Afiliasi&quot;,&quot;category&quot;:&quot;Informasi&quot;,&quot;priority&quot;:3,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/metode-pembayaran&quot;,&quot;title&quot;:&quot;Metode Pembayaran&quot;,&quot;category&quot;:&quot;Informasi&quot;,&quot;priority&quot;:3,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/penghargaan&quot;,&quot;title&quot;:&quot;Penghargaan&quot;,&quot;category&quot;:&quot;Informasi&quot;,&quot;priority&quot;:4,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/review&quot;,&quot;title&quot;:&quot;Review&quot;,&quot;category&quot;:&quot;Informasi&quot;,&quot;priority&quot;:5,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/harga&quot;,&quot;title&quot;:&quot;Harga&quot;,&quot;category&quot;:&quot;Informasi&quot;,&quot;priority&quot;:6,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/sitemap&quot;,&quot;title&quot;:&quot;Sitemap&quot;,&quot;category&quot;:&quot;Informasi&quot;,&quot;priority&quot;:7,&quot;pathName&quot;:null}]},&quot;legal&quot;:{&quot;category&quot;:&quot;Legal&quot;,&quot;items&quot;:[{&quot;pattern&quot;:&quot;\/kebijakan-privasi&quot;,&quot;title&quot;:&quot;Kebijakan Privasi&quot;,&quot;category&quot;:&quot;Legal&quot;,&quot;priority&quot;:1,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/perjanjian-ketentuan-layanan-universal&quot;,&quot;title&quot;:&quot;Ketentuan Penggunaan&quot;,&quot;category&quot;:&quot;Legal&quot;,&quot;priority&quot;:2,&quot;pathName&quot;:null}]},&quot;company&quot;:{&quot;category&quot;:&quot;Perusahaan&quot;,&quot;items&quot;:[{&quot;pattern&quot;:&quot;\/tentang-kami&quot;,&quot;title&quot;:&quot;Tentang Kami&quot;,&quot;category&quot;:&quot;Perusahaan&quot;,&quot;priority&quot;:10,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/teknologi&quot;,&quot;title&quot;:&quot;Teknologi Kami&quot;,&quot;category&quot;:&quot;Perusahaan&quot;,&quot;priority&quot;:20,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;https:\/\/roadmap.hostinger.com\/&quot;,&quot;title&quot;:&quot;Roadmap (Bahasa Inggris)&quot;,&quot;category&quot;:&quot;Perusahaan&quot;,&quot;priority&quot;:50,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/bantuan-dan-kontak&quot;,&quot;title&quot;:&quot;Hubungi Kami&quot;,&quot;category&quot;:&quot;Perusahaan&quot;,&quot;priority&quot;:60,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;https:\/\/www.hostinger.com\/blog\/&quot;,&quot;title&quot;:&quot;Blog (Bahasa Inggris)&quot;,&quot;category&quot;:&quot;Perusahaan&quot;,&quot;priority&quot;:70,&quot;pathName&quot;:null}]},&quot;help&quot;:{&quot;category&quot;:&quot;Bantuan&quot;,&quot;items&quot;:[{&quot;pattern&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/&quot;,&quot;title&quot;:&quot;Tutorial&quot;,&quot;category&quot;:&quot;Bantuan&quot;,&quot;priority&quot;:1,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;https:\/\/support.hostinger.co.id\/&quot;,&quot;title&quot;:&quot;Pengetahuan Dasar&quot;,&quot;category&quot;:&quot;Bantuan&quot;,&quot;priority&quot;:2,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/laporkan-penyalahgunaan&quot;,&quot;title&quot;:&quot;Laporkan Penyalahgunaan&quot;,&quot;category&quot;:&quot;Bantuan&quot;,&quot;priority&quot;:3,&quot;pathName&quot;:null}]}}" :payment-methods="[&quot;visa&quot;,&quot;mastercard&quot;,&quot;amex&quot;,&quot;discover&quot;,&quot;jcb&quot;,&quot;maestro&quot;,&quot;dinersclub&quot;]" payment-url="https://www.hostinger.co.id/tutorial/wp-content/themes/tutorialsthemeuplift/public/images/payments/2020/" payment-path="/metode-pembayaran" payment-btn="Dan Lainnya" about="Hostinger memberikan kemudahan bagi siapa pun yang ingin sukses online. Kami terus menyempurnakan teknologi server, menyediakan bantuan profesional, dan memberikan pengalaman web hosting yang mulus." :social-links="[{&quot;id&quot;:&quot;social_linkedin&quot;,&quot;url&quot;:&quot;https:\/\/www.linkedin.com\/company\/hostinger-international&quot;,&quot;img&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/social-icons\/footer\/linked-in.svg&quot;,&quot;alt&quot;:&quot;Linked-in logo&quot;},{&quot;id&quot;:&quot;social_facebook&quot;,&quot;url&quot;:&quot;https:\/\/www.facebook.com\/Hostinger&quot;,&quot;img&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/social-icons\/footer\/facebook.svg&quot;,&quot;alt&quot;:&quot;Facebook logo&quot;},{&quot;id&quot;:&quot;social_instagram&quot;,&quot;url&quot;:&quot;https:\/\/www.instagram.com\/hostinger_global\/&quot;,&quot;img&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/social-icons\/footer\/instagram.svg&quot;,&quot;alt&quot;:&quot;Instagram logo&quot;},{&quot;id&quot;:&quot;social_twitter&quot;,&quot;url&quot;:&quot;https:\/\/twitter.com\/hostinger&quot;,&quot;img&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/social-icons\/footer\/twitter.svg&quot;,&quot;alt&quot;:&quot;Twitter logo&quot;},{&quot;id&quot;:&quot;social_youtube&quot;,&quot;url&quot;:&quot;https:\/\/www.youtube.com\/channel\/UCsfsYJOpJGTOylYe-QS8eJg?sub_confirmation=1&quot;,&quot;img&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/social-icons\/footer\/youtube.svg&quot;,&quot;alt&quot;:&quot;Youtube logo&quot;}]" copyright="© 2004-2023 hostinger.co.id - Web Hosting Premium, Layanan Cloud, VPS, & Registrasi Domain." no-vat-txt="Harga belum termasuk PPN">
+</Footer-new>
+</div>
+</footer>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KL4FQVG"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<script type="rocketlazyloadscript">(function(d,u,ac){var s=d.createElement('script');s.type='text/javascript';s.src='https://a.omappapi.com/app/js/api.min.js';s.async=true;s.dataset.user=u;s.dataset.account=ac;d.getElementsByTagName('head')[0].appendChild(s);})(document,71036,79832);</script>
+<script type="rocketlazyloadscript">
+  window.intercomSettings = {
+    app_id: "e5dnas5h"
+  };
+</script>
+<script type="rocketlazyloadscript">
+(function () {
+  var w = window;
+  var ic = w.Intercom;
+  if (typeof ic === "function") {
+    ic('reattach_activator');
+    ic('update', w.intercomSettings);
+  } else {
+    var d = document;
+    var i = function () {
+      i.c(arguments);
+    };
+    i.q = [];
+    i.c = function (args) {
+      i.q.push(args);
+    };
+    w.Intercom = i;
+    var l = function () {
+      setTimeout(function () {
+        var s = d.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = 'https://widget.intercom.io/widget/e5dnas5h';
+        var x = d.getElementsByTagName('script')[0];
+        x.parentNode.insertBefore(s, x);
+      }, 5000);
+    };
+    if (w.attachEvent) {
+      w.attachEvent('onload', l);
+    } else {
+      w.addEventListener('load', l, false);
+    }
+  }
+})();
+</script><script type="rocketlazyloadscript" data-rocket-type="text/javascript">/* <![CDATA[ */!function(e,n){var r={"selectors":{"block":"pre.EnlighterJSRAW","inline":"code.EnlighterJSRAW"},"options":{"indent":2,"ampersandCleanup":true,"linehover":true,"rawcodeDbclick":false,"textOverflow":"break","linenumbers":false,"theme":"classic","language":"generic","retainCssClasses":false,"collapse":false,"toolbarOuter":"","toolbarTop":"{BTN_RAW}{BTN_COPY}{BTN_WINDOW}{BTN_WEBSITE}","toolbarBottom":""},"resources":["https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/plugins\/enlighter\/cache\/X11_enlighterjs.min.css?C8WMOQJbjTvwSMa","https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/plugins\/enlighter\/resources\/enlighterjs\/enlighterjs.min.js"]},o=document.getElementsByTagName("head")[0],t=n&&(n.error||n.log)||function(){};e.EnlighterJSINIT=function(){!function(e,n){var r=0,l=null;function c(o){l=o,++r==e.length&&(!0,n(l))}e.forEach(function(e){switch(e.match(/\.([a-z]+)(?:[#?].*)?$/)[1]){case"js":var n=document.createElement("script");n.onload=function(){c(null)},n.onerror=c,n.src=e,n.async=!0,o.appendChild(n);break;case"css":var r=document.createElement("link");r.onload=function(){c(null)},r.onerror=c,r.rel="stylesheet",r.type="text/css",r.href=e,r.media="all",o.appendChild(r);break;default:t("Error: invalid file extension",e)}})}(r.resources,function(e){e?t("Error: failed to dynamically load EnlighterJS resources!",e):"undefined"!=typeof EnlighterJS?EnlighterJS.init(r.selectors.block,r.selectors.inline,r.options):t("Error: EnlighterJS resources not loaded yet!")})},(document.querySelector(r.selectors.block)||document.querySelector(r.selectors.inline))&&e.EnlighterJSINIT()}(window,console); /* ]]> */</script><script type="rocketlazyloadscript" data-minify="1" data-rocket-type='text/javascript' data-rocket-src='https://www.hostinger.co.id/tutorial/wp-content/cache/min/11/tutorial/wp-content/themes/tutorialsthemeuplift/resources/js/web-font-loader.js?ver=1681360788' id='fontloader_js-js' defer></script>
+<script type='text/javascript' id='ppress-frontend-script-js-extra'>
+/* <![CDATA[ */
+var pp_ajax_form = {"ajaxurl":"https:\/\/www.hostinger.co.id\/tutorial\/wp-admin\/admin-ajax.php","confirm_delete":"Are you sure?","deleting_text":"Deleting...","deleting_error":"An error occurred. Please try again.","nonce":"b1d131d66f","disable_ajax_form":"false","is_checkout":"0","is_checkout_tax_enabled":"0"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' data-rocket-src='https://www.hostinger.co.id/tutorial/wp-content/plugins/wp-user-avatar/assets/js/frontend.min.js?ver=4.9.0' id='ppress-frontend-script-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' data-rocket-src='https://www.hostinger.co.id/tutorial/wp-content/themes/tutorialsthemeuplift/public/js/theme.min.js?ver=1.0.0.1685358279' id='understrap-scripts-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' data-rocket-src='https://www.hostinger.co.id/tutorial/wp-includes/js/comment-reply.min.js?ver=6.2' id='comment-reply-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' data-rocket-src='https://www.hostinger.co.id/tutorial/wp-content/plugins/easy-table-of-contents/vendor/js-cookie/js.cookie.min.js?ver=2.2.1' id='ez-toc-js-cookie-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' data-rocket-src='https://www.hostinger.co.id/tutorial/wp-content/plugins/easy-table-of-contents/vendor/sticky-kit/jquery.sticky-kit.min.js?ver=1.9.2' id='ez-toc-jquery-sticky-kit-js' defer></script>
+<script type='text/javascript' id='ez-toc-js-js-extra'>
+/* <![CDATA[ */
+var ezTOC = {"smooth_scroll":"1","scroll_offset":"60"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' data-rocket-src='https://www.hostinger.co.id/tutorial/wp-content/plugins/easy-table-of-contents/assets/js/front.min.js?ver=2.0.46-1680957260' id='ez-toc-js-js' defer></script>
+<script type="rocketlazyloadscript" data-minify="1" defer data-rocket-type='text/javascript' data-rocket-src='https://www.hostinger.co.id/tutorial/wp-content/cache/min/11/tutorial/wp-content/plugins/akismet/_inc/akismet-frontend.js?ver=1681360788' id='akismet-frontend-js'></script>
+<script>window.lazyLoadOptions=[{elements_selector:"img[data-lazy-src],.rocket-lazyload,iframe[data-lazy-src]",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,callback_loaded:function(element){if(element.tagName==="IFRAME"&&element.dataset.rocketLazyload=="fitvidscompatible"){if(element.classList.contains("lazyloaded")){if(typeof window.jQuery!="undefined"){if(jQuery.fn.fitVids){jQuery(element).parent().fitVids()}}}}}},{elements_selector:".rocket-lazyload",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,}];window.addEventListener('LazyLoad::Initialized',function(e){var lazyLoadInstance=e.detail.instance;if(window.MutationObserver){var observer=new MutationObserver(function(mutations){var image_count=0;var iframe_count=0;var rocketlazy_count=0;mutations.forEach(function(mutation){for(var i=0;i<mutation.addedNodes.length;i++){if(typeof mutation.addedNodes[i].getElementsByTagName!=='function'){continue}
+if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){continue}
+images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
+if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script data-no-minify="1" async src="https://www.hostinger.co.id/tutorial/wp-content/plugins/wp-rocket/assets/js/lazyload/17.8.3/lazyload.min.js"></script>
+<script data-minify="1" src="https://www.hostinger.co.id/tutorial/wp-content/cache/min/11/tutorial/wp-content/themes/tutorialsthemeuplift/public/js/vueapp.js?ver=1681360788" defer></script>
+</body>
+</html>

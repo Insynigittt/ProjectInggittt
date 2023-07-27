@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head><meta charset="UTF-8"><script>if(navigator.userAgent.match(/MSIE|Internet Explorer/i)||navigator.userAgent.match(/Trident\/7\..*?rv:11/i)){var href=document.location.href;if(!href.match(/[?&]nowprocket/)){if(href.indexOf("?")==-1){if(href.indexOf("#")==-1){document.location.href=href+"?nowprocket=1"}else{document.location.href=href.replace("#","?nowprocket=1#")}}else{if(href.indexOf("#")==-1){document.location.href=href+"&nowprocket=1"}else{document.location.href=href.replace("#","&nowprocket=1#")}}}}</script><script>class RocketLazyLoadScripts{constructor(){this.triggerEvents=["keydown","mousedown","mousemove","touchmove","touchstart","touchend","wheel"],this.userEventHandler=this._triggerListener.bind(this),this.touchStartHandler=this._onTouchStart.bind(this),this.touchMoveHandler=this._onTouchMove.bind(this),this.touchEndHandler=this._onTouchEnd.bind(this),this.clickHandler=this._onClick.bind(this),this.interceptedClicks=[],window.addEventListener("pageshow",t=>{this.persisted=t.persisted}),window.addEventListener("DOMContentLoaded",()=>{this._preconnect3rdParties()}),this.delayedScripts={normal:[],async:[],defer:[]},this.trash=[],this.allJQueries=[]}_addUserInteractionListener(t){if(document.hidden){t._triggerListener();return}this.triggerEvents.forEach(e=>window.addEventListener(e,t.userEventHandler,{passive:!0})),window.addEventListener("touchstart",t.touchStartHandler,{passive:!0}),window.addEventListener("mousedown",t.touchStartHandler),document.addEventListener("visibilitychange",t.userEventHandler)}_removeUserInteractionListener(){this.triggerEvents.forEach(t=>window.removeEventListener(t,this.userEventHandler,{passive:!0})),document.removeEventListener("visibilitychange",this.userEventHandler)}_onTouchStart(t){"HTML"!==t.target.tagName&&(window.addEventListener("touchend",this.touchEndHandler),window.addEventListener("mouseup",this.touchEndHandler),window.addEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.addEventListener("mousemove",this.touchMoveHandler),t.target.addEventListener("click",this.clickHandler),this._renameDOMAttribute(t.target,"onclick","rocket-onclick"),this._pendingClickStarted())}_onTouchMove(t){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler),t.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(t.target,"rocket-onclick","onclick"),this._pendingClickFinished()}_onTouchEnd(t){window.removeEventListener("touchend",this.touchEndHandler),window.removeEventListener("mouseup",this.touchEndHandler),window.removeEventListener("touchmove",this.touchMoveHandler,{passive:!0}),window.removeEventListener("mousemove",this.touchMoveHandler)}_onClick(t){t.target.removeEventListener("click",this.clickHandler),this._renameDOMAttribute(t.target,"rocket-onclick","onclick"),this.interceptedClicks.push(t),t.preventDefault(),t.stopPropagation(),t.stopImmediatePropagation(),this._pendingClickFinished()}_replayClicks(){window.removeEventListener("touchstart",this.touchStartHandler,{passive:!0}),window.removeEventListener("mousedown",this.touchStartHandler),this.interceptedClicks.forEach(t=>{t.target.dispatchEvent(new MouseEvent("click",{view:t.view,bubbles:!0,cancelable:!0}))})}_waitForPendingClicks(){return new Promise(t=>{this._isClickPending?this._pendingClickFinished=t:t()})}_pendingClickStarted(){this._isClickPending=!0}_pendingClickFinished(){this._isClickPending=!1}_renameDOMAttribute(t,e,r){t.hasAttribute&&t.hasAttribute(e)&&(event.target.setAttribute(r,event.target.getAttribute(e)),event.target.removeAttribute(e))}_triggerListener(){this._removeUserInteractionListener(this),"loading"===document.readyState?document.addEventListener("DOMContentLoaded",this._loadEverythingNow.bind(this)):this._loadEverythingNow()}_preconnect3rdParties(){let t=[];document.querySelectorAll("script[type=rocketlazyloadscript]").forEach(e=>{if(e.hasAttribute("src")){let r=new URL(e.src).origin;r!==location.origin&&t.push({src:r,crossOrigin:e.crossOrigin||"module"===e.getAttribute("data-rocket-type")})}}),t=[...new Map(t.map(t=>[JSON.stringify(t),t])).values()],this._batchInjectResourceHints(t,"preconnect")}async _loadEverythingNow(){this.lastBreath=Date.now(),this._delayEventListeners(this),this._delayJQueryReady(this),this._handleDocumentWrite(),this._registerAllDelayedScripts(),this._preloadAllScripts(),await this._loadScriptsFromList(this.delayedScripts.normal),await this._loadScriptsFromList(this.delayedScripts.defer),await this._loadScriptsFromList(this.delayedScripts.async);try{await this._triggerDOMContentLoaded(),await this._triggerWindowLoad()}catch(t){console.error(t)}window.dispatchEvent(new Event("rocket-allScriptsLoaded")),this._waitForPendingClicks().then(()=>{this._replayClicks()}),this._emptyTrash()}_registerAllDelayedScripts(){document.querySelectorAll("script[type=rocketlazyloadscript]").forEach(t=>{t.hasAttribute("data-rocket-src")?t.hasAttribute("async")&&!1!==t.async?this.delayedScripts.async.push(t):t.hasAttribute("defer")&&!1!==t.defer||"module"===t.getAttribute("data-rocket-type")?this.delayedScripts.defer.push(t):this.delayedScripts.normal.push(t):this.delayedScripts.normal.push(t)})}async _transformScript(t){return new Promise((await this._littleBreath(),navigator.userAgent.indexOf("Firefox/")>0||""===navigator.vendor)?e=>{let r=document.createElement("script");[...t.attributes].forEach(t=>{let e=t.nodeName;"type"!==e&&("data-rocket-type"===e&&(e="type"),"data-rocket-src"===e&&(e="src"),r.setAttribute(e,t.nodeValue))}),t.text&&(r.text=t.text),r.hasAttribute("src")?(r.addEventListener("load",e),r.addEventListener("error",e)):(r.text=t.text,e());try{t.parentNode.replaceChild(r,t)}catch(i){e()}}:async e=>{function r(){t.setAttribute("data-rocket-status","failed"),e()}try{let i=t.getAttribute("data-rocket-type"),n=t.getAttribute("data-rocket-src");t.text,i?(t.type=i,t.removeAttribute("data-rocket-type")):t.removeAttribute("type"),t.addEventListener("load",function r(){t.setAttribute("data-rocket-status","executed"),e()}),t.addEventListener("error",r),n?(t.removeAttribute("data-rocket-src"),t.src=n):t.src="data:text/javascript;base64,"+window.btoa(unescape(encodeURIComponent(t.text)))}catch(s){r()}})}async _loadScriptsFromList(t){let e=t.shift();return e&&e.isConnected?(await this._transformScript(e),this._loadScriptsFromList(t)):Promise.resolve()}_preloadAllScripts(){this._batchInjectResourceHints([...this.delayedScripts.normal,...this.delayedScripts.defer,...this.delayedScripts.async],"preload")}_batchInjectResourceHints(t,e){var r=document.createDocumentFragment();t.forEach(t=>{let i=t.getAttribute&&t.getAttribute("data-rocket-src")||t.src;if(i){let n=document.createElement("link");n.href=i,n.rel=e,"preconnect"!==e&&(n.as="script"),t.getAttribute&&"module"===t.getAttribute("data-rocket-type")&&(n.crossOrigin=!0),t.crossOrigin&&(n.crossOrigin=t.crossOrigin),t.integrity&&(n.integrity=t.integrity),r.appendChild(n),this.trash.push(n)}}),document.head.appendChild(r)}_delayEventListeners(t){let e={};function r(t,r){!function t(r){!e[r]&&(e[r]={originalFunctions:{add:r.addEventListener,remove:r.removeEventListener},eventsToRewrite:[]},r.addEventListener=function(){arguments[0]=i(arguments[0]),e[r].originalFunctions.add.apply(r,arguments)},r.removeEventListener=function(){arguments[0]=i(arguments[0]),e[r].originalFunctions.remove.apply(r,arguments)});function i(t){return e[r].eventsToRewrite.indexOf(t)>=0?"rocket-"+t:t}}(t),e[t].eventsToRewrite.push(r)}function i(t,e){let r=t[e];Object.defineProperty(t,e,{get:()=>r||function(){},set(i){t["rocket"+e]=r=i}})}r(document,"DOMContentLoaded"),r(window,"DOMContentLoaded"),r(window,"load"),r(window,"pageshow"),r(document,"readystatechange"),i(document,"onreadystatechange"),i(window,"onload"),i(window,"onpageshow")}_delayJQueryReady(t){let e;function r(r){if(r&&r.fn&&!t.allJQueries.includes(r)){r.fn.ready=r.fn.init.prototype.ready=function(e){return t.domReadyFired?e.bind(document)(r):document.addEventListener("rocket-DOMContentLoaded",()=>e.bind(document)(r)),r([])};let i=r.fn.on;r.fn.on=r.fn.init.prototype.on=function(){if(this[0]===window){function t(t){return t.split(" ").map(t=>"load"===t||0===t.indexOf("load.")?"rocket-jquery-load":t).join(" ")}"string"==typeof arguments[0]||arguments[0]instanceof String?arguments[0]=t(arguments[0]):"object"==typeof arguments[0]&&Object.keys(arguments[0]).forEach(e=>{delete Object.assign(arguments[0],{[t(e)]:arguments[0][e]})[e]})}return i.apply(this,arguments),this},t.allJQueries.push(r)}e=r}r(window.jQuery),Object.defineProperty(window,"jQuery",{get:()=>e,set(t){r(t)}})}async _triggerDOMContentLoaded(){this.domReadyFired=!0,await this._littleBreath(),document.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),window.dispatchEvent(new Event("rocket-DOMContentLoaded")),await this._littleBreath(),document.dispatchEvent(new Event("rocket-readystatechange")),await this._littleBreath(),document.rocketonreadystatechange&&document.rocketonreadystatechange()}async _triggerWindowLoad(){await this._littleBreath(),window.dispatchEvent(new Event("rocket-load")),await this._littleBreath(),window.rocketonload&&window.rocketonload(),await this._littleBreath(),this.allJQueries.forEach(t=>t(window).trigger("rocket-jquery-load")),await this._littleBreath();let t=new Event("rocket-pageshow");t.persisted=this.persisted,window.dispatchEvent(t),await this._littleBreath(),window.rocketonpageshow&&window.rocketonpageshow({persisted:this.persisted})}_handleDocumentWrite(){let t=new Map;document.write=document.writeln=function(e){let r=document.currentScript;r||console.error("WPRocket unable to document.write this: "+e);let i=document.createRange(),n=r.parentElement,s=t.get(r);void 0===s&&(s=r.nextSibling,t.set(r,s));let a=document.createDocumentFragment();i.setStart(a,0),a.appendChild(i.createContextualFragment(e)),n.insertBefore(a,s)}}async _littleBreath(){Date.now()-this.lastBreath>45&&(await this._requestAnimFrame(),this.lastBreath=Date.now())}async _requestAnimFrame(){return document.hidden?new Promise(t=>setTimeout(t)):new Promise(t=>requestAnimationFrame(t))}_emptyTrash(){this.trash.forEach(t=>t.remove())}static run(){let t=new RocketLazyLoadScripts;t._addUserInteractionListener(t)}}RocketLazyLoadScripts.run();</script>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<meta name='robots' content='index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1' />
+
+<title>Cara Membuat CV Web Developer yang Menarik + Templatenya</title>
+<meta name="description" content="Tertarik jadi web developer dan ingin membuat resume yang menarik? Yuk, baca cara membuat CV web developer ini untuk mencari inspirasi!" />
+<link rel="canonical" href="https://www.hostinger.co.id/tutorial/cv-web-developer" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Cara Membuat CV Web Developer yang Menarik + Templatenya" />
+<meta property="og:description" content="Tertarik jadi web developer dan ingin membuat resume yang menarik? Yuk, baca cara membuat CV web developer ini untuk mencari inspirasi!" />
+<meta property="og:url" content="https://www.hostinger.co.id/tutorial/cv-web-developer" />
+<meta property="og:site_name" content="Hostinger Tutorial" />
+<meta property="article:published_time" content="2022-10-19T12:09:28+00:00" />
+<meta property="article:modified_time" content="2023-01-18T09:44:23+00:00" />
+<meta property="og:image" content="https://www.hostinger.com/tutorials/wp-content/themes/tutorialsthemeuplift/public/images/no_image.jpg" /><meta property="og:image" content="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/web-developer-resume-structure.png" />
+<meta name="author" content="Faradilla A." />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="https://www.hostinger.com/tutorials/wp-content/themes/tutorialsthemeuplift/public/images/no_image.jpg" />
+<meta name="twitter:label1" content="Written by" />
+<meta name="twitter:data1" content="Faradilla A." />
+<meta name="twitter:label2" content="Est. reading time" />
+<meta name="twitter:data2" content="20 minutes" />
+<script type="application/ld+json" class="yoast-schema-graph">{"@context":"https://schema.org","@graph":[{"@type":"WebPage","@id":"https://www.hostinger.co.id/tutorial/cv-web-developer","url":"https://www.hostinger.co.id/tutorial/cv-web-developer","name":"Cara Membuat CV Web Developer yang Menarik + Templatenya","isPartOf":{"@id":"https://www.hostinger.co.id/tutorial/#website"},"primaryImageOfPage":{"@id":"https://www.hostinger.co.id/tutorial/cv-web-developer#primaryimage"},"image":{"@id":"https://www.hostinger.co.id/tutorial/cv-web-developer#primaryimage"},"thumbnailUrl":"https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/web-developer-resume-structure.png","datePublished":"2022-10-19T12:09:28+00:00","dateModified":"2023-01-18T09:44:23+00:00","author":{"@id":"https://www.hostinger.co.id/tutorial/#/schema/person/dc81c834824ba2e9bebffe5ff280f686"},"description":"Tertarik jadi web developer dan ingin membuat resume yang menarik? Yuk, baca cara membuat CV web developer ini untuk mencari inspirasi!","breadcrumb":{"@id":"https://www.hostinger.co.id/tutorial/cv-web-developer#breadcrumb"},"inLanguage":"en-US","potentialAction":[{"@type":"ReadAction","target":["https://www.hostinger.co.id/tutorial/cv-web-developer"]}]},{"@type":"ImageObject","inLanguage":"en-US","@id":"https://www.hostinger.co.id/tutorial/cv-web-developer#primaryimage","url":"https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/web-developer-resume-structure.png","contentUrl":"https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/web-developer-resume-structure.png","width":1024,"height":669,"caption":"susunan resume web developer"},{"@type":"BreadcrumbList","@id":"https://www.hostinger.co.id/tutorial/cv-web-developer#breadcrumb","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://www.hostinger.co.id/tutorial"},{"@type":"ListItem","position":2,"name":"Cara Membuat CV Web Developer yang Menarik + Templatenya"}]},{"@type":"WebSite","@id":"https://www.hostinger.co.id/tutorial/#website","url":"https://www.hostinger.co.id/tutorial/","name":"Hostinger Tutorial","description":"","potentialAction":[{"@type":"SearchAction","target":{"@type":"EntryPoint","urlTemplate":"https://www.hostinger.co.id/tutorial/?s={search_term_string}"},"query-input":"required name=search_term_string"}],"inLanguage":"en-US"},{"@type":"Person","@id":"https://www.hostinger.co.id/tutorial/#/schema/person/dc81c834824ba2e9bebffe5ff280f686","name":"Faradilla A.","image":{"@type":"ImageObject","inLanguage":"en-US","@id":"https://www.hostinger.co.id/tutorial/#/schema/person/image/","url":"https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2021/08/T029Z4XM6-U01CPGXARQR-8c60d4e8d6f9-512-150x150.jpg","contentUrl":"https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2021/08/T029Z4XM6-U01CPGXARQR-8c60d4e8d6f9-512-150x150.jpg","caption":"Faradilla A."},"description":"Faradilla, yang lebih akrab disapa Ninda, adalah Content Manager di Hostinger. Ia suka mengikuti tren seputar teknologi, digital marketing, dan belajar bahasa. Melalui tutorial Hostinger ini, Ninda ingin berbagi informasi dan membantu pembaca menyelesaikan masalah yang dialami.","jobTitle":"SEO Content Analyst","url":"https://www.hostinger.co.id/tutorial/author/faradilla"}]}</script>
+
+<link rel='dns-prefetch' href='//facebook.net' />
+<link rel="alternate" type="application/rss+xml" title="Hostinger Tutorial &raquo; Feed" href="https://www.hostinger.co.id/tutorial/feed" />
+<link rel="alternate" type="application/rss+xml" title="Hostinger Tutorial &raquo; Comments Feed" href="https://www.hostinger.co.id/tutorial/comments/feed" />
+<link rel="alternate" type="application/rss+xml" title="Hostinger Tutorial &raquo; Cara Membuat CV Web Developer yang Menarik + Templatenya Comments Feed" href="https://www.hostinger.co.id/tutorial/cv-web-developer/feed" />
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 0.07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='wp-block-library-css' href='https://www.hostinger.co.id/tutorial/wp-includes/css/dist/block-library/style.min.css?ver=6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='classic-theme-styles-css' href='https://www.hostinger.co.id/tutorial/wp-includes/css/classic-themes.min.css?ver=6.2' type='text/css' media='all' />
+<style id='global-styles-inline-css' type='text/css'>
+body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: #abb8c3;--wp--preset--color--white: #ffffff;--wp--preset--color--pale-pink: #f78da7;--wp--preset--color--vivid-red: #cf2e2e;--wp--preset--color--luminous-vivid-orange: #ff6900;--wp--preset--color--luminous-vivid-amber: #fcb900;--wp--preset--color--light-green-cyan: #7bdcb5;--wp--preset--color--vivid-green-cyan: #00d084;--wp--preset--color--pale-cyan-blue: #8ed1fc;--wp--preset--color--vivid-cyan-blue: #0693e3;--wp--preset--color--vivid-purple: #9b51e0;--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple: linear-gradient(135deg,rgba(6,147,227,1) 0%,rgb(155,81,224) 100%);--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan: linear-gradient(135deg,rgb(122,220,180) 0%,rgb(0,208,130) 100%);--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange: linear-gradient(135deg,rgba(252,185,0,1) 0%,rgba(255,105,0,1) 100%);--wp--preset--gradient--luminous-vivid-orange-to-vivid-red: linear-gradient(135deg,rgba(255,105,0,1) 0%,rgb(207,46,46) 100%);--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray: linear-gradient(135deg,rgb(238,238,238) 0%,rgb(169,184,195) 100%);--wp--preset--gradient--cool-to-warm-spectrum: linear-gradient(135deg,rgb(74,234,220) 0%,rgb(151,120,209) 20%,rgb(207,42,186) 40%,rgb(238,44,130) 60%,rgb(251,105,98) 80%,rgb(254,248,76) 100%);--wp--preset--gradient--blush-light-purple: linear-gradient(135deg,rgb(255,206,236) 0%,rgb(152,150,240) 100%);--wp--preset--gradient--blush-bordeaux: linear-gradient(135deg,rgb(254,205,165) 0%,rgb(254,45,45) 50%,rgb(107,0,62) 100%);--wp--preset--gradient--luminous-dusk: linear-gradient(135deg,rgb(255,203,112) 0%,rgb(199,81,192) 50%,rgb(65,88,208) 100%);--wp--preset--gradient--pale-ocean: linear-gradient(135deg,rgb(255,245,203) 0%,rgb(182,227,212) 50%,rgb(51,167,181) 100%);--wp--preset--gradient--electric-grass: linear-gradient(135deg,rgb(202,248,128) 0%,rgb(113,206,126) 100%);--wp--preset--gradient--midnight: linear-gradient(135deg,rgb(2,3,129) 0%,rgb(40,116,252) 100%);--wp--preset--duotone--dark-grayscale: url('#wp-duotone-dark-grayscale');--wp--preset--duotone--grayscale: url('#wp-duotone-grayscale');--wp--preset--duotone--purple-yellow: url('#wp-duotone-purple-yellow');--wp--preset--duotone--blue-red: url('#wp-duotone-blue-red');--wp--preset--duotone--midnight: url('#wp-duotone-midnight');--wp--preset--duotone--magenta-yellow: url('#wp-duotone-magenta-yellow');--wp--preset--duotone--purple-green: url('#wp-duotone-purple-green');--wp--preset--duotone--blue-orange: url('#wp-duotone-blue-orange');--wp--preset--font-size--small: 13px;--wp--preset--font-size--medium: 20px;--wp--preset--font-size--large: 36px;--wp--preset--font-size--x-large: 42px;--wp--preset--spacing--20: 0.44rem;--wp--preset--spacing--30: 0.67rem;--wp--preset--spacing--40: 1rem;--wp--preset--spacing--50: 1.5rem;--wp--preset--spacing--60: 2.25rem;--wp--preset--spacing--70: 3.38rem;--wp--preset--spacing--80: 5.06rem;--wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);--wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);--wp--preset--shadow--sharp: 6px 6px 0px rgba(0, 0, 0, 0.2);--wp--preset--shadow--outlined: 6px 6px 0px -3px rgba(255, 255, 255, 1), 6px 6px rgba(0, 0, 0, 1);--wp--preset--shadow--crisp: 6px 6px 0px rgba(0, 0, 0, 1);}:where(.is-layout-flex){gap: 0.5em;}body .is-layout-flow > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-flow > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-flow > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignleft{float: left;margin-inline-start: 0;margin-inline-end: 2em;}body .is-layout-constrained > .alignright{float: right;margin-inline-start: 2em;margin-inline-end: 0;}body .is-layout-constrained > .aligncenter{margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > :where(:not(.alignleft):not(.alignright):not(.alignfull)){max-width: var(--wp--style--global--content-size);margin-left: auto !important;margin-right: auto !important;}body .is-layout-constrained > .alignwide{max-width: var(--wp--style--global--wide-size);}body .is-layout-flex{display: flex;}body .is-layout-flex{flex-wrap: wrap;align-items: center;}body .is-layout-flex > *{margin: 0;}:where(.wp-block-columns.is-layout-flex){gap: 2em;}.has-black-color{color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-color{color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-color{color: var(--wp--preset--color--white) !important;}.has-pale-pink-color{color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-color{color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-color{color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-color{color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-color{color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-color{color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-color{color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-color{color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-color{color: var(--wp--preset--color--vivid-purple) !important;}.has-black-background-color{background-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-background-color{background-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-background-color{background-color: var(--wp--preset--color--white) !important;}.has-pale-pink-background-color{background-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-background-color{background-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-background-color{background-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-background-color{background-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-background-color{background-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-background-color{background-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-background-color{background-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-background-color{background-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-background-color{background-color: var(--wp--preset--color--vivid-purple) !important;}.has-black-border-color{border-color: var(--wp--preset--color--black) !important;}.has-cyan-bluish-gray-border-color{border-color: var(--wp--preset--color--cyan-bluish-gray) !important;}.has-white-border-color{border-color: var(--wp--preset--color--white) !important;}.has-pale-pink-border-color{border-color: var(--wp--preset--color--pale-pink) !important;}.has-vivid-red-border-color{border-color: var(--wp--preset--color--vivid-red) !important;}.has-luminous-vivid-orange-border-color{border-color: var(--wp--preset--color--luminous-vivid-orange) !important;}.has-luminous-vivid-amber-border-color{border-color: var(--wp--preset--color--luminous-vivid-amber) !important;}.has-light-green-cyan-border-color{border-color: var(--wp--preset--color--light-green-cyan) !important;}.has-vivid-green-cyan-border-color{border-color: var(--wp--preset--color--vivid-green-cyan) !important;}.has-pale-cyan-blue-border-color{border-color: var(--wp--preset--color--pale-cyan-blue) !important;}.has-vivid-cyan-blue-border-color{border-color: var(--wp--preset--color--vivid-cyan-blue) !important;}.has-vivid-purple-border-color{border-color: var(--wp--preset--color--vivid-purple) !important;}.has-vivid-cyan-blue-to-vivid-purple-gradient-background{background: var(--wp--preset--gradient--vivid-cyan-blue-to-vivid-purple) !important;}.has-light-green-cyan-to-vivid-green-cyan-gradient-background{background: var(--wp--preset--gradient--light-green-cyan-to-vivid-green-cyan) !important;}.has-luminous-vivid-amber-to-luminous-vivid-orange-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-amber-to-luminous-vivid-orange) !important;}.has-luminous-vivid-orange-to-vivid-red-gradient-background{background: var(--wp--preset--gradient--luminous-vivid-orange-to-vivid-red) !important;}.has-very-light-gray-to-cyan-bluish-gray-gradient-background{background: var(--wp--preset--gradient--very-light-gray-to-cyan-bluish-gray) !important;}.has-cool-to-warm-spectrum-gradient-background{background: var(--wp--preset--gradient--cool-to-warm-spectrum) !important;}.has-blush-light-purple-gradient-background{background: var(--wp--preset--gradient--blush-light-purple) !important;}.has-blush-bordeaux-gradient-background{background: var(--wp--preset--gradient--blush-bordeaux) !important;}.has-luminous-dusk-gradient-background{background: var(--wp--preset--gradient--luminous-dusk) !important;}.has-pale-ocean-gradient-background{background: var(--wp--preset--gradient--pale-ocean) !important;}.has-electric-grass-gradient-background{background: var(--wp--preset--gradient--electric-grass) !important;}.has-midnight-gradient-background{background: var(--wp--preset--gradient--midnight) !important;}.has-small-font-size{font-size: var(--wp--preset--font-size--small) !important;}.has-medium-font-size{font-size: var(--wp--preset--font-size--medium) !important;}.has-large-font-size{font-size: var(--wp--preset--font-size--large) !important;}.has-x-large-font-size{font-size: var(--wp--preset--font-size--x-large) !important;}
+.wp-block-navigation a:where(:not(.wp-element-button)){color: inherit;}
+:where(.wp-block-columns.is-layout-flex){gap: 2em;}
+.wp-block-pullquote{font-size: 1.5em;line-height: 1.6;}
+</style>
+<link data-minify="1" rel='stylesheet' id='ppress-frontend-css' href='https://www.hostinger.co.id/tutorial/wp-content/cache/min/11/tutorial/wp-content/plugins/wp-user-avatar/assets/css/frontend.min.css?ver=1681360788' type='text/css' media='all' />
+<link rel='stylesheet' id='ppress-flatpickr-css' href='https://www.hostinger.co.id/tutorial/wp-content/plugins/wp-user-avatar/assets/flatpickr/flatpickr.min.css?ver=4.9.0' type='text/css' media='all' />
+<link rel='stylesheet' id='ppress-select2-css' href='https://www.hostinger.co.id/tutorial/wp-content/plugins/wp-user-avatar/assets/select2/select2.min.css?ver=6.2' type='text/css' media='all' />
+<link rel='stylesheet' id='ez-toc-css' href='https://www.hostinger.co.id/tutorial/wp-content/plugins/easy-table-of-contents/assets/css/screen.min.css?ver=2.0.46' type='text/css' media='all' />
+<style id='ez-toc-inline-css' type='text/css'>
+div#ez-toc-container p.ez-toc-title {font-size: 120%;}div#ez-toc-container p.ez-toc-title {font-weight: 500;}div#ez-toc-container ul li {font-size: 95%;}div#ez-toc-container nav ul ul li ul li {font-size: 90%!important;}
+</style>
+<link data-minify="1" rel='stylesheet' id='understrap-styles-css' href='https://www.hostinger.co.id/tutorial/wp-content/cache/min/11/tutorial/wp-content/themes/tutorialsthemeuplift/public/css/theme.min.css?ver=1681360788' type='text/css' media='all' />
+<link data-minify="1" rel='stylesheet' id='prismCSS-css' href='https://www.hostinger.co.id/tutorial/wp-content/cache/min/11/tutorial/wp-content/themes/tutorialsthemeuplift/resources/prism.css?ver=1681360788' type='text/css' media='all' />
+<script type='text/javascript' id='yoast-seo-base-site-url_js-js-extra'>
+/* <![CDATA[ */
+var yoastSeoBaseSiteUrl = {"base_url":"https:\/\/www.hostinger.co.id\/tutorial"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type='text/javascript' data-rocket-src='https://www.hostinger.co.id/tutorial/wp-content/cache/min/11/tutorial/wp-content/themes/tutorialsthemeuplift/resources/js/yoast-seo-base-site-url.js?ver=1681360788' id='yoast-seo-base-site-url_js-js' defer></script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type='text/javascript' data-rocket-src='https://www.hostinger.co.id/tutorial/wp-content/cache/min/11/tutorial/wp-content/plugins/stop-user-enumeration/frontend/js/frontend.js?ver=1681360788' id='stop-user-enumeration-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' data-rocket-src='https://www.hostinger.co.id/tutorial/wp-includes/js/jquery/jquery.min.js?ver=3.6.3' id='jquery-core-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' data-rocket-src='https://www.hostinger.co.id/tutorial/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.0' id='jquery-migrate-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' data-rocket-src='https://www.hostinger.co.id/tutorial/wp-content/plugins/wp-user-avatar/assets/flatpickr/flatpickr.min.js?ver=4.9.0' id='ppress-flatpickr-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' data-rocket-src='https://www.hostinger.co.id/tutorial/wp-content/plugins/wp-user-avatar/assets/select2/select2.min.js?ver=4.9.0' id='ppress-select2-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' id='ez-toc-scroll-scriptjs-js-after'>window.addEventListener('DOMContentLoaded', function() {
+jQuery(document).ready(function(){document.querySelectorAll(".ez-toc-section").forEach(t=>{t.setAttribute("ez-toc-data-id","#"+decodeURI(t.getAttribute("id")))}),jQuery("a.ez-toc-link").click(function(){let t=jQuery(this).attr("href"),e=jQuery("#wpadminbar"),i=0;60>30&&(i=60),e.length&&(i+=e.height()),jQuery('[ez-toc-data-id="'+decodeURI(t)+'"]').length>0&&(i=jQuery('[ez-toc-data-id="'+decodeURI(t)+'"]').offset().top-i),jQuery("html, body").animate({scrollTop:i},500)})});
+});</script>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type='text/javascript' data-rocket-src='https://www.hostinger.co.id/tutorial/wp-content/cache/min/11/tutorial/wp-content/themes/tutorialsthemeuplift/resources/prism.js?ver=1681360788' id='prismJS-js' defer></script>
+<link rel="https://api.w.org/" href="https://www.hostinger.co.id/tutorial/wp-json/" /><link rel="alternate" type="application/json" href="https://www.hostinger.co.id/tutorial/wp-json/wp/v2/posts/24810" /><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.hostinger.co.id/tutorial/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.hostinger.co.id/tutorial/wp-includes/wlwmanifest.xml" />
+<meta name="generator" content="WordPress 6.2" />
+<link rel='shortlink' href='https://www.hostinger.co.id/tutorial/?p=24810' />
+<link rel="alternate" type="application/json+oembed" href="https://www.hostinger.co.id/tutorial/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.hostinger.co.id%2Ftutorial%2Fcv-web-developer" />
+<link rel="alternate" type="text/xml+oembed" href="https://www.hostinger.co.id/tutorial/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.hostinger.co.id%2Ftutorial%2Fcv-web-developer&#038;format=xml" />
+
+<script type="rocketlazyloadscript">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-KL4FQVG');</script>
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://www.hostinger.co.id/tutorial/cv-web-developer"
+    },
+    "headline": "Cara Membuat CV Web Developer yang Menarik + Templatenya",
+    "datePublished": "2022-10-19T19:09:28+0700",
+    "dateModified": "2023-01-18T16:44:23+0700",
+    "author": {
+        "@type": "Person",
+        "name": "Faradilla A."
+    },
+    "description": "Persaingan kerja di dunia web development saat ini begitu ketat. Web developer menjadi salah satu profesi yang",
+    "publisher": {
+        "@type": "Organization",
+        "name": "Hostinger Tutorial",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2017/04/hostinger-logo-id.png",
+            "width": 436,
+            "height": 56
+        }
+    }
+}
+</script>
+
+<script type="rocketlazyloadscript">
+            document.addEventListener('DOMContentLoaded', function () {
+                let anchorTags = document.querySelectorAll('.ez-toc-link');
+                anchorTags.forEach(function(element) {
+                    element.text = element.text.replace(':','');
+                });
+            }, false);
+        </script>
+<link rel="icon" href="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2017/06/cropped-cropped-hostinger-fav-32x32.png" sizes="32x32" />
+<link rel="icon" href="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2017/06/cropped-cropped-hostinger-fav-192x192.png" sizes="192x192" />
+<link rel="apple-touch-icon" href="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2017/06/cropped-cropped-hostinger-fav-180x180.png" />
+<meta name="msapplication-TileImage" content="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2017/06/cropped-cropped-hostinger-fav-270x270.png" />
+<style type="text/css" id="wp-custom-css">
+			#ez-toc-container nav ul li {
+    padding-top: 10px;
+}		</style>
+<noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript></head>
+<body class="post-template-default single single-post postid-24810 single-format-standard wp-embed-responsive">
+<div id="navigation-new">
+<hmenu-new :menu-items="[{&quot;id&quot;:&quot;mainMenu&quot;,&quot;title&quot;:&quot;Website Hosting&quot;,&quot;items&quot;:[{&quot;title&quot;:&quot;Hosting&quot;,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-hosting&quot;,&quot;dropDown&quot;:true,&quot;items&quot;:[{&quot;title&quot;:&quot;Web Hosting&quot;,&quot;text&quot;:&quot;Untuk website skala kecil dan medium.&quot;,&quot;logo&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/icons\/navbar\/hosting\/shared-hosting.svg&quot;,&quot;href&quot;:&quot;\/web-hosting&quot;,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-web-hosting&quot;},{&quot;title&quot;:&quot;Website Builder&quot;,&quot;text&quot;:&quot;Create your website with ease.&quot;,&quot;logo&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/icons\/navbar\/hosting\/website-builder.svg&quot;,&quot;href&quot;:&quot;\/website-builder&quot;,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-website-builder&quot;},{&quot;title&quot;:&quot;Cloud Hosting&quot;,&quot;text&quot;:&quot;Untuk website skala besar.&quot;,&quot;logo&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/icons\/navbar\/hosting\/cloud-hosting.svg&quot;,&quot;href&quot;:&quot;\/cloud-hosting&quot;,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-cloud-hosting&quot;},{&quot;title&quot;:&quot;WordPress Hosting&quot;,&quot;text&quot;:&quot;Hosting teroptimasi untuk WordPress.&quot;,&quot;logo&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/icons\/navbar\/hosting\/wordpress-hosting.svg&quot;,&quot;href&quot;:&quot;\/wordpress-hosting&quot;,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-wordpress-hosting&quot;}],&quot;opened&quot;:false},{&quot;title&quot;:&quot;VPS&quot;,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-vps&quot;,&quot;dropDown&quot;:true,&quot;items&quot;:[{&quot;title&quot;:&quot;VPS Hosting&quot;,&quot;text&quot;:&quot;Server virtual yang flexible dengan dedicated resource untuk website dan web aplikasi.&quot;,&quot;logo&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/icons\/navbar\/hosting\/vps-hosting.svg&quot;,&quot;href&quot;:&quot;\/hosting-vps&quot;,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-vps-hosting&quot;},{&quot;title&quot;:&quot;CyberPanel VPS Hosting&quot;,&quot;text&quot;:&quot;Control panel dengan Open\/LiteSpeed Webserver.&quot;,&quot;logo&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/icons\/navbar\/hosting\/cyberpanel-hosting.svg&quot;,&quot;href&quot;:&quot;\/cyberpanel-vps-hosting&quot;,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-cyberpanel-hosting&quot;},{&quot;title&quot;:&quot;Minecraft Server Hosting&quot;,&quot;text&quot;:&quot;Bermain bersama komunitas Minecraft.&quot;,&quot;logo&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/icons\/navbar\/hosting\/minecraft-hosting.svg&quot;,&quot;href&quot;:&quot;\/minecraft-server-hosting&quot;,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-minecraft-hosting&quot;}],&quot;opened&quot;:false},{&quot;title&quot;:&quot;Email&quot;,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-email&quot;,&quot;dropDown&quot;:true,&quot;items&quot;:[{&quot;title&quot;:&quot;Google Workspace&quot;,&quot;text&quot;:&quot;Paket layanan terbaik Google untuk kerja tim.&quot;,&quot;logo&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/icons\/navbar\/email\/google-workspace-hosting.svg&quot;,&quot;href&quot;:&quot;\/google-workspace&quot;,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-google-workspace&quot;},{&quot;title&quot;:&quot;Email Hosting&quot;,&quot;text&quot;:&quot;Promosikan bisnis &amp; jangkau banyak pelanggan.&quot;,&quot;logo&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/icons\/navbar\/email\/email-hosting.svg&quot;,&quot;href&quot;:&quot;\/email-hosting&quot;,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-email-hosting&quot;}],&quot;opened&quot;:false},{&quot;title&quot;:&quot;Domain&quot;,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-domain&quot;,&quot;dropDown&quot;:true,&quot;items&quot;:[{&quot;title&quot;:&quot;Cari Domain&quot;,&quot;text&quot;:&quot;Temukan domain impian Anda.&quot;,&quot;logo&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/icons\/navbar\/domain\/domain-checker.svg&quot;,&quot;href&quot;:&quot;\/domain-murah&quot;,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-domain-checker&quot;},{&quot;title&quot;:&quot;WHOIS Lookup&quot;,&quot;text&quot;:&quot;Cari info WHOIS Domain.&quot;,&quot;logo&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/icons\/navbar\/domain\/whois-database.svg&quot;,&quot;href&quot;:&quot;\/whois&quot;,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-whois&quot;},{&quot;title&quot;:&quot;Transfer Domain&quot;,&quot;text&quot;:&quot;Transfer domain murah dan mudah.&quot;,&quot;logo&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/icons\/navbar\/domain\/domain-transfer.svg&quot;,&quot;href&quot;:&quot;\/transfer-domain&quot;,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-transfer-domain&quot;}],&quot;opened&quot;:false},{&quot;title&quot;:&quot;Masuk&quot;,&quot;href&quot;:&quot;\/cpanel-login&quot;,&quot;nameIsLogin&quot;:true,&quot;id&quot;:&quot;hgr-tutorials-h-menu-item-cpanel-login&quot;,&quot;material&quot;:&quot;lock&quot;}]},{&quot;id&quot;:&quot;secondaryMenu&quot;,&quot;title&quot;:&quot;Article topics&quot;,&quot;items&quot;:[{&quot;title&quot;:&quot;WordPress&quot;,&quot;href&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wordpress&quot;},{&quot;title&quot;:&quot;VPS&quot;,&quot;href&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/vps&quot;},{&quot;title&quot;:&quot;Web Development&quot;,&quot;href&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/web-development&quot;},{&quot;title&quot;:&quot;Video&quot;,&quot;href&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/video&quot;},{&quot;title&quot;:&quot;Webinar&quot;,&quot;href&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/webinar&quot;}]}]" cart-path="/cart" home-path="/" blog-path="https://www.hostinger.co.id/tutorial" tutorials-name="Tutorial" cart="Cart" theme-tld=".co.id">
+</hmenu-new>
+</div>
+<div class="h-pb-2 h-pt-2 justify-content-center primary l700 position-relative w-100 position-absolute" id="submenu">
+<div class="container d-flex w-100 align-items-center height-16px justify-content-between">
+<div class="d-flex">
+<span class="ml-0-md mr-40-md d-block transition-all-3 letter-spacing-1px text-nowrap
+                              hover-opacity-6">
+<a href="https://www.hostinger.co.id/tutorial/wordpress" data-wpel-link="internal">WordPress</a>
+</span>
+<span class="ml-0-md mr-40-md d-block transition-all-3 letter-spacing-1px text-nowrap
+                              hover-opacity-6">
+<a href="https://www.hostinger.co.id/tutorial/vps" data-wpel-link="internal">VPS</a>
+</span>
+<span class="ml-0-md mr-40-md d-block transition-all-3 letter-spacing-1px text-nowrap
+                              hover-opacity-6">
+<a href="https://www.hostinger.co.id/tutorial/web-development" data-wpel-link="internal">Web Development</a>
+</span>
+<span class="ml-0-md mr-40-md d-block transition-all-3 letter-spacing-1px text-nowrap
+                              hover-opacity-6">
+<a href="https://www.hostinger.co.id/tutorial/video" data-wpel-link="internal">Video</a>
+</span>
+<span class="ml-0-md mr-40-md d-block transition-all-3 letter-spacing-1px text-nowrap
+                              hover-opacity-6">
+<a href="https://www.hostinger.co.id/tutorial/webinar" data-wpel-link="internal">Webinar</a>
+</span>
+</div>
+<div class="d-flex align-items-center">
+<form id="searchbox" method="get" action="https://www.hostinger.co.id/tutorial/" role="search" class="w-100">
+<input class="label text-content-grey w-100 mr-20 pr-40" id="s" name="s" type="text" placeholder="Cari" value="" />
+</form>
+<i onclick="toggleSearch()" id="searchIcon" class="position-relative material-icons ml-auto cursor-pointer">
+search
+</i>
+</div>
+</div>
+</div>
+<script type="rocketlazyloadscript">
+    var searchbox = document.getElementById("searchbox");
+    var searchBoxVisible = false;
+    if (searchbox) {
+        searchbox.style.display = "none";
+    }
+
+    function toggleSearch() {
+        if (searchbox.style.display === "none") {
+            searchbox.style.display = "block";
+            searchbox.classList.add("fade-in");
+            document.getElementById("s").focus();
+            searchBoxVisible = true;
+        } else {
+            searchbox.style.display = "none";
+            searchBoxVisible = false;
+
+        }
+    }
+
+    function onClickOutside(e) {
+        if (searchBoxVisible && e.target.id !== "searchbox" && e.target.id !== "searchIcon" && e.target.id !== "s") {
+            searchbox.style.display = "none";
+        }
+    }
+
+    window.addEventListener("click", onClickOutside);
+</script>
+<div id="gdpr-consent">
+<gdpr-banner-bottom :strings="{&quot;banner&quot;:{&quot;body&quot;:{&quot;firstHeading&quot;:&quot;Kami Peduli dengan Privasi Anda&quot;,&quot;firstBody&quot;:&quot;Kami dan mitra kami menggunakan cookie untuk menyimpan dan mengakses data pribadi, seperti data browsing, agar dapat memberikan konten dan iklan yang didasarkan pada minat Anda dan juga menganalisis trafik situs. Informasi selengkapnya mengenai tujuan dan alasan kami menggunakan cookie atau menggunakan preferensi Anda dapat diketahui dengan mengeklik tombol 'Pengaturan Cookie' di bawah ini. Anda dapat mengunjungi kembali persetujuan yang dipilih atau menolak persetujuan kapan saja dengan mengeklik link yang terhubung ke pengaturan cookie di Kebijakan Cookie. Kami bekerja sama dengan kerangka industri untuk mengirimkan informasi yang relevan dengan minat Anda ke semua website terkait. Preferensi cookie dapat diatur di &lt;span id='hgr-cookie_consent-show_settings_btn' class='link fs-14 fs-15-sm cursor-pointer'&gt;Pengaturan Cookie&lt;\/span&gt;.&quot;,&quot;secondHeading&quot;:&quot;Kami dan mitra kami mengolah data:&quot;,&quot;secondBody&quot;:&quot;Penyimpanan dan\/atau akses informasi di suatu perangkat. Iklan yang dipersonalisasikan. Konten yang dipersonalisasikan. Penilaian iklan dan konten, insight audiens, dan pengembangan produk. Untuk informasi selengkapnya, silakan &lt;a id='hgr-cookie_consent-cookie_policy_btn' class='link fs-14 fs-15-sm cursor-pointer' target='_blank' ref='someLink' rel='noopener noreferrer nofollow' href='\/kebijakan-cookie'&gt;baca Kebijakan Cookie&lt;\/a&gt; kami.&quot;},&quot;acceptBtn&quot;:&quot;Setujui Cookie&quot;,&quot;settingsBtn&quot;:&quot;Pengaturan cookie&quot;},&quot;popup&quot;:{&quot;header&quot;:{&quot;title&quot;:&quot;Cookies settings&quot;,&quot;body&quot;:&quot;Kami mengolah data Anda untuk mengirimkan konten atau iklan dan menilai pengiriman konten atau iklan tersebut untuk memperoleh insight tentang website kami. Kami mungkin membagikan informasi ini dengan mitra kami. Cookie yang diatur oleh Hostinger dilabeli sebagai \&quot;pihak pertama\&quot;; Anda dipersilakan untuk mengatur preferensi terkait cookie pihak pertama dengan mengaktifkan setiap kategori cookie pihak pertama di bawah ini. Cookie yang tersisa adalah cookie pihak ketiga; Anda dipersilakan untuk mengatur preferensi dalam kaitannya dengan setiap tujuan dengan mengaktifkan pilihan di bawah ini atau berdasarkan vendor dengan mengeklik \&quot;List of IAB Vendors\&quot; di bawah ini. Pilihan-pilihan ini akan dikirimkan secara global ke website lain yang berpartisipasi dalam Transparency and Consent Framework. &lt;a id='hgr-cookie_consent-settings-cookie_policy_btn' class='link fs-14' target='_blank' rel='noopener noreferrer nofollow' href='\/kebijakan-cookie'&gt;Kebijakan Cookie&lt;\/a&gt;.&quot;,&quot;btn&quot;:&quot;Setujui semua cookie&quot;},&quot;cookies&quot;:[{&quot;title&quot;:&quot;Mandatory cookie&quot;,&quot;body&quot;:&quot;Berperan penting dalam memastikan website bekerja dengan baik.&quot;,&quot;btn&quot;:&quot;Selalu aktif&quot;},{&quot;title&quot;:&quot;Cookie statistik&quot;,&quot;body&quot;:&quot;Berperan penting dalam meningkatkan fungsi dan struktur website yang didasarkan pada penggunaan data oleh website.&quot;,&quot;cookieName&quot;:&quot;statistics&quot;},{&quot;title&quot;:&quot;Cookie pemasaran&quot;,&quot;body&quot;:&quot;Bertujuan mengumpulkan informasi untuk menampilkan iklan atau konten di browser tertentu dengan membuat kelompok target yang berbeda.&quot;,&quot;cookieName&quot;:&quot;advertising&quot;}],&quot;buttonTxt&quot;:&quot;Setujui Cookie yang Dipilih&quot;}}">
+</div>
+<div class="h-pt-3">
+<div class="container">
+<div class="row col-12 col-lg-9">
+<div class="text-h-primary label position-relative top-3rem">
+</div>
+</div>
+</div>
+</div> <div class="pt-30 pt-0-lg pb-40">
+<div id="blog-post-container" class="w-100 flex-column d-flex flex-lg-row position-relative pt-20-lg">
+<div id="post" class="d-flex flex-column flex-lg-row col-12 col-lg-9 col-xxl-7 offset-lg-1 offset-xxl-2 position-relative justify-content-center sidebar-left__wrapper">
+<div class="stories-margin mt-150-lg sidebar-left">
+<div class="widget-area row d-table mr-50-lg" style="height: 100%">
+<div class="dynamic-sidebar col-12 col-md-6 col-lg-12 sticky-widget mx-auto px-0 pb-30">
+<div id="custom_html-6" class="widget_text widget widget_custom_html sticky-banner-margin"><div class="textwidget custom-html-widget"><div id="om-sfya15onc0woyl6fmvbn-holder"></div>
+<div id="om-tfvex27jvgr4liofxwur-holder"></div>
+<div id="om-eho1w5nyucy6xsloyubp-holder"></div>
+<div id="om-gqhupb8dvkxkadn1vujo-holder"></div>
+</div></div> </div>
+</div>
+</div> <div class="post-content">
+<div class="d-flex label text-content-grey mb-20 mb-sm-30 flex-wrap">
+<div class="d-flex align-items-center h-mr-2 category">
+<a class="category-name mr-5" href="https://www.hostinger.co.id/tutorial/lainnya" id="category-name" data-wpel-link="internal">
+Lainnya </a>
+</div>
+<div class="d-flex align-items-center mr-sm-4 mr-1">
+<p class="post-info">
+Jan 18, 2023 </p>
+</div>
+<div class="d-flex align-items-center mr-sm-4 mr-1">
+<p class="ml-2 post-info">
+Faradilla A. </p>
+</div>
+<div class="d-flex align-items-center">
+<p class="ml-2 post-info">12menit Dibaca </p>
+</div>
+</div>
+<h1>Cara Membuat CV Web Developer yang Menarik + Templatenya</h1>
+<div class="social-container d-flex d-xl-none">
+<a class="social-link text-light-black cursor-pointer d-flex align-items-center justify-content-center">
+<svg width="28" height="28" class="link" viewBox="0 0 28 14" onclick="copyToClipboard('www.hostinger.co.id/tutorial/cv-web-developer');linkClick(event)" xmlns="http://www.w3.org/2000/svg">
+<path d="M6.364 0.5C2.85 0.5 0 3.41 0 7C0 10.59 2.85 13.5 6.364 13.5H11.454V10.9H6.364C4.254 10.9 2.545 9.154 2.545 7C2.545 4.846 4.255 3.1 6.364 3.1H11.454V0.5H6.364V0.5ZM16.545 0.5V3.1H21.636C23.746 3.1 25.455 4.846 25.455 7C25.455 9.154 23.745 10.9 21.636 10.9H16.546V13.5H21.636C25.15 13.5 28 10.59 28 7C28 3.41 25.15 0.5 21.636 0.5H16.546H16.545ZM7.636 5.7V8.3H20.364V5.7H7.636Z" />
+</svg>
+<div id="copyLink" style="display: none;" class="copy-link">Salin link</div>
+<div id="copiedLink" style="display: none;" class="copied-link">Disalin!</div>
+</a>
+<a href="https://twitter.com/intent/tweet?text=Cara Membuat CV Web Developer yang Menarik + Templatenya&amp;url=www.hostinger.co.id/tutorial/cv-web-developer" class="social-link" target="_blank" rel="nofollow noopener noreferrer" data-wpel-link="exclude">
+<svg width="28" height="28" class="twitter" viewBox="0 0 28 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M28 3.222C26.97 3.685 25.862 3.996 24.7 4.137C25.9034 3.4078 26.801 2.26638 27.226 0.925C26.0996 1.60097 24.8652 2.07794 23.577 2.335C23.0427 1.75645 22.3944 1.29475 21.673 0.978948C20.9515 0.663145 20.1725 0.500076 19.385 0.5C16.212 0.5 13.641 3.1 13.641 6.306C13.641 6.761 13.693 7.206 13.789 7.629C9.016 7.387 4.784 5.075 1.95 1.56C1.43967 2.44841 1.17205 3.45545 1.174 4.48C1.17133 5.43314 1.40284 6.37235 1.84817 7.21507C2.2935 8.05778 2.93903 8.7782 3.728 9.313C2.81494 9.28354 1.92242 9.03451 1.126 8.587V8.66C1.126 11.474 3.106 13.82 5.734 14.353C4.8886 14.5858 4.00082 14.62 3.14 14.453C3.871 16.76 5.993 18.439 8.506 18.486C7.31857 19.431 5.95501 20.1305 4.49471 20.5435C3.0344 20.9566 1.50652 21.075 0 20.892C2.62075 22.596 5.68001 23.502 8.806 23.5C19.372 23.5 25.148 14.652 25.148 6.98C25.1481 6.72925 25.1428 6.47852 25.132 6.228C26.2588 5.40415 27.23 4.38627 28 3.222V3.222Z" />
+</svg>
+</a>
+<a href="https://www.facebook.com/sharer/sharer.php?u=www.hostinger.co.id/tutorial/cv-web-developer" class="social-link" target="_blank" rel="nofollow noopener noreferrer" data-wpel-link="exclude">
+<svg width="28" height="28" class="facebook" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3307_57195)">
+<path d="M24.889 1.60787e-07H3.11C2.7015 1.39669e-07 2.29701 0.0804758 1.91962 0.23683C1.54224 0.393185 1.19935 0.622355 0.910544 0.911252C0.621741 1.20015 0.392681 1.54311 0.236448 1.92055C0.0802144 2.29799 -0.000131188 2.70251 1.60787e-07 3.111V24.89C1.39669e-07 25.2985 0.0804758 25.703 0.23683 26.0804C0.393185 26.4578 0.622355 26.8007 0.911252 27.0895C1.20015 27.3783 1.54311 27.6073 1.92055 27.7636C2.29799 27.9198 2.70251 28.0001 3.111 28H14.966V17.172H11.321V12.932H14.966V9.815C14.966 6.2 17.176 4.229 20.403 4.229C21.4898 4.22651 22.5759 4.28092 23.657 4.392V8.172H21.436C19.678 8.172 19.336 9.003 19.336 10.229V12.928H23.536L22.99 17.167H19.31V28H24.889C25.2976 28.0001 25.7022 27.9198 26.0797 27.7635C26.4572 27.6072 26.8002 27.378 27.0891 27.0891C27.378 26.8002 27.6072 26.4572 27.7635 26.0797C27.9198 25.7022 28.0001 25.2976 28 24.889V3.11C28 2.7015 27.9195 2.29701 27.7632 1.91962C27.6068 1.54224 27.3776 1.19935 27.0887 0.910544C26.7999 0.621741 26.4569 0.392681 26.0795 0.236448C25.702 0.0802144 25.2975 -0.000131188 24.889 1.60787e-07Z" />
+</g>
+<defs>
+<clipPath id="clip0_3307_57195">
+<rect width="28" height="28" fill="white" />
+</clipPath>
+</defs>
+</svg>
+</a>
+<a href="https://www.linkedin.com/sharing/share-offsite/?url=www.hostinger.co.id/tutorial/cv-web-developer" class="social-link" target="_blank" rel="nofollow noopener noreferrer" data-wpel-link="exclude">
+<svg width="28" height="28" class="linkedin h-p-0-lg h-mb-3-lg" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3302_57044)">
+<path d="M24.889 1.60787e-07H3.11C2.7015 1.39669e-07 2.29701 0.0804758 1.91962 0.23683C1.54224 0.393185 1.19935 0.622355 0.910544 0.911252C0.621741 1.20015 0.392681 1.54311 0.236448 1.92055C0.0802144 2.29799 -0.000131188 2.70251 1.60787e-07 3.111V24.89C1.39669e-07 25.2985 0.0804758 25.703 0.23683 26.0804C0.393185 26.4578 0.622355 26.8007 0.911252 27.0895C1.20015 27.3783 1.54311 27.6073 1.92055 27.7636C2.29799 27.9198 2.70251 28.0001 3.111 28H24.89C25.2985 28 25.703 27.9195 26.0804 27.7632C26.4578 27.6068 26.8007 27.3776 27.0895 27.0887C27.3783 26.7999 27.6073 26.4569 27.7636 26.0795C27.9198 25.702 28.0001 25.2975 28 24.889V3.11C28 2.7015 27.9195 2.29701 27.7632 1.91962C27.6068 1.54224 27.3776 1.19935 27.0887 0.910544C26.7999 0.621741 26.4569 0.392681 26.0795 0.236448C25.702 0.0802144 25.2975 -0.000131188 24.889 1.60787e-07ZM9.333 21.778H5.41V10.888H9.334V21.778H9.333ZM7.302 8.893C6.102 8.893 5.302 8.093 5.302 7.026C5.302 5.959 6.1 5.16 7.433 5.16C8.633 5.16 9.433 5.96 9.433 7.026C9.433 8.094 8.633 8.893 7.301 8.893H7.302ZM23.333 21.778H19.535V15.826C19.535 14.18 18.522 13.801 18.142 13.801C17.762 13.801 16.497 14.054 16.497 15.826V21.778H12.572V10.888H16.497V12.408C17.002 11.522 18.015 10.888 19.914 10.888C21.814 10.888 23.334 12.408 23.334 15.826V21.778H23.333Z" />
+</g>
+<defs>
+<clipPath id="clip0_3302_57044">
+<rect width="28" height="28" fill="white" />
+</clipPath>
+</defs>
+</svg>
+</a>
+<a href="mailto:?subject=Cara Membuat CV Web Developer yang Menarik + Templatenya&amp;body=Article:%20www.hostinger.co.id/tutorial/cv-web-developer" class="social-link" target="_blank" rel="nofollow noopener noreferrer">
+<svg width="28" height="28" class="mail h-p-0-lg h-mb-3-lg" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.8 3.00001C2.12163 2.99621 1.4654 3.24121 0.955496 3.68864C0.445591 4.13608 0.117389 4.7549 0.033 5.42801L14 14L27.967 5.42801C27.8826 4.7549 27.5544 4.13608 27.0445 3.68864C26.5346 3.24121 25.8784 2.99621 25.2 3.00001H2.8ZM0 8.15901V22.25C0 23.77 1.253 25 2.8 25H25.2C26.747 25 28 23.77 28 22.25V8.15901L14.741 16.296C14.5178 16.4323 14.2615 16.5043 14 16.5043C13.7385 16.5043 13.4822 16.4323 13.259 16.296L0 8.16001V8.15901Z" />
+</svg>
+</a>
+</div>
+<script type="rocketlazyloadscript">
+    function linkHover() {
+        var socialLinkHover = document.getElementById("copyLink");
+        if (socialLinkHover.style.display === "none") {
+            socialLinkHover.style.display = "inline-block";
+        } else {
+            socialLinkHover.style.display = "none";
+        }
+    }
+
+    function linkClick(e) {
+        var parent = e.target.parentElement;
+        var socialLinkClick = Array.from(parent.children).find(elem => elem.id == "copiedLink");
+        if (socialLinkClick.style.display === "none") {
+            socialLinkClick.style.display = "inline-block";
+            document.getElementById("copyLink").style.display = "none";
+        } else {
+            socialLinkClick.style.display = "none";
+        }
+        setTimeout(() => { socialLinkClick.style.display = "none" }, 2000);
+    }
+
+    function copyToClipboard(str) {
+        var el = document.createElement('textarea');
+        el.value = str;
+        el.setAttribute('readonly', '');
+        el.style = {
+            position: 'absolute',
+            left: '-9999px'
+        };
+
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+    }
+</script>
+<p>Persaingan kerja di dunia web development saat ini begitu ketat. Web developer menjadi salah satu profesi yang paling banyak dicari dan menawarkan gaji kompetitif. Kalau tidak persiapan dengan benar, kesempatan untuk dapat pekerjaan atau bahkan lolos ke tahap wawancara juga kian terbatas.</p>
+<p>Nah, Anda bisa memperluas peluang ini dengan cara membuat CV yang menarik. Tenang, kami sudah menyiapkan beberapa contoh membuat CV web developer yang bisa dijadikan referensi. </p>
+<p>Contoh template CV yang kami berikan di sini akan menggunakan bahasa Inggris agar Anda bisa turut menjangkau klien atau perusahaan dari luar negeri.</p>
+<p>Langsung saja, kami akan memandu Anda membuat CV yang menarik perhatian HRD baik untuk entry level maupun senior. Anda juga bisa menggunakan template CV kami untuk profesi lain, misalnya untuk membuat CV programmer. Baca sampai akhir yuk!</p>
+<figure class="wp-block-image size-large"><a href="https://app.monstercampaigns.com/c/gjgsqpyyzdhyhfotopqn/" data-wpel-link="external" target="_blank" rel="nofollow external noopener noreferrer"><img decoding="async" width="1024" height="283" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%20283'%3E%3C/svg%3E" alt="" class="wp-image-27595" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/12/hPanel-Demo-ID.webp 1024w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/12/hPanel-Demo-ID-300x83.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/12/hPanel-Demo-ID-150x41.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/12/hPanel-Demo-ID-768x212.webp 768w" data-lazy-sizes="(max-width: 1024px) 100vw, 1024px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/12/hPanel-Demo-ID-1024x283.webp" /><noscript><img decoding="async" width="1024" height="283" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/12/hPanel-Demo-ID-1024x283.webp" alt="" class="wp-image-27595" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/12/hPanel-Demo-ID.webp 1024w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/12/hPanel-Demo-ID-300x83.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/12/hPanel-Demo-ID-150x41.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/12/hPanel-Demo-ID-768x212.webp 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></noscript></a></figure>
+<div id="ez-toc-container" class="ez-toc-v2_0_46 counter-hierarchy ez-toc-counter ez-toc-grey ez-toc-container-direction">
+<div class="ez-toc-title-container">
+<p class="ez-toc-title"></p>
+<span class="ez-toc-title-toggle"></span></div>
+<nav><ul class='ez-toc-list ez-toc-list-level-1 '><li class='ez-toc-page-1 ez-toc-heading-level-2'><a class="ez-toc-link ez-toc-heading-1" href="#Cara_Membuat_CV_Web_Developer_yang_Menarik" title="Cara Membuat CV Web Developer yang Menarik">Cara Membuat CV Web Developer yang Menarik</a><ul class='ez-toc-list-level-3'><li class='ez-toc-heading-level-3'><a class="ez-toc-link ez-toc-heading-2" href="#Tips_Mengisi_Informasi_Kontak_Penting" title="Tips Mengisi Informasi Kontak Penting">Tips Mengisi Informasi Kontak Penting</a></li><li class='ez-toc-page-1 ez-toc-heading-level-3'><a class="ez-toc-link ez-toc-heading-3" href="#Trik_Menulis_Objektif_atau_Deskripsi_Singkat" title="Trik Menulis Objektif atau Deskripsi Singkat">Trik Menulis Objektif atau Deskripsi Singkat</a></li><li class='ez-toc-page-1 ez-toc-heading-level-3'><a class="ez-toc-link ez-toc-heading-4" href="#Cara_Mencantumkan_Pengalaman_dan_Pendidikan" title="Cara Mencantumkan Pengalaman dan Pendidikan">Cara Mencantumkan Pengalaman dan Pendidikan</a></li><li class='ez-toc-page-1 ez-toc-heading-level-3'><a class="ez-toc-link ez-toc-heading-5" href="#Cara_Membuat_Daftar_Skill_dan_Sertifikat" title="Cara Membuat Daftar Skill dan Sertifikat">Cara Membuat Daftar Skill dan Sertifikat</a></li><li class='ez-toc-page-1 ez-toc-heading-level-3'><a class="ez-toc-link ez-toc-heading-6" href="#Informasi_Tambahan_yang_Perlu_Disertakan" title="Informasi Tambahan yang Perlu Disertakan">Informasi Tambahan yang Perlu Disertakan</a></li></ul></li><li class='ez-toc-page-1 ez-toc-heading-level-2'><a class="ez-toc-link ez-toc-heading-7" href="#Cara_Membuat_CV_ATS_Friendly_Bonus" title="Cara Membuat CV ATS Friendly (Bonus!)">Cara Membuat CV ATS Friendly (Bonus!)</a></li></ul></nav></div>
+<figure class="wp-block-image size-large"><a href="/" target="_blank" rel="noreferrer noopener" data-wpel-link="internal"><img decoding="async" width="1024" height="300" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%20300'%3E%3C/svg%3E" alt="" class="wp-image-29634" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/02/ID-Web-hosting_in-text-banner.webp 1024w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/02/ID-Web-hosting_in-text-banner-300x88.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/02/ID-Web-hosting_in-text-banner-150x44.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/02/ID-Web-hosting_in-text-banner-768x225.webp 768w" data-lazy-sizes="(max-width: 1024px) 100vw, 1024px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/02/ID-Web-hosting_in-text-banner-1024x300.webp" /><noscript><img decoding="async" width="1024" height="300" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/02/ID-Web-hosting_in-text-banner-1024x300.webp" alt="" class="wp-image-29634" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/02/ID-Web-hosting_in-text-banner.webp 1024w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/02/ID-Web-hosting_in-text-banner-300x88.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/02/ID-Web-hosting_in-text-banner-150x44.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/02/ID-Web-hosting_in-text-banner-768x225.webp 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></noscript></a></figure>
+<h2 class="wp-block-heading" id="h-cara-membuat-cv-web-developer-yang-menarik"><span class="ez-toc-section" id="Cara_Membuat_CV_Web_Developer_yang_Menarik"></span>Cara Membuat CV Web Developer yang Menarik<span class="ez-toc-section-end"></span></h2>
+<p>Langkah pertama untuk&nbsp;<a href="/tutorial/cara-menjadi-web-developer" data-wpel-link="internal">menjadi web developer</a>&nbsp;adalah membuat resume yang efektif. Ingat, recruiter cenderung melirik CV yang jelas, padat, dan menarik secara visual. Bahkan, biasanya mereka hanya perlu&nbsp;<a href="https://www.topresume.com/career-advice/how-to-pass-the-6-second-resume-test" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">rata-rata 6 detik untuk melihatnya</a> sebelum memutuskan apakah resume sesuai dengan deskripsi pekerjaan.</p>
+<p>Jadi, usahakan untuk membuat resume satu halaman saja, atau maksimal dua halaman. Ringkas detail yang Anda cantumkan, tapi pastikan tidak ada informasi penting yang tertinggal.</p>
+<p>Tulis semua skill yang relevan dengan pekerjaan yang Anda lamar agar staf HRD tahu bahwa Anda adalah orang tepat untuk bergabung dengan tim mereka.</p>
+<p>Mari lihat di bawah ini bagaimana seharusnya contoh CV yang baik.</p>
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img decoding="async" width="1024" height="669" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%201024%20669'%3E%3C/svg%3E" alt="susunan resume web developer" class="wp-image-24946" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/web-developer-resume-structure.webp 1024w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/web-developer-resume-structure-300x196.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/web-developer-resume-structure-150x98.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/web-developer-resume-structure-768x502.webp 768w" data-lazy-sizes="(max-width: 1024px) 100vw, 1024px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/web-developer-resume-structure.webp" /><noscript><img decoding="async" width="1024" height="669" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/web-developer-resume-structure.webp" alt="susunan resume web developer" class="wp-image-24946" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/web-developer-resume-structure.webp 1024w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/web-developer-resume-structure-300x196.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/web-developer-resume-structure-150x98.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/web-developer-resume-structure-768x502.webp 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></noscript></figure></div>
+<p>Oh iya, contoh CV ini tidak hanya bisa diaplikasikan untuk web developer saja loh. Anda juga bisa memanfaatkannya sebagai contoh CV programmer, freelancer, dan lain-lain.</p>
+<p>Perlu diingat juga bahwa recruiter terkadang menggunakan ATS (applicant tracking system), yaitu software penyaringan keyword otomatis untuk memfilter ratusan hingga ribuan CV dengan cepat efisien.</p>
+<p>Keyword-keyword utama yang perlu ditambahkan pada CV biasanya tercantum di lowongan pekerjaan yang diposting. Jadi, cobalah untuk mengidentifikasi dan menyertakannya secara merata di resume Anda.</p>
+<p>Mari lanjut ke bagian di bawah ini karena kami akan membahas lebih lanjut semua bagian yang wajib ada di CV programmer atau web developer.</p>
+<h3 class="wp-block-heading" id="h-tips-mengisi-informasi-kontak-penting"><span class="ez-toc-section" id="Tips_Mengisi_Informasi_Kontak_Penting"></span>Tips Mengisi Informasi Kontak Penting<span class="ez-toc-section-end"></span></h3>
+<p>Tulis informasi kontak Anda di bagian paling atas CV sehingga tim HRD perusahaan bisa dengan mudah menghubungi atau mengecek akun sosial serta portofolio Anda.</p>
+<p>Berikut informasi yang perlu disertakan di bagian kontak:</p>
+<ul>
+<li><strong>Nama lengkap&nbsp;</strong>– sertakan nama depan dan belakang Anda.</li>
+<li><strong>Jabatan profesional</strong>&nbsp;– selaraskan dengan posisi pekerjaan yang Anda lamar, seperti &#8220;Full-Stack Web Developer&#8221;. Tulis tepat di bawah nama.</li>
+<li><strong>Alamat email</strong> – gunakan <a href="/tutorial/cara-membuat-email-dengan-domain-sendiri" data-wpel-link="internal">alamat email profesional</a>, seperti <strong>namaanda@email.com</strong>. Email ini bisa dibuat menggunakan layanan <a href="/email-hosting" data-wpel-link="internal">hosting email</a>.</li>
+<li><strong>Nomor telepon</strong>&nbsp;– kalau Anda melamar pekerjaan di negara tempat Anda tinggal saat ini, penting untuk menambahkan nomor telepon karena staf HRD mungkin akan menghubungi Anda lewat telepon. Kalau melamar untuk pekerjaan di luar negeri, Anda boleh tidak mencantumkannya.</li>
+<li><strong>Platform online yang relevan</strong>&nbsp;– cantumkan link ke <a href="/tutorial/web-portofolio" data-wpel-link="internal">website portofolio</a> dan profil LinkedIn atau GitHub Anda. Dengan begitu, recruiter bisa tahu pekerjaan dan pengalaman Anda sebelumnya, serta bukti sosial seperti testimoni dari klien. Gunakan&nbsp;<a href="/web-hosting" data-wpel-link="internal">web hosting</a>&nbsp;berkualitas sehingga recruiter bisa mengakses website Anda dengan mudah.</li>
+<li><strong>Lokasi</strong>&nbsp;– tidak perlu menulis alamat lengkap, cukup nama kota dan provinsi saja. Kalau melamar untuk pekerjaan on-site lokal, informasi ini bisa meningkatkan peluang diterima karena perusahaan cenderung memilih kandidat yang tinggal dekat agar tidak repot mengurus pindahan. Sedangkan untuk pekerjaan remote, informasi ini bisa menunjukkan zona waktu Anda.</li>
+</ul>
+<p>Beberapa staf HR menyarankan untuk tidak menyertakan foto dalam CV, cukup cantumkan pengalaman dan skill. Sebab, foto bisa memicu bias dan diskriminasi, atau mengalihkan perhatian recruiter dari informasi yang lebih penting.</p>
+<p>Selain itu ATS bisa mengalami kesulitan saat scanning detail non-teks seperti gambar dan grafis yang mungkin berujung pada penolakan oleh sistem. Manfaatkan ruang terbatas di CV untuk informasi yang lebih berguna agar recruiter bisa menilai skill Anda dengan lebih baik.</p>
+<p>Namun, kembali lagi ya, ini semua tergantung pada persyaratan yang diminta tim HRD perusahaan tempat Anda melamar.</p>
+<h3 class="wp-block-heading" id="h-trik-menulis-objektif-atau-deskripsi-singkat"><span class="ez-toc-section" id="Trik_Menulis_Objektif_atau_Deskripsi_Singkat"></span>Trik Menulis Objektif atau Deskripsi Singkat<span class="ez-toc-section-end"></span></h3>
+<p>Sampaikan objektif atau ringkasan CV dengan kalimat singkat yang memberikan gambaran tentang skill Anda kepada perekrut.</p>
+<p>Objektif lebih cocok digunakan pada CV web developer junior yang baru memiliki sedikit pengalaman atau fresh graduate, sedangkan ringkasan lebih efektif untuk CV programmer atau web developer senior.</p>
+<p>Bagian ini tidak wajib karena informasi yang sama bisa ditemukan di bagian lain dokumen. Walau begitu, tidak ada salahnya Anda tetap menyertakannya kalau pernah mengalami perubahan karier atau ingin menunjukkan minat tertentu sesuai posisi yang Anda incar.</p>
+<p>Apabila ingin menyertakan bagian ini dalam resume, jangan lupa untuk menyesuaikannya dengan pekerjaan yang Anda lamar. Tunjukkan keterkaitan antara minat, skill, dan pengalaman Anda dengan deskripsi karyawan yang dicari oleh&nbsp;perusahaan atau pemberi kerja.</p>
+<p>Tulis objektif atau ringkasan yang singkat dan langsung ke intinya saja. Tidak perlu panjang-panjang, cukup antara enam kalimat atau 50-80 kata.</p>
+<p>Deskripsi CV yang bagus sebaiknya menjelaskan target karier Anda, misalnya menjadi web programmer atau developer junior, dan menunjukkan skill serta pengalaman.</p>
+<p>Kalau belum punya pengalaman profesional, buat daftar <a href="/tutorial/situs-freelance" data-wpel-link="internal">pekerjaan freelance</a> yang pernah diambil dan dampak positifnya bagi klien Anda.</p>
+<p>Berikut adalah contoh deskripsi CV web developer entry-level:</p>
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img decoding="async" width="761" height="132" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20761%20132'%3E%3C/svg%3E" alt="objektif resume web developer entry-level yang tidak menunjukkan skill dan pengalaman pengembangan web kandidat" class="wp-image-24954" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/an-entry-level-web-developer-resume-objective-that-doesn_t-show-the-candidate_s-web-development-skills-and-experience-1.webp 761w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/an-entry-level-web-developer-resume-objective-that-doesn_t-show-the-candidate_s-web-development-skills-and-experience-1-300x52.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/an-entry-level-web-developer-resume-objective-that-doesn_t-show-the-candidate_s-web-development-skills-and-experience-1-150x26.webp 150w" data-lazy-sizes="(max-width: 761px) 100vw, 761px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/an-entry-level-web-developer-resume-objective-that-doesn_t-show-the-candidate_s-web-development-skills-and-experience-1.webp" /><noscript><img decoding="async" width="761" height="132" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/an-entry-level-web-developer-resume-objective-that-doesn_t-show-the-candidate_s-web-development-skills-and-experience-1.webp" alt="objektif resume web developer entry-level yang tidak menunjukkan skill dan pengalaman pengembangan web kandidat" class="wp-image-24954" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/an-entry-level-web-developer-resume-objective-that-doesn_t-show-the-candidate_s-web-development-skills-and-experience-1.webp 761w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/an-entry-level-web-developer-resume-objective-that-doesn_t-show-the-candidate_s-web-development-skills-and-experience-1-300x52.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/an-entry-level-web-developer-resume-objective-that-doesn_t-show-the-candidate_s-web-development-skills-and-experience-1-150x26.webp 150w" sizes="(max-width: 761px) 100vw, 761px" /></noscript></figure></div>
+<p>Contoh di atas menunjukkan pendidikan dan ketertarikan pelamar di bidang web development. Tapi, ini mungkin belum cukup meyakinkan recruiter karena tidak mencantumkan skill dan pengalaman kandidat.</p>
+<p>Coba bandingkan dengan yang di bawah ini:</p>
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img decoding="async" width="812" height="164" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20812%20164'%3E%3C/svg%3E" alt="objektif resume web developer entry level menyampaikan detail lengkap pengalaman kandidat" class="wp-image-24956" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/an-entry-level-web-developer-resume-objective-that-communicates-more-details-about-the-candidate_s-experience.webp 812w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/an-entry-level-web-developer-resume-objective-that-communicates-more-details-about-the-candidate_s-experience-300x61.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/an-entry-level-web-developer-resume-objective-that-communicates-more-details-about-the-candidate_s-experience-150x30.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/an-entry-level-web-developer-resume-objective-that-communicates-more-details-about-the-candidate_s-experience-768x155.webp 768w" data-lazy-sizes="(max-width: 812px) 100vw, 812px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/an-entry-level-web-developer-resume-objective-that-communicates-more-details-about-the-candidate_s-experience.webp" /><noscript><img decoding="async" width="812" height="164" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/an-entry-level-web-developer-resume-objective-that-communicates-more-details-about-the-candidate_s-experience.webp" alt="objektif resume web developer entry level menyampaikan detail lengkap pengalaman kandidat" class="wp-image-24956" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/an-entry-level-web-developer-resume-objective-that-communicates-more-details-about-the-candidate_s-experience.webp 812w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/an-entry-level-web-developer-resume-objective-that-communicates-more-details-about-the-candidate_s-experience-300x61.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/an-entry-level-web-developer-resume-objective-that-communicates-more-details-about-the-candidate_s-experience-150x30.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/an-entry-level-web-developer-resume-objective-that-communicates-more-details-about-the-candidate_s-experience-768x155.webp 768w" sizes="(max-width: 812px) 100vw, 812px" /></noscript></figure></div>
+<p>Contoh di atas mencantumkan pengalaman pelamar secara lebih lengkap dengan menyebutkan beberapa pekerjaan yang pernah diambil.</p>
+<p>Pelamar juga menyebutkan tipe perusahaan seperti apa yang pernah menjadi kliennya. Selain itu, ia mencantumkan aktivitas seputar pengembangan web di luar pekerjaan. Tim HR jadi tahu bahwa pelamar masih mengejar <em>passion</em> di waktu senggangnya.</p>
+<p>Di sisi lain, kalau Anda adalah web developer senior, ringkasan CV harus mencantumkan pengalaman Anda di bidang tertentu, proyek yang pernah dikerjakan, skill yang dikuasai atau sering digunakan, dan manfaat yang bisa Anda hadirkan ke perusahaan.</p>
+<p>Contoh ringkasan CV web developer senior misalnya seperti di bawah ini:</p>
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img decoding="async" width="846" height="107" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20846%20107'%3E%3C/svg%3E" alt="ringkasan resume senior web developer tanpa menunjukkan nilai apa yang bisa mereka bawa ke perusahaan" class="wp-image-24958" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/a-senior-web-developer-resume-summary-that-doesn_t-show-what-value-they-can-bring-to-the-company.webp 846w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/a-senior-web-developer-resume-summary-that-doesn_t-show-what-value-they-can-bring-to-the-company-300x38.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/a-senior-web-developer-resume-summary-that-doesn_t-show-what-value-they-can-bring-to-the-company-150x19.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/a-senior-web-developer-resume-summary-that-doesn_t-show-what-value-they-can-bring-to-the-company-768x97.webp 768w" data-lazy-sizes="(max-width: 846px) 100vw, 846px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/a-senior-web-developer-resume-summary-that-doesn_t-show-what-value-they-can-bring-to-the-company.webp" /><noscript><img decoding="async" width="846" height="107" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/a-senior-web-developer-resume-summary-that-doesn_t-show-what-value-they-can-bring-to-the-company.webp" alt="ringkasan resume senior web developer tanpa menunjukkan nilai apa yang bisa mereka bawa ke perusahaan" class="wp-image-24958" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/a-senior-web-developer-resume-summary-that-doesn_t-show-what-value-they-can-bring-to-the-company.webp 846w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/a-senior-web-developer-resume-summary-that-doesn_t-show-what-value-they-can-bring-to-the-company-300x38.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/a-senior-web-developer-resume-summary-that-doesn_t-show-what-value-they-can-bring-to-the-company-150x19.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/a-senior-web-developer-resume-summary-that-doesn_t-show-what-value-they-can-bring-to-the-company-768x97.webp 768w" sizes="(max-width: 846px) 100vw, 846px" /></noscript></figure></div>
+<p>Contoh di atas sudah menunjukkan skill dan pengalaman pelamar selama bertahun-tahun, tapi belum menunjukkan manfaat yang bisa dibawanya ke perusahaan. Bandingkan dengan yang berikut ini:</p>
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img decoding="async" width="853" height="277" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20853%20277'%3E%3C/svg%3E" alt="ringkasan resume senior web developer menunjukkan area yang ingin dikembangkan dan menyertakan skillset pelamar" class="wp-image-24959" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/a-senior-web-developer-resume-summary-that-shows-the-area-where-the-applicant-wants-to-grow-professionally-and-reveals-their-skillset.webp 853w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/a-senior-web-developer-resume-summary-that-shows-the-area-where-the-applicant-wants-to-grow-professionally-and-reveals-their-skillset-300x97.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/a-senior-web-developer-resume-summary-that-shows-the-area-where-the-applicant-wants-to-grow-professionally-and-reveals-their-skillset-150x49.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/a-senior-web-developer-resume-summary-that-shows-the-area-where-the-applicant-wants-to-grow-professionally-and-reveals-their-skillset-768x249.webp 768w" data-lazy-sizes="(max-width: 853px) 100vw, 853px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/a-senior-web-developer-resume-summary-that-shows-the-area-where-the-applicant-wants-to-grow-professionally-and-reveals-their-skillset.webp" /><noscript><img decoding="async" width="853" height="277" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/a-senior-web-developer-resume-summary-that-shows-the-area-where-the-applicant-wants-to-grow-professionally-and-reveals-their-skillset.webp" alt="ringkasan resume senior web developer menunjukkan area yang ingin dikembangkan dan menyertakan skillset pelamar" class="wp-image-24959" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/a-senior-web-developer-resume-summary-that-shows-the-area-where-the-applicant-wants-to-grow-professionally-and-reveals-their-skillset.webp 853w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/a-senior-web-developer-resume-summary-that-shows-the-area-where-the-applicant-wants-to-grow-professionally-and-reveals-their-skillset-300x97.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/a-senior-web-developer-resume-summary-that-shows-the-area-where-the-applicant-wants-to-grow-professionally-and-reveals-their-skillset-150x49.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/a-senior-web-developer-resume-summary-that-shows-the-area-where-the-applicant-wants-to-grow-professionally-and-reveals-their-skillset-768x249.webp 768w" sizes="(max-width: 853px) 100vw, 853px" /></noscript></figure></div>
+<p>Nah, di sini, pelamar mencantumkan di area mana ia ingin mengembangkan skill secara profesional, yaitu web accessibility, serta skill yang dikuasainya. Jadi meskipun recruiter tidak begitu ahli di bidang teknologi, mereka akan tahu bahwa pelamar pasti punya skill pemrograman karena sudah membuat 110+ landing page untuk klien.</p>
+<p>Ringkasan ini juga memberitahukan pencapaian pelamar dalam metrik yang bisa diukur, membantu tim HR memperkirakan manfaat yang bisa diberikan pelamar kepada perusahaan.</p>
+<h3 class="wp-block-heading" id="h-cara-mencantumkan-pengalaman-dan-pendidikan"><span class="ez-toc-section" id="Cara_Mencantumkan_Pengalaman_dan_Pendidikan"></span>Cara Mencantumkan Pengalaman dan Pendidikan<span class="ez-toc-section-end"></span></h3>
+<p>Pengalaman kerja dan pendidikan yang perlu dicantumkan web developer senior akan berbeda dari web developer junior.</p>
+<p>Kami punya sejumlah tips untuk menulis bagian ini agar Anda bisa menjadi kandidat potensial dibandingkan dengan pesaing. Simak di bawah ini, ya.</p>
+<p><strong>Menulis Pengalaman Kerja sebagai Web Developer <strong>Senior</strong></strong></p>
+<p>Kalau sudah punya banyak pengalaman di bidang ini dan ingin mematok gaji yang lebih tinggi, sebaiknya fokuslah pada deskripsi pekerjaan ketimbang pendidikan. Tunjukkan proyek dan masalah teknis apa saja yang berhasil Anda selesaikan.</p>
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img decoding="async" width="724" height="1024" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20724%201024'%3E%3C/svg%3E" alt="contoh cv web developer senior" class="wp-image-24966" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/resume-senior-front-end-web-developer.webp 724w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/resume-senior-front-end-web-developer-212x300.webp 212w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/resume-senior-front-end-web-developer-106x150.webp 106w" data-lazy-sizes="(max-width: 724px) 100vw, 724px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/resume-senior-front-end-web-developer.webp" /><noscript><img decoding="async" width="724" height="1024" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/resume-senior-front-end-web-developer.webp" alt="contoh cv web developer senior" class="wp-image-24966" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/resume-senior-front-end-web-developer.webp 724w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/resume-senior-front-end-web-developer-212x300.webp 212w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/resume-senior-front-end-web-developer-106x150.webp 106w" sizes="(max-width: 724px) 100vw, 724px" /></noscript></figure></div>
+<p>Begini urutan pengalaman kerja yang direkomendasikan di CV Anda:</p>
+<ul>
+<li>Posisi pekerjaan</li>
+<li>Nama dan lokasi perusahaan</li>
+<li>Masa kerja</li>
+<li>Tanggung jawab dan pencapaian</li>
+</ul>
+<p>Buat daftar pengalaman atau riwayat kerja dalam urutan kronologis terbalik sehingga pengalaman terbaru dicantumkan di bagian paling atas. Masukkan hingga lima job desc dan pencapaian di tiap pekerjaan, serta pastikan semuanya sudah sesuai dengan deskripsi pekerjaan.</p>
+<p>Simak dua contoh CV web developer di bawah ini untuk memahami cara mendeskripsikan pengalaman kerja serta mengisi bagian pendidikan:</p>
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img decoding="async" width="825" height="256" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20825%20256'%3E%3C/svg%3E" alt="bagian pengalaman kerja senior web developer tanpa menunjukkan pengaruh dari pekerjaan kandidat" class="wp-image-24973" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-senior-web-developer-tanpa-menunjukkan-pengaruh-dari-pekerjaan-kandidat.webp 825w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-senior-web-developer-tanpa-menunjukkan-pengaruh-dari-pekerjaan-kandidat-300x93.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-senior-web-developer-tanpa-menunjukkan-pengaruh-dari-pekerjaan-kandidat-150x47.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-senior-web-developer-tanpa-menunjukkan-pengaruh-dari-pekerjaan-kandidat-768x238.webp 768w" data-lazy-sizes="(max-width: 825px) 100vw, 825px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-senior-web-developer-tanpa-menunjukkan-pengaruh-dari-pekerjaan-kandidat.webp" /><noscript><img decoding="async" width="825" height="256" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-senior-web-developer-tanpa-menunjukkan-pengaruh-dari-pekerjaan-kandidat.webp" alt="bagian pengalaman kerja senior web developer tanpa menunjukkan pengaruh dari pekerjaan kandidat" class="wp-image-24973" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-senior-web-developer-tanpa-menunjukkan-pengaruh-dari-pekerjaan-kandidat.webp 825w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-senior-web-developer-tanpa-menunjukkan-pengaruh-dari-pekerjaan-kandidat-300x93.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-senior-web-developer-tanpa-menunjukkan-pengaruh-dari-pekerjaan-kandidat-150x47.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-senior-web-developer-tanpa-menunjukkan-pengaruh-dari-pekerjaan-kandidat-768x238.webp 768w" sizes="(max-width: 825px) 100vw, 825px" /></noscript></figure></div>
+<p>Pada contoh di atas, pelamar menunjukkan kapasitasnya sebagai leader. Meski begitu, informasi tersebut mungkin masih kurang meyakinkan karena pelamar tidak menyertakan hasil dari pekerjaan yang sudah diselesaikan.</p>
+<p>Gunakan rumus APR untuk mendeskripsikan pencapaian Anda di bagian pengalaman:</p>
+<pre class="wp-block-preformatted"><strong>Action + problem/project = result</strong></pre>
+<p>Kemudian, sertakan hasil yang Anda raih dari pekerjaan ini dengan menunjukkan nilainya.</p>
+<p>Sekarang bandingkan contoh sebelumnya dengan yang ini:</p>
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img decoding="async" width="814" height="501" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20814%20501'%3E%3C/svg%3E" alt="bagian pengalaman kerja senior web developer dengan menyertakan hasil terukur dari pekerjaan kandidat yang sudah membantu meningkatkan kinerja perusahaan" class="wp-image-24978" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-senior-web-developer-dengan-menyertakan-hasil-terukur-dari-pekerjaan-kandidat-yang-sudah-membantu-meningkatkan-kinerja-perusahaan.webp 814w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-senior-web-developer-dengan-menyertakan-hasil-terukur-dari-pekerjaan-kandidat-yang-sudah-membantu-meningkatkan-kinerja-perusahaan-300x185.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-senior-web-developer-dengan-menyertakan-hasil-terukur-dari-pekerjaan-kandidat-yang-sudah-membantu-meningkatkan-kinerja-perusahaan-150x92.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-senior-web-developer-dengan-menyertakan-hasil-terukur-dari-pekerjaan-kandidat-yang-sudah-membantu-meningkatkan-kinerja-perusahaan-768x473.webp 768w" data-lazy-sizes="(max-width: 814px) 100vw, 814px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-senior-web-developer-dengan-menyertakan-hasil-terukur-dari-pekerjaan-kandidat-yang-sudah-membantu-meningkatkan-kinerja-perusahaan.webp" /><noscript><img decoding="async" width="814" height="501" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-senior-web-developer-dengan-menyertakan-hasil-terukur-dari-pekerjaan-kandidat-yang-sudah-membantu-meningkatkan-kinerja-perusahaan.webp" alt="bagian pengalaman kerja senior web developer dengan menyertakan hasil terukur dari pekerjaan kandidat yang sudah membantu meningkatkan kinerja perusahaan" class="wp-image-24978" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-senior-web-developer-dengan-menyertakan-hasil-terukur-dari-pekerjaan-kandidat-yang-sudah-membantu-meningkatkan-kinerja-perusahaan.webp 814w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-senior-web-developer-dengan-menyertakan-hasil-terukur-dari-pekerjaan-kandidat-yang-sudah-membantu-meningkatkan-kinerja-perusahaan-300x185.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-senior-web-developer-dengan-menyertakan-hasil-terukur-dari-pekerjaan-kandidat-yang-sudah-membantu-meningkatkan-kinerja-perusahaan-150x92.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-senior-web-developer-dengan-menyertakan-hasil-terukur-dari-pekerjaan-kandidat-yang-sudah-membantu-meningkatkan-kinerja-perusahaan-768x473.webp 768w" sizes="(max-width: 814px) 100vw, 814px" /></noscript></figure></div>
+<p>Contoh di atas lebih tepat karena kandidat menuliskan dengan jelas hasil pekerjaannya yang sudah membantu meningkatkan performa perusahaan.</p>
+<p>Kalau tidak ada data pendukung yang jelas, Anda bisa menggunakan perkiraan kasar dan menjelaskan metriknya selama wawancara. Jangan melebih-lebihkan data atau tidak jujur dalam menulis CV karena bisa merusak reputasi.</p>
+<p>Lebih baiknya lagi, gunakan&nbsp;<a href="https://www.okcu.edu/uploads/students/career-services/docs/tip-sheets/tipsheet_accomplishment.pdf" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">action words</a> seperti <em>led</em> (memimpin), <em>developed</em> (mengembangkan), <em>fostered</em> (membina), dan <em>conceptualized</em> (membuat konsep). Kata-kata ini akan menarik perhatian recruiter karena mungkin saja mereka sudah melihat terlalu banyak kalimat yang dimulai dengan kata <em>worked</em> (mengerjakan) dan <em>managed</em> (mengelola).</p>
+<p>Selanjutnya di bagian pendidikan, jangan lupa cantumkan gelar, nama universitas, dan masa studi Anda seperti pada contoh di bawah ini:</p>
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img decoding="async" width="485" height="202" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20485%20202'%3E%3C/svg%3E" alt="bagian pendidikan senior web developer" class="wp-image-24982" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pendidikan-senior-web-developer.webp 485w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pendidikan-senior-web-developer-300x125.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pendidikan-senior-web-developer-150x62.webp 150w" data-lazy-sizes="(max-width: 485px) 100vw, 485px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pendidikan-senior-web-developer.webp" /><noscript><img decoding="async" width="485" height="202" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pendidikan-senior-web-developer.webp" alt="bagian pendidikan senior web developer" class="wp-image-24982" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pendidikan-senior-web-developer.webp 485w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pendidikan-senior-web-developer-300x125.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pendidikan-senior-web-developer-150x62.webp 150w" sizes="(max-width: 485px) 100vw, 485px" /></noscript></figure></div>
+<p>Tidak perlu menyertakan IPK karena pengaruhnya kecil dibandingkan dengan pengalaman bertahun-tahun yang sudah Anda miliki.</p>
+<p><strong>Mencantumkan Pengalaman sebagai Web Developer <strong>Junior</strong></strong></p>
+<p>Sebagai kandidat entry-level, Anda mungkin belum memiliki pengalaman kerja sama sekali. Oleh karena itu, untuk menunjukkan skill Anda, buatlah proyek web development sendiri dan cantumkan detail pendidikan yang sudah Anda tempuh.</p>
+<p>Di bawah ini adalah contoh CV web developer pemula:</p>
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img decoding="async" width="724" height="1024" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20724%201024'%3E%3C/svg%3E" alt="contoh cv programmer atau developer pemula" class="wp-image-24984" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/contoh-resume-entry-level-web-developer.webp 724w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/contoh-resume-entry-level-web-developer-212x300.webp 212w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/contoh-resume-entry-level-web-developer-106x150.webp 106w" data-lazy-sizes="(max-width: 724px) 100vw, 724px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/contoh-resume-entry-level-web-developer.webp" /><noscript><img decoding="async" width="724" height="1024" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/contoh-resume-entry-level-web-developer.webp" alt="contoh cv programmer atau developer pemula" class="wp-image-24984" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/contoh-resume-entry-level-web-developer.webp 724w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/contoh-resume-entry-level-web-developer-212x300.webp 212w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/contoh-resume-entry-level-web-developer-106x150.webp 106w" sizes="(max-width: 724px) 100vw, 724px" /></noscript></figure></div>
+<p>Pertama, mari mulai dengan bagian pengalaman kerja. Berikut adalah beberapa contoh proyek yang bisa dikerjakan untuk mengisi CV baru Anda:</p>
+<ul>
+<li><strong>Membantu badan amal atau bisnis lokal</strong>&nbsp;– cari orang terdekat yang mungkin membutuhkan skill Anda. Misalnya, bantu buat website untuk sistem manajemen inventaris sederhana di restoran setempat atau bisnis milik teman.</li>
+<li><strong><strong>Bereksperimenlah dengan hobi</strong></strong> – buat proyek pribadi yang sesuai dengan minat Anda, dan lebih baik lagi kalau ada kaitannya dengan pekerjaan yang Anda incar. Misalnya, coba buat aplikasi web untuk memantau screen-time apabila Anda melamar di perusahaan yang terkenal akan game browsernya.</li>
+<li><strong>Mampu mengatasi masalah</strong>&nbsp;– buat solusi untuk masalah yang Anda hadapi sehari-hari. Misalnya, buatlah website yang memberikan info kepada para freelancer tentang jumlah meja kosong di sebuah kafe untuk membantu mereka menemukan working space.</li>
+<li><strong>Turut berkontribusi pada proyek open-source</strong>&nbsp;– mulailah dengan mengerjakan tugas-tugas kecil seperti menulis dokumentasi atau memperbaiki bug minor di library GitHub yang sudah Anda gunakan.</li>
+<li><strong>Mengerjakan proyek freelance</strong>&nbsp;– ini bisa dijadikan pilihan apabila Anda sudah punya sampel pekerjaan web development yang bisa ditunjukkan kepada calon klien. Cari&nbsp;proyek freelance web developer&nbsp;di platform seperti <a href="https://www.upwork.com/" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">Upwork</a> atau <a href="https://www.fiverr.com/" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">Fiverr</a>.</li>
+</ul>
+<p>Bandingkan dua contoh pengalaman di CV web developer junior berikut:</p>
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img decoding="async" width="758" height="517" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20758%20517'%3E%3C/svg%3E" alt="bagian pengalaman kerja entry-level web developer mencantumkan pekerjaan yang tidak terkait dengan pengembangan web" class="wp-image-24988" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-entry-level-web-developer-mencantumkan-pekerjaan-yang-tidak-terkait-dengan-pengembangan-web.webp 758w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-entry-level-web-developer-mencantumkan-pekerjaan-yang-tidak-terkait-dengan-pengembangan-web-300x205.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-entry-level-web-developer-mencantumkan-pekerjaan-yang-tidak-terkait-dengan-pengembangan-web-150x102.webp 150w" data-lazy-sizes="(max-width: 758px) 100vw, 758px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-entry-level-web-developer-mencantumkan-pekerjaan-yang-tidak-terkait-dengan-pengembangan-web.webp" /><noscript><img decoding="async" width="758" height="517" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-entry-level-web-developer-mencantumkan-pekerjaan-yang-tidak-terkait-dengan-pengembangan-web.webp" alt="bagian pengalaman kerja entry-level web developer mencantumkan pekerjaan yang tidak terkait dengan pengembangan web" class="wp-image-24988" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-entry-level-web-developer-mencantumkan-pekerjaan-yang-tidak-terkait-dengan-pengembangan-web.webp 758w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-entry-level-web-developer-mencantumkan-pekerjaan-yang-tidak-terkait-dengan-pengembangan-web-300x205.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-entry-level-web-developer-mencantumkan-pekerjaan-yang-tidak-terkait-dengan-pengembangan-web-150x102.webp 150w" sizes="(max-width: 758px) 100vw, 758px" /></noscript></figure></div>
+<p>Pengalaman kerja terbaru di sini ada kaitannya dengan website development, tapi pekerjaan sebelumnya tidak ada hubungannya sama sekali. Kalau pekerjaan Anda sebelumnya tidak terkait dengan posisi web developer, sebaiknya tidak perlu disertakan.</p>
+<p>Manfaatkan waktu Anda untuk mengerjakan proyek-proyek baru. Dengan begitu, Anda bisa memasukkan pencapaian yang ada kaitannya dengan pengembangan web, memperbesar peluang CV Anda dilirik oleh staf HR, seperti pada contoh ini:</p>
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img decoding="async" width="871" height="1024" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20871%201024'%3E%3C/svg%3E" alt="bagian pengalaman kerja entry-level web developer mencantumkan pencapaian yang terkait dengan pengembangan web" class="wp-image-24990" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-entry-level-web-developer-mencantumkan-pencapaian-yang-terkait-dengan-pengembangan-web.webp 871w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-entry-level-web-developer-mencantumkan-pencapaian-yang-terkait-dengan-pengembangan-web-255x300.webp 255w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-entry-level-web-developer-mencantumkan-pencapaian-yang-terkait-dengan-pengembangan-web-128x150.webp 128w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-entry-level-web-developer-mencantumkan-pencapaian-yang-terkait-dengan-pengembangan-web-768x903.webp 768w" data-lazy-sizes="(max-width: 871px) 100vw, 871px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-entry-level-web-developer-mencantumkan-pencapaian-yang-terkait-dengan-pengembangan-web.webp" /><noscript><img decoding="async" width="871" height="1024" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-entry-level-web-developer-mencantumkan-pencapaian-yang-terkait-dengan-pengembangan-web.webp" alt="bagian pengalaman kerja entry-level web developer mencantumkan pencapaian yang terkait dengan pengembangan web" class="wp-image-24990" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-entry-level-web-developer-mencantumkan-pencapaian-yang-terkait-dengan-pengembangan-web.webp 871w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-entry-level-web-developer-mencantumkan-pencapaian-yang-terkait-dengan-pengembangan-web-255x300.webp 255w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-entry-level-web-developer-mencantumkan-pencapaian-yang-terkait-dengan-pengembangan-web-128x150.webp 128w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pengalaman-kerja-entry-level-web-developer-mencantumkan-pencapaian-yang-terkait-dengan-pengembangan-web-768x903.webp 768w" sizes="(max-width: 871px) 100vw, 871px" /></noscript></figure></div>
+<div class="wp-block-group is-layout-flow"><div class="wp-block-group__inner-container"><div class="protip">
+<h4 class="title">Tips Berguna</h4>
+<p>Kalau baru saja terjun sebagai web developer junior, cobalah melamar posisi di perusahaan kecil untuk mengawali karier Anda. Perusahaan dengan skala kecil kemungkinan akan lebih banyak mengandalkan Anda untuk sebagian besar proyeknya.</p>
+</div>
+</div></div>
+<p>Sekarang, saatnya membahas bagian pendidikan.</p>
+<p>Bagian ini lebih cocok bagi web developer junior karena recruiter umumnya ingin tahu&nbsp;<a href="/tutorial/bahasa-pemrograman" data-wpel-link="internal">bahasa pemrograman</a> dan teknologi apa saja yang sudah dipelajari kandidat. Selain pendidikan formal, mereka juga biasanya ingin tahu apa saja kursus, bootcamp, atau sekolah coding yang pernah Anda ikuti.</p>
+<p>Sertakan juga mata kuliah yang pernah Anda ambil, yang relevan dengan lowongan pekerjaan tersebut. Kalau IPK Anda di bawah 3.2, sebaiknya tidak perlu turut menyertakannya di dalam resume.</p>
+<p>Cukup sertakan gelar tertinggi kalau Anda sudah menyelesaikan pendidikan sarjana atau sedang menempuhnya. Tidak perlu menyertakan ijazah SMA.</p>
+<p>Di bawah ini, kami punya 2 sampel bagian pendidikan di contoh CV programmer atau web developer. Kami akan membandingkannya untuk menunjukkan mana yang paling direkomendasikan.</p>
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img decoding="async" width="579" height="397" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20579%20397'%3E%3C/svg%3E" alt="bagian pendidikan entry-level web developer tanpa menunjukkan minat pelamar" class="wp-image-24994" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pendidikan-entry-level-web-developer-tanpa-menunjukkan-minat-pelamar.webp 579w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pendidikan-entry-level-web-developer-tanpa-menunjukkan-minat-pelamar-300x206.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pendidikan-entry-level-web-developer-tanpa-menunjukkan-minat-pelamar-150x103.webp 150w" data-lazy-sizes="(max-width: 579px) 100vw, 579px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pendidikan-entry-level-web-developer-tanpa-menunjukkan-minat-pelamar.webp" /><noscript><img decoding="async" width="579" height="397" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pendidikan-entry-level-web-developer-tanpa-menunjukkan-minat-pelamar.webp" alt="bagian pendidikan entry-level web developer tanpa menunjukkan minat pelamar" class="wp-image-24994" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pendidikan-entry-level-web-developer-tanpa-menunjukkan-minat-pelamar.webp 579w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pendidikan-entry-level-web-developer-tanpa-menunjukkan-minat-pelamar-300x206.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pendidikan-entry-level-web-developer-tanpa-menunjukkan-minat-pelamar-150x103.webp 150w" sizes="(max-width: 579px) 100vw, 579px" /></noscript></figure></div>
+<p>Contoh di atas hanya memberitahukan bidang apa saja yang sudah dipelajari pelamar, tanpa informasi tentang bagaimana ia mempelajarinya dan bidang yang diminati. Kurangnya informasi ini bisa menyulitkan tim HR untuk mencari tahu minat dan visi karier pelamar.</p>
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img decoding="async" width="490" height="732" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20490%20732'%3E%3C/svg%3E" alt="bagian pendidikan entry-level web developer menunjukkan minat dan usaha pelamar dalam kontribusinya di bidang computer science" class="wp-image-24995" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pendidikan-entry-level-web-developer-menunjukkan-minat-dan-usaha-pelamar-dalam-kontribusinya-di-bidang-computer-science.webp 490w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pendidikan-entry-level-web-developer-menunjukkan-minat-dan-usaha-pelamar-dalam-kontribusinya-di-bidang-computer-science-201x300.webp 201w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pendidikan-entry-level-web-developer-menunjukkan-minat-dan-usaha-pelamar-dalam-kontribusinya-di-bidang-computer-science-100x150.webp 100w" data-lazy-sizes="(max-width: 490px) 100vw, 490px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pendidikan-entry-level-web-developer-menunjukkan-minat-dan-usaha-pelamar-dalam-kontribusinya-di-bidang-computer-science.webp" /><noscript><img decoding="async" width="490" height="732" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pendidikan-entry-level-web-developer-menunjukkan-minat-dan-usaha-pelamar-dalam-kontribusinya-di-bidang-computer-science.webp" alt="bagian pendidikan entry-level web developer menunjukkan minat dan usaha pelamar dalam kontribusinya di bidang computer science" class="wp-image-24995" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pendidikan-entry-level-web-developer-menunjukkan-minat-dan-usaha-pelamar-dalam-kontribusinya-di-bidang-computer-science.webp 490w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pendidikan-entry-level-web-developer-menunjukkan-minat-dan-usaha-pelamar-dalam-kontribusinya-di-bidang-computer-science-201x300.webp 201w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-pendidikan-entry-level-web-developer-menunjukkan-minat-dan-usaha-pelamar-dalam-kontribusinya-di-bidang-computer-science-100x150.webp 100w" sizes="(max-width: 490px) 100vw, 490px" /></noscript></figure></div>
+<p>Nah, pada contoh kedua ini, recruiter tahu bahwa pelamar memiliki minat yang kuat di bidang web development dan AI dari kursus online yang pernah diikutinya. Pelamar juga menunjukkan upayanya untuk berkontribusi di bidang ilmu komputer dengan menulis artikel atau publikasi.</p>
+<h3 class="wp-block-heading" id="h-cara-membuat-daftar-skill-dan-sertifikat"><span class="ez-toc-section" id="Cara_Membuat_Daftar_Skill_dan_Sertifikat"></span>Cara Membuat Daftar Skill dan Sertifikat<span class="ez-toc-section-end"></span></h3>
+<p>Bagian ini sangat penting karena akan menunjukkan skill teknis dan kecakapan Anda untuk posisi yang dilamar. Di sini, Anda bisa memasukkan keyword yang sebaiknya disertakan di CV programmer atau web developer.</p>
+<p>Selain menggunakan ATS, tim HR juga kadang melakukan review manual sehingga Anda tidak perlu memasukkan terlalu banyak keyword. Mereka mungkin justru akan melihatnya sebagai trik persaingan yang kurang sehat.</p>
+<p>Tunjukkan pengetahuan tingkat lanjut Anda cukup dengan mencantumkan bahasa pemrograman dan framework yang Anda kuasai dan minati, serta yang paling relevan dengan deskripsi lowongan.</p>
+<p>Memasukkan semua teknologi yang pernah dicoba justru bisa dianggap sebagai &#8216;red flag&#8217; oleh tim HR, karena kesannya Anda hanya punya pengetahuan mendasar saja di bidang ini.</p>
+<p>Langsung cantumkan skill Anda dalam satu daftar, atau bagi menjadi beberapa subjudul untuk jenis skill yang serupa. Cara ini akan mempermudah pekerjaan perekrut, karena mereka bisa dengan cepat menemukan informasi yang dicari.</p>
+<p>Mari lihat daftar contoh berikut ini untuk memahami skill teknis apa saja yang bisa dimasukkan ke CV web developer:</p>
+<ul>
+<li><strong>Bahasa pemrograman</strong>:&nbsp;<a href="/tutorial/apa-itu-html" data-wpel-link="internal">HTML</a>,&nbsp;<a href="/tutorial/apa-itu-css" data-wpel-link="internal">CSS</a>,&nbsp;<a href="/tutorial/apa-itu-javascript" data-wpel-link="internal">JavaScript</a>, Java,&nbsp;<a href="/tutorial/apa-itu-php/" data-wpel-link="internal">PHP</a>, Ruby, Python</li>
+<li><strong>Framework</strong>: JavaScript (<a href="/tutorial/node-js-adalah" data-wpel-link="internal">NodeJS</a>,&nbsp;<a href="/tutorial/apa-itu-jquery" data-wpel-link="internal">jQuery</a>,&nbsp;<a href="/tutorial/apa-itu-react" data-wpel-link="internal">ReactJS</a>,&nbsp;<a href="/tutorial/apa-itu-angularjs" data-wpel-link="internal">Angular</a>), Ruby on Rails, Django</li>
+<li><strong>Database</strong>: SQL (<a href="/tutorial/apa-itu-mysql" data-wpel-link="internal">MySQL</a>, SQL Server, PostgreSQL, SQLite)</li>
+<li><strong>Infrastruktur cloud</strong>: Google Cloud, AWS, Azure, Heroku, DigitalOcean</li>
+<li><strong>Utilitas</strong>: Git dan berbagai tool source control (Gitlab,&nbsp;<a href="/tutorial/apa-itu-github" data-wpel-link="internal">GitHub</a>, Bitbucket), UNIX, Selenium, sistem manajemen proyek (Asana, Trello)</li>
+<li><strong>Skill relevan lainnya</strong>: Adobe Photoshop dan Illustrator, WordPress, wireframe, debugging, manajemen DNS, desain web responsif, API, proses pengembangan Agile dan Scrum, performance testing, kompatibilitas lintas-browser, UX &amp; UI</li>
+</ul>
+<p>Selalu cek tool apa saja yang digunakan perusahaan, lalu masukkan ke bagian skill Anda. Saran kami, tidak perlu susah-susah mengajukan lamaran ke perusahaan yang tidak cocok dengan teknologi yang sudah Anda pelajari.</p>
+<p>Kalau belum yakin &#8216;tech stack&#8217; apa saja yang digunakan suatu perusahaan, hubungi tim HR mereka. Anda juga bisa mencari informasi dengan mengunjungi website mereka atau mengunjungi GitHub karyawannya untuk melihat tool yang digunakan dalam proyeknya.</p>
+<p>Jangan lupa, bagian ini khusus untuk skill teknis. Jadi, jangan sertakan soft skill di sini. Kalau Anda memiliki sertifikat untuk skill yang dicantumkan, masukkan di bagian sertifikasi sebagai bukti pelatihan Anda.</p>
+<p>Contohnya seperti berikut ini:</p>
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img decoding="async" width="595" height="358" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20595%20358'%3E%3C/svg%3E" alt="bagian sertifikasi di resume web developer menunjukkan sertifikat terkait dengan skill yang tercantum" class="wp-image-25017" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-sertifikasi-di-resume-web-developer-menunjukkan-sertifikat-terkait-dengan-skill-yang-tercantum.webp 595w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-sertifikasi-di-resume-web-developer-menunjukkan-sertifikat-terkait-dengan-skill-yang-tercantum-300x181.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-sertifikasi-di-resume-web-developer-menunjukkan-sertifikat-terkait-dengan-skill-yang-tercantum-150x90.webp 150w" data-lazy-sizes="(max-width: 595px) 100vw, 595px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-sertifikasi-di-resume-web-developer-menunjukkan-sertifikat-terkait-dengan-skill-yang-tercantum.webp" /><noscript><img decoding="async" width="595" height="358" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-sertifikasi-di-resume-web-developer-menunjukkan-sertifikat-terkait-dengan-skill-yang-tercantum.webp" alt="bagian sertifikasi di resume web developer menunjukkan sertifikat terkait dengan skill yang tercantum" class="wp-image-25017" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-sertifikasi-di-resume-web-developer-menunjukkan-sertifikat-terkait-dengan-skill-yang-tercantum.webp 595w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-sertifikasi-di-resume-web-developer-menunjukkan-sertifikat-terkait-dengan-skill-yang-tercantum-300x181.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-sertifikasi-di-resume-web-developer-menunjukkan-sertifikat-terkait-dengan-skill-yang-tercantum-150x90.webp 150w" sizes="(max-width: 595px) 100vw, 595px" /></noscript></figure></div>
+<h3 class="wp-block-heading"><span class="ez-toc-section" id="Informasi_Tambahan_yang_Perlu_Disertakan"></span>Informasi Tambahan yang Perlu Disertakan<span class="ez-toc-section-end"></span></h3>
+<p>Anda boleh menambahkan informasi relevan lainnya di luar pengalaman kerja, hard skill, pendidikan, dan sertifikasi di bagian ini.</p>
+<p>Berikut adalah beberapa jenis informasi tambahan yang bisa dimasukkan ke dalam CV programmer atau web developer Anda:</p>
+<ul>
+<li>Hobi atau minat</li>
+<li>Aktivitas</li>
+<li>Penghargaan</li>
+<li>Publikasi</li>
+<li>Lisensi</li>
+<li>Kegiatan amal atau volunteer</li>
+<li>Kecakapan berbahasa</li>
+</ul>
+<p>Informasi ini bisa membantu recruiter melihat Anda sebagai kandidat yang memiliki pengetahuan teknis dan skill sosial yang baik, yang bisa memberikan lebih banyak manfaat bagi tim di perusahaan.</p>
+<p>Contoh informasi tambahan ini adalah sebagai berikut:</p>
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img decoding="async" width="601" height="636" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20601%20636'%3E%3C/svg%3E" alt="daftar aktivitas dan publikasi terkait pengembangan web yang diisi ke bagian informasi tambahan dalam resume web developer" class="wp-image-25021" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/daftar-aktivitas-dan-publikasi-terkait-pengembangan-web-yang-diisi-ke-bagian-informasi-tambahan-dalam-resume-web-developer.webp 601w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/daftar-aktivitas-dan-publikasi-terkait-pengembangan-web-yang-diisi-ke-bagian-informasi-tambahan-dalam-resume-web-developer-283x300.webp 283w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/daftar-aktivitas-dan-publikasi-terkait-pengembangan-web-yang-diisi-ke-bagian-informasi-tambahan-dalam-resume-web-developer-142x150.webp 142w" data-lazy-sizes="(max-width: 601px) 100vw, 601px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/daftar-aktivitas-dan-publikasi-terkait-pengembangan-web-yang-diisi-ke-bagian-informasi-tambahan-dalam-resume-web-developer.webp" /><noscript><img decoding="async" width="601" height="636" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/daftar-aktivitas-dan-publikasi-terkait-pengembangan-web-yang-diisi-ke-bagian-informasi-tambahan-dalam-resume-web-developer.webp" alt="daftar aktivitas dan publikasi terkait pengembangan web yang diisi ke bagian informasi tambahan dalam resume web developer" class="wp-image-25021" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/daftar-aktivitas-dan-publikasi-terkait-pengembangan-web-yang-diisi-ke-bagian-informasi-tambahan-dalam-resume-web-developer.webp 601w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/daftar-aktivitas-dan-publikasi-terkait-pengembangan-web-yang-diisi-ke-bagian-informasi-tambahan-dalam-resume-web-developer-283x300.webp 283w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/daftar-aktivitas-dan-publikasi-terkait-pengembangan-web-yang-diisi-ke-bagian-informasi-tambahan-dalam-resume-web-developer-142x150.webp 142w" sizes="(max-width: 601px) 100vw, 601px" /></noscript></figure></div>
+<p>Beberapa perusahaan mungkin mengadakan wawancara atau tes khusus untuk mengevaluasi soft skill kandidat. Mereka tidak melihat bagian soft skill di CV karena nantinya akan dinilai melalui komunikasi dan interaksi Anda dengan rekan kerja yang juga berpartisipasi dalam proses rekrutmen.</p>
+<p>Namun, beberapa perusahaan masih mengharapkan adanya bagian soft skill di resume pelamar. Jadi, daripada membuat bagian khusus, gabungkan tipe skill ini di objektif, ringkasan, pengalaman, atau bagian info tambahan di CV Anda.</p>
+<p>Berikut contoh soft skill yang bisa dimasukkan ke dalam CV web developer:</p>
+<ul>
+<li>Leadership</li>
+<li>Komunikasi</li>
+<li>Kerja sama</li>
+<li>Critical thinking</li>
+<li>Problem solving</li>
+<li>Manajemen proyek</li>
+<li>Kreativitas</li>
+<li>Psikologi pengguna</li>
+</ul>
+<p>Berikut adalah beberapa contoh untuk mencantumkan soft skill di atas ke dalam resume:</p>
+<p><strong>Di Bagian Pengalaman</strong></p>
+<ul>
+<li>Bahasa Inggris:
+<ul>
+<li>Working closely with the C-suite, product team, and the head of marketing.</li>
+<li>Leading the website team and mentoring junior developers, increasing onboarding efficiency by 13%.</li>
+</ul>
+</li>
+<li>Bahasa Indonesia:
+<ul>
+<li>Bekerja sama dengan C-suite, tim produk, dan kepala departemen marketing.</li>
+<li>Memimpin tim website dan membina developer junior, meningkatkan efisiensi onboarding hingga 13%.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Di Bagian Aktivitas</strong></p>
+<ul>
+<li>Bahasa Inggris:
+<ul>
+<li>Hosted monthly meetups of Develover, a web developers’ community.</li>
+</ul>
+</li>
+<li>Bahasa Indonesia:
+<ul>
+<li>Menyelenggarakan pertemuan bulanan dengan komunitas web developer, Develover.</li>
+</ul>
+</li>
+</ul>
+<p>Poin-poin di bagian Pengalaman menunjukkan kandidat memiliki skill leadership dan kerja sama yang kuat. Kandidat membuktikan kemampuannya dengan memanfaatkan skill komunikasi secara rutin dalam aktivitas di luar jam kerja.</p>
+<p>Meskipun Anda boleh memasukkan skill yang tidak terkait langsung dengan industri web development, skill tersebut harus tetap mendukung value Anda. Misalnya, menuliskan prestasi sebagai juara perlombaan catur bisa menunjukkan bahwa Anda punya pemikiran analitis yang kuat. Atau, menulis kolom opini secara rutin di koran lokal bisa menyiratkan bahwa Anda adalah pemikir kritis yang kreatif.</p>
+<p>Bantu para perekrut melihat keunggulan Anda dengan menambahkan beberapa detail yang menarik perhatian di bagian info tambahan. Jangan sekadar menambahkan fakta-fakta random yang tidak relevan untuk mengisi sisa ruang di resume.</p>
+<p>Berikut contoh informasi tambahan yang <strong>tidak kami rekomendasikan</strong>:</p>
+<div class="wp-block-image">
+<figure class="aligncenter size-full"><img decoding="async" width="597" height="242" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20597%20242'%3E%3C/svg%3E" alt="bagian aktivitas di resume web developer menampilkan detail yang kurang informatif dan berpengaruh" class="wp-image-25032" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-aktivitas-di-resume-web-developer-menampilkan-detail-yang-kurang-informatif-dan-berpengaruh.webp 597w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-aktivitas-di-resume-web-developer-menampilkan-detail-yang-kurang-informatif-dan-berpengaruh-300x122.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-aktivitas-di-resume-web-developer-menampilkan-detail-yang-kurang-informatif-dan-berpengaruh-150x61.webp 150w" data-lazy-sizes="(max-width: 597px) 100vw, 597px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-aktivitas-di-resume-web-developer-menampilkan-detail-yang-kurang-informatif-dan-berpengaruh.webp" /><noscript><img decoding="async" width="597" height="242" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-aktivitas-di-resume-web-developer-menampilkan-detail-yang-kurang-informatif-dan-berpengaruh.webp" alt="bagian aktivitas di resume web developer menampilkan detail yang kurang informatif dan berpengaruh" class="wp-image-25032" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-aktivitas-di-resume-web-developer-menampilkan-detail-yang-kurang-informatif-dan-berpengaruh.webp 597w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-aktivitas-di-resume-web-developer-menampilkan-detail-yang-kurang-informatif-dan-berpengaruh-300x122.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/10/bagian-aktivitas-di-resume-web-developer-menampilkan-detail-yang-kurang-informatif-dan-berpengaruh-150x61.webp 150w" sizes="(max-width: 597px) 100vw, 597px" /></noscript></figure></div>
+<p>Poin pertama tidak menjelaskan lebih lanjut tentang event yang diikuti pelamar. Mungkin saja, ini juga bukan event yang familiar bagi tim HRD.</p>
+<p>Berikutnya, poin kedua tidak diawali dengan kata kerja yang bersifat <em>action</em> sehingga kalimat ini terasa biasa saja bagi yang membacanya. Pelamar juga tidak menyebutkan nama event atau organisasi yang menyelenggarakannya.</p>
+<h2 class="wp-block-heading" id="h-cara-membuat-cv-ats-friendly-bonus"><span class="ez-toc-section" id="Cara_Membuat_CV_ATS_Friendly_Bonus"></span>Cara Membuat CV ATS Friendly (Bonus!)<span class="ez-toc-section-end"></span></h2>
+<p>Kalau sudah sampai ke bagian ini, artinya Anda sudah tahu informasi penting apa saja yang perlu disertakan saat membuat CV web developer. Kami masih punya tips dan trik lainnya untuk membantu Anda membuat CV yang ATS frienfly.</p>
+<p>Berikut adalah cara membuat CV ATS friendly:</p>
+<ul>
+<li><strong>Gunakan layout yang simpel</strong>&nbsp;– berikan kesan pertama yang &#8216;<strong>wow</strong>&#8216; kepada para recruiter dengan memilih layout yang rapi dan mudah dibaca. Dari segi teks, gunakan poin-poin berisi kalimat pendek dan sederhana. Dari segi visual, sediakan ruang kosong yang cukup sehingga CV tidak terlihat penuh. Jangan memilih desain yang terlalu rumit karena bisa mengalihkan perhatian recruiter dari informasi utamanya. Anda bisa menggunakan resume builder online untuk menghemat waktu desain.</li>
+<li><strong>Pilih font sederhana</strong>&nbsp;– gunakan font standar seperti Arial atau Garamond karena mudah dibaca oleh mata manusia dan ATS. Hindari memilih font yang terlihat rumit dan tidak termasuk dalam font standar di sebagian besar OS, karena mungkin sulit dikonversi dengan baik oleh ATS dan mengacaukan susunan layout CV.</li>
+<li><strong>Pilih ukuran font yang pas</strong>&nbsp;– ukuran font akan berbeda-beda tergantung pada font yang Anda pilih. Jadi, tentukan ukuran yang paling tepat bagi Anda. Saran dari kami, gunakan ukuran font 10-12 untuk teks isi, ukuran 12-14 untuk posisi pekerjaan, nama perusahaan, dan masa kerja sebelumnya, lalu ukuran 14-16 untuk judul bagian. Nama Anda di bagian header bisa menggunakan ukuran 20-24.</li>
+<li><strong>Pilih warna-warna yang lembut</strong>&nbsp;– gunakan warna untuk menekankan bagian-bagian penting yang dimaksudkan untuk menarik perhatian recruiter. Saran kami, gunakan warna hitam untuk teks, putih untuk latar belakang, dan warna tersier seperti biru muda atau hijau sage untuk header atau bagian-bagian penting seperti daftar skill teknis. Jangan menggunakan warna-warna cerah karena bisa membuat CV Anda terlihat tidak profesional.</li>
+<li><strong>Pertimbangkan kontras CV saat difotokopi</strong> – terkadang, CV akan difotokopi atau dicetak ulang dalam warna abu-abu atau grayscale agar bisa dibagikan. Pastikan kontras yang tinggi antara teks dan latar belakang agar tetap jelas ketika warnanya diubah ke grayscale.</li>
+<li><strong>Beri penekanan dengan huruf tebal dan miring</strong>&nbsp;– tebalkan poin-poin penting seperti judul bagian dan posisi pekerjaan. Lalu, cetak miring item yang tidak begitu perlu ditekankan tapi ingin diberi highlight, misalnya masa kerja dan tempat Anda bekerja sebelumnya. Dengan begitu, staf HRD bisa lebih mudah membacanya sekilas. Pikirkan dengan baik item apa yang perlu ditebalkan atau dimiringkan untuk hasil yang optimal.</li>
+<li><strong>Hindari garis bawah</strong>&nbsp;– garis bawah atau underline tidak terbaca oleh ATS. Kata dengan format underline bisa mengacaukan akurasi ATS karena garis ini akan memotong huruf seperti <strong>j</strong>, <strong>p</strong>, dan <strong>y</strong>. Keyword penting juga mungkin tidak dibaca dengan benar sehingga informasi di CV Anda jadi tidak muncul di hasil pencarian.</li>
+<li><strong>Cek ulang tata bahasa, ejaan, dan tanda baca</strong>&nbsp;– cek lagi CV Anda sebelum mengirimkannya ke staf HRD. Tata bahasa yang berantakan bisa mengakibatkan CV ditolak. Mintalah bantuan orang lain untuk mengulasnya atau gunakan <a href="https://www.hostinger.co.id/tutorial/cek-grammar" data-wpel-link="internal">tool cek grammar</a> seperti&nbsp;<a href="https://www.grammarly.com/" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">Grammarly</a>&nbsp;dan&nbsp;<a href="https://prowritingaid.com/" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">ProWritingAid</a>. Luangkan waktu lagi untuk melakukan review akhir dengan membaca ulang CV Anda.</li>
+<li><strong>Simpan resume sebagai PDF</strong>&nbsp;– format PDF akan mempertahankan layout dan format dokumen asli. Jadi, resume akan tetap terlihat sama saat dibuka dari perangkat apa pun.</li>
+<li><strong>Optimalkan resume dengan tool scan ATS</strong>&nbsp;– tool gratis seperti&nbsp;<a href="https://www.jobscan.co/" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">Jobscan</a>&nbsp;dan <a href="https://skillsyncer.com/" target="_blank" rel="noreferrer noopener nofollow external" data-wpel-link="external">SkillSyncer</a>&nbsp;akan memindai CV Anda dan memberikan saran berdasarkan penilaian dari algoritme ATS perusahaan. Rekomendasi yang diberikan meliputi ide keyword, analisis kesalahan formatting, dan pengecekan kesesuaian dengan ATS.</li>
+<li><strong>Buat file master untuk poin-poin CV</strong> – siapkan file master untuk semua pengalaman kerja, skill, aktivitas, dan penghargaan Anda, termasuk detail serta pencapaian pribadi. Jadi, saat membuat CV lainnya, Anda tinggal memilih poin dari file master ini sesuai kebutuhan pekerjaan yang dilamar.</li>
+</ul>
+<div class="protip">
+<h4 class="title">Download resource gratis untuk mengasah skill web developer Anda</h4>
+<p><br />
+<a href="/tutorial/wordpress-cheat-sheet" data-wpel-link="internal">WordPress Cheat Sheet</a><br />
+<a href="/tutorial/html-cheat-sheet" data-wpel-link="internal">HTML Cheat Sheet</a><br />
+</p>
+</div>
+<h2 class="wp-block-heading" id="h-kesimpulan">Kesimpulan</h2>
+<p>Menjadi web developer pemula atau berpengalaman dengan skill yang tepat saja belum cukup untuk mendapatkan pekerjaan impian Anda. Skill ini juga harus ditunjukkan dengan cara yang menarik. Biasanya, Anda hanya perlu membuat CV web developer satu halaman untuk menarik perhatian recruiter.</p>
+<p>Gunakan checklist berikut untuk mengecek bagian apa saja yang sebaiknya ada di dalam CV programmer atau web developer Anda:</p>
+<ul>
+<li><strong>Informasi kontak</strong>&nbsp;– sertakan nama lengkap, gelar profesional, alamat email, nomor telepon, lokasi, dan platform online yang relevan seperti website&nbsp;portofolio web developer,&nbsp;profil GitHub, dan akun LinkedIn Anda.</li>
+<li><strong>Objektif atau ringkasan resume</strong>&nbsp;– tulis objektif Anda kalau baru akan menjadi web developer pemula, dan gunakan ringkasan kalau sudah berprofesi sebagai web developer berpengalaman.</li>
+<li><strong>Pengalaman kerja</strong>&nbsp;– cantumkan jabatan beserta nama perusahaan, lokasi, masa kerja, dan poin-poin job desc serta pencapaian Anda di pekerjaan sebelumnya. Gunakan format kronologis terbalik untuk bagian ini.</li>
+<li><strong>Pendidikan</strong>&nbsp;– wajib sertakan gelar, jurusan, nama sekolah, dan masa studi Anda. Bagi web developer junior, cantumkan IPK dan mata kuliah relevan yang sudah Anda pelajari.</li>
+<li><strong>Skill dan Sertifikat</strong>&nbsp;– harus menampilkan daftar skill teknis, seperti jenis bahasa pemrograman dan framework, serta sertifikat terkait.</li>
+<li><strong>Bagian informasi tambahan</strong>&nbsp;– kalau masih ada cukup ruang, tambahkan informasi relevan lainnya seperti penghargaan, publikasi, dan proyek-proyek volunteer untuk menarik perhatian tim HRD yang meninjau CV Anda.</li>
+</ul>
+<p>Ingat, tujuan utama membuat CV adalah agar Anda bisa lolos ke tahap wawancara pertama. Anda tidak perlu memasukkan semua detail pengalaman sebelumnya.</p>
+<p>Biarkan CV tetap ringkas dan fokuslah pada informasi yang paling penting untuk meyakinkan staf HRD bahwa Anda adalah kandidat yang tepat. Jelaskan lebih lanjut detail ini saat sesi wawancara. Sebagai tambahan, sesuaikan resume dengan pekerjaan yang Anda lamar.</p>
+<p>Semoga panduan ini bisa membantu Anda membuat CV web developer atau programmer yang menarik, ya. Selamat mencoba dan semoga sukses selalu!</p>
+<div id="the-author-section" class="col-12 bg-ghost-white">
+<div class="d-flex flex-column flex-sm-row ml-0 justify-content-center justify-content-sm-start">
+<div class="author-avatar">
+<img width="150" height="150" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20150%20150'%3E%3C/svg%3E" class="border-radius-50" alt="Author" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2021/08/T029Z4XM6-U01CPGXARQR-8c60d4e8d6f9-512-150x150.jpg" /><noscript><img width="150" height="150" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2021/08/T029Z4XM6-U01CPGXARQR-8c60d4e8d6f9-512-150x150.jpg"
+                   class="border-radius-50"
+                   alt="Author"/></noscript>
+</div>
+<div class="author-info align-items-sm-start pl-20-sm">
+<span class="author">Penulis</span>
+<p class="author-name">Faradilla A.</p>
+</div>
+</div>
+<div class="description mt-15 mt-30-md">
+<p class="text-center text-sm-left">
+Faradilla, yang lebih akrab disapa Ninda, adalah Content Manager di Hostinger. Ia suka mengikuti tren seputar teknologi, digital marketing, dan belajar bahasa. Melalui tutorial Hostinger ini, Ninda ingin berbagi informasi dan membantu pembaca menyelesaikan masalah yang dialami. </p>
+</div>
+<div class="more-from-author">
+<a class="links-hover mt-5" href="https://www.hostinger.co.id/tutorial/author/faradilla" data-wpel-link="internal">
+Tutorial lain dari Faradilla A. </a>
+</div>
+</div>
+</div>
+<div class="social-container position-sticky d-none d-xl-block">
+<a class="social-link text-light-black cursor-pointer d-flex align-items-center justify-content-center">
+<svg width="28" height="28" class="link" viewBox="0 0 28 14" onclick="copyToClipboard('www.hostinger.co.id/tutorial/cv-web-developer');linkClick(event)" xmlns="http://www.w3.org/2000/svg">
+<path d="M6.364 0.5C2.85 0.5 0 3.41 0 7C0 10.59 2.85 13.5 6.364 13.5H11.454V10.9H6.364C4.254 10.9 2.545 9.154 2.545 7C2.545 4.846 4.255 3.1 6.364 3.1H11.454V0.5H6.364V0.5ZM16.545 0.5V3.1H21.636C23.746 3.1 25.455 4.846 25.455 7C25.455 9.154 23.745 10.9 21.636 10.9H16.546V13.5H21.636C25.15 13.5 28 10.59 28 7C28 3.41 25.15 0.5 21.636 0.5H16.546H16.545ZM7.636 5.7V8.3H20.364V5.7H7.636Z" />
+</svg>
+<div id="copyLink" style="display: none;" class="copy-link">Salin link</div>
+<div id="copiedLink" style="display: none;" class="copied-link">Disalin!</div>
+</a>
+<a href="https://twitter.com/intent/tweet?text=Cara Membuat CV Web Developer yang Menarik + Templatenya&amp;url=www.hostinger.co.id/tutorial/cv-web-developer" class="social-link" target="_blank" rel="nofollow noopener noreferrer" data-wpel-link="exclude">
+<svg width="28" height="28" class="twitter" viewBox="0 0 28 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M28 3.222C26.97 3.685 25.862 3.996 24.7 4.137C25.9034 3.4078 26.801 2.26638 27.226 0.925C26.0996 1.60097 24.8652 2.07794 23.577 2.335C23.0427 1.75645 22.3944 1.29475 21.673 0.978948C20.9515 0.663145 20.1725 0.500076 19.385 0.5C16.212 0.5 13.641 3.1 13.641 6.306C13.641 6.761 13.693 7.206 13.789 7.629C9.016 7.387 4.784 5.075 1.95 1.56C1.43967 2.44841 1.17205 3.45545 1.174 4.48C1.17133 5.43314 1.40284 6.37235 1.84817 7.21507C2.2935 8.05778 2.93903 8.7782 3.728 9.313C2.81494 9.28354 1.92242 9.03451 1.126 8.587V8.66C1.126 11.474 3.106 13.82 5.734 14.353C4.8886 14.5858 4.00082 14.62 3.14 14.453C3.871 16.76 5.993 18.439 8.506 18.486C7.31857 19.431 5.95501 20.1305 4.49471 20.5435C3.0344 20.9566 1.50652 21.075 0 20.892C2.62075 22.596 5.68001 23.502 8.806 23.5C19.372 23.5 25.148 14.652 25.148 6.98C25.1481 6.72925 25.1428 6.47852 25.132 6.228C26.2588 5.40415 27.23 4.38627 28 3.222V3.222Z" />
+</svg>
+</a>
+<a href="https://www.facebook.com/sharer/sharer.php?u=www.hostinger.co.id/tutorial/cv-web-developer" class="social-link" target="_blank" rel="nofollow noopener noreferrer" data-wpel-link="exclude">
+<svg width="28" height="28" class="facebook" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3307_57195)">
+<path d="M24.889 1.60787e-07H3.11C2.7015 1.39669e-07 2.29701 0.0804758 1.91962 0.23683C1.54224 0.393185 1.19935 0.622355 0.910544 0.911252C0.621741 1.20015 0.392681 1.54311 0.236448 1.92055C0.0802144 2.29799 -0.000131188 2.70251 1.60787e-07 3.111V24.89C1.39669e-07 25.2985 0.0804758 25.703 0.23683 26.0804C0.393185 26.4578 0.622355 26.8007 0.911252 27.0895C1.20015 27.3783 1.54311 27.6073 1.92055 27.7636C2.29799 27.9198 2.70251 28.0001 3.111 28H14.966V17.172H11.321V12.932H14.966V9.815C14.966 6.2 17.176 4.229 20.403 4.229C21.4898 4.22651 22.5759 4.28092 23.657 4.392V8.172H21.436C19.678 8.172 19.336 9.003 19.336 10.229V12.928H23.536L22.99 17.167H19.31V28H24.889C25.2976 28.0001 25.7022 27.9198 26.0797 27.7635C26.4572 27.6072 26.8002 27.378 27.0891 27.0891C27.378 26.8002 27.6072 26.4572 27.7635 26.0797C27.9198 25.7022 28.0001 25.2976 28 24.889V3.11C28 2.7015 27.9195 2.29701 27.7632 1.91962C27.6068 1.54224 27.3776 1.19935 27.0887 0.910544C26.7999 0.621741 26.4569 0.392681 26.0795 0.236448C25.702 0.0802144 25.2975 -0.000131188 24.889 1.60787e-07Z" />
+</g>
+<defs>
+<clipPath id="clip0_3307_57195">
+<rect width="28" height="28" fill="white" />
+</clipPath>
+</defs>
+</svg>
+</a>
+<a href="https://www.linkedin.com/sharing/share-offsite/?url=www.hostinger.co.id/tutorial/cv-web-developer" class="social-link" target="_blank" rel="nofollow noopener noreferrer" data-wpel-link="exclude">
+<svg width="28" height="28" class="linkedin h-p-0-lg h-mb-3-lg" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3302_57044)">
+<path d="M24.889 1.60787e-07H3.11C2.7015 1.39669e-07 2.29701 0.0804758 1.91962 0.23683C1.54224 0.393185 1.19935 0.622355 0.910544 0.911252C0.621741 1.20015 0.392681 1.54311 0.236448 1.92055C0.0802144 2.29799 -0.000131188 2.70251 1.60787e-07 3.111V24.89C1.39669e-07 25.2985 0.0804758 25.703 0.23683 26.0804C0.393185 26.4578 0.622355 26.8007 0.911252 27.0895C1.20015 27.3783 1.54311 27.6073 1.92055 27.7636C2.29799 27.9198 2.70251 28.0001 3.111 28H24.89C25.2985 28 25.703 27.9195 26.0804 27.7632C26.4578 27.6068 26.8007 27.3776 27.0895 27.0887C27.3783 26.7999 27.6073 26.4569 27.7636 26.0795C27.9198 25.702 28.0001 25.2975 28 24.889V3.11C28 2.7015 27.9195 2.29701 27.7632 1.91962C27.6068 1.54224 27.3776 1.19935 27.0887 0.910544C26.7999 0.621741 26.4569 0.392681 26.0795 0.236448C25.702 0.0802144 25.2975 -0.000131188 24.889 1.60787e-07ZM9.333 21.778H5.41V10.888H9.334V21.778H9.333ZM7.302 8.893C6.102 8.893 5.302 8.093 5.302 7.026C5.302 5.959 6.1 5.16 7.433 5.16C8.633 5.16 9.433 5.96 9.433 7.026C9.433 8.094 8.633 8.893 7.301 8.893H7.302ZM23.333 21.778H19.535V15.826C19.535 14.18 18.522 13.801 18.142 13.801C17.762 13.801 16.497 14.054 16.497 15.826V21.778H12.572V10.888H16.497V12.408C17.002 11.522 18.015 10.888 19.914 10.888C21.814 10.888 23.334 12.408 23.334 15.826V21.778H23.333Z" />
+</g>
+<defs>
+<clipPath id="clip0_3302_57044">
+<rect width="28" height="28" fill="white" />
+</clipPath>
+</defs>
+</svg>
+</a>
+<a href="mailto:?subject=Cara Membuat CV Web Developer yang Menarik + Templatenya&amp;body=Article:%20www.hostinger.co.id/tutorial/cv-web-developer" class="social-link" target="_blank" rel="nofollow noopener noreferrer">
+<svg width="28" height="28" class="mail h-p-0-lg h-mb-3-lg" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+<path d="M2.8 3.00001C2.12163 2.99621 1.4654 3.24121 0.955496 3.68864C0.445591 4.13608 0.117389 4.7549 0.033 5.42801L14 14L27.967 5.42801C27.8826 4.7549 27.5544 4.13608 27.0445 3.68864C26.5346 3.24121 25.8784 2.99621 25.2 3.00001H2.8ZM0 8.15901V22.25C0 23.77 1.253 25 2.8 25H25.2C26.747 25 28 23.77 28 22.25V8.15901L14.741 16.296C14.5178 16.4323 14.2615 16.5043 14 16.5043C13.7385 16.5043 13.4822 16.4323 13.259 16.296L0 8.16001V8.15901Z" />
+</svg>
+</a>
+</div>
+<script type="rocketlazyloadscript">
+    function linkHover() {
+        var socialLinkHover = document.getElementById("copyLink");
+        if (socialLinkHover.style.display === "none") {
+            socialLinkHover.style.display = "inline-block";
+        } else {
+            socialLinkHover.style.display = "none";
+        }
+    }
+
+    function linkClick(e) {
+        var parent = e.target.parentElement;
+        var socialLinkClick = Array.from(parent.children).find(elem => elem.id == "copiedLink");
+        if (socialLinkClick.style.display === "none") {
+            socialLinkClick.style.display = "inline-block";
+            document.getElementById("copyLink").style.display = "none";
+        } else {
+            socialLinkClick.style.display = "none";
+        }
+        setTimeout(() => { socialLinkClick.style.display = "none" }, 2000);
+    }
+
+    function copyToClipboard(str) {
+        var el = document.createElement('textarea');
+        el.value = str;
+        el.setAttribute('readonly', '');
+        el.style = {
+            position: 'absolute',
+            left: '-9999px'
+        };
+
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+    }
+</script> </div>
+</div>
+</div>
+<div class="related-tutorials-section">
+<div class="container">
+<div class="d-flex flex-column flex-md-row align-items-center justify-content-center h-mb-5">
+<h2 class="pb-30">
+Tutorial Terkait </h2>
+</div>
+<div class="row">
+<div class="content-item d-flex flex-column col-md-4 h-mb-2" id="post-29978">
+<div class="col-12 h-p-0 height-20rem d-contents">
+<a class="height-inherit" href="https://www.hostinger.co.id/tutorial/cara-menggunakan-file-manager-hostinger" data-wpel-link="internal">
+<img width="640" height="398" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20640%20398'%3E%3C/svg%3E" class="object-fit-cover border-radius-10px wp-post-image" alt="Cara Menggunakan File Manager Hostinger" decoding="async" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/04/cara-menggunakan-file-manager-hostinger.webp 900w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/04/cara-menggunakan-file-manager-hostinger-300x187.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/04/cara-menggunakan-file-manager-hostinger-150x93.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/04/cara-menggunakan-file-manager-hostinger-768x478.webp 768w" data-lazy-sizes="(max-width: 640px) 100vw, 640px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/04/cara-menggunakan-file-manager-hostinger.webp" /><noscript><img width="640" height="398" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/04/cara-menggunakan-file-manager-hostinger.webp" class="object-fit-cover border-radius-10px wp-post-image" alt="Cara Menggunakan File Manager Hostinger" decoding="async" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/04/cara-menggunakan-file-manager-hostinger.webp 900w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/04/cara-menggunakan-file-manager-hostinger-300x187.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/04/cara-menggunakan-file-manager-hostinger-150x93.webp 150w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2023/04/cara-menggunakan-file-manager-hostinger-768x478.webp 768w" sizes="(max-width: 640px) 100vw, 640px" /></noscript> </a>
+</div>
+<div class="d-flex flex-column h-pt-2 h-pb-3">
+<div class="d-flex justify-content-sm-between justify-content-center h-mb-1">
+<p class="label text-h-meteorite-dark fw-800 fs-14 related-posts__date-category">
+17 Apr •
+<a class="text-h-meteorite-dark text-uppercase fw-800 fs-14 links-hover" href="https://www.hostinger.co.id/tutorial/lainnya" data-wpel-link="internal">
+Lainnya </a>
+<span class="related-posts__separator">•</span>
+</p>
+</div>
+<h5 class="text-center text-sm-left pb-10">
+<a href="https://www.hostinger.co.id/tutorial/cara-menggunakan-file-manager-hostinger" data-wpel-link="internal">
+Cara Menggunakan File Manager Hostinger </a>
+</h5>
+<p class="text-content-grey text-center text-sm-left">
+File manager adalah salah satu fitur yang bisa Anda temukan di hPanel. Kalau belum tahu bagaimana cara menggunakan File Manager Hostinger beserta... </p>
+<div class="d-flex justify-content-center justify-content-sm-start">
+<a class="subtitle  font-weight-bold hover-text-primary-400 transition-all-3" href="https://www.hostinger.co.id/tutorial/author/faradilla">
+<p class="author-name text-center text-sm-left">
+Oleh Faradilla A. </p>
+</a>
+</div>
+</div>
+</div>
+<div class="content-item d-flex flex-column col-md-4 h-mb-2" id="post-26709">
+<div class="col-12 h-p-0 height-20rem d-contents">
+<a class="height-inherit" href="https://www.hostinger.co.id/tutorial/cara-memblokir-situs-di-google-chrome" data-wpel-link="internal">
+<img width="640" height="282" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20640%20282'%3E%3C/svg%3E" class="object-fit-cover border-radius-10px wp-post-image" alt="Cara Memblokir Situs di Chrome untuk Cegah Bahaya Internet" decoding="async" data-lazy-srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/11/cara-memblokir-website.webp 720w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/11/cara-memblokir-website-300x132.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/11/cara-memblokir-website-150x66.webp 150w" data-lazy-sizes="(max-width: 640px) 100vw, 640px" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/11/cara-memblokir-website.webp" /><noscript><img width="640" height="282" src="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/11/cara-memblokir-website.webp" class="object-fit-cover border-radius-10px wp-post-image" alt="Cara Memblokir Situs di Chrome untuk Cegah Bahaya Internet" decoding="async" srcset="https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/11/cara-memblokir-website.webp 720w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/11/cara-memblokir-website-300x132.webp 300w,https://www.hostinger.co.id/tutorial/wp-content/uploads/sites/11/2022/11/cara-memblokir-website-150x66.webp 150w" sizes="(max-width: 640px) 100vw, 640px" /></noscript> </a>
+</div>
+<div class="d-flex flex-column h-pt-2 h-pb-3">
+<div class="d-flex justify-content-sm-between justify-content-center h-mb-1">
+<p class="label text-h-meteorite-dark fw-800 fs-14 related-posts__date-category">
+18 Nov •
+<a class="text-h-meteorite-dark text-uppercase fw-800 fs-14 links-hover" href="https://www.hostinger.co.id/tutorial/lainnya" data-wpel-link="internal">
+Lainnya </a>
+<span class="related-posts__separator">•</span>
+</p>
+</div>
+<h5 class="text-center text-sm-left pb-10">
+<a href="https://www.hostinger.co.id/tutorial/cara-memblokir-situs-di-google-chrome" data-wpel-link="internal">
+Cara Memblokir Situs di Chrome untuk Cegah Bahaya Internet </a>
+</h5>
+<p class="text-content-grey text-center text-sm-left">
+Seperti yang kita tahu, ada banyak sekali website dengan beragam jenis konten. Beberapa di antaranya terkadang kurang pantas, atau malah... </p>
+<div class="d-flex justify-content-center justify-content-sm-start">
+<a class="subtitle  font-weight-bold hover-text-primary-400 transition-all-3" href="https://www.hostinger.co.id/tutorial/author/faradilla">
+<p class="author-name text-center text-sm-left">
+Oleh Faradilla A. </p>
+</a>
+</div>
+</div>
+</div>
+<div class="content-item d-flex flex-column col-md-4 h-mb-2" id="post-22861">
+<div class="col-12 h-p-0 height-20rem d-contents">
+<a class="height-inherit" href="https://www.hostinger.co.id/tutorial/ux-design-adalah" data-wpel-link="internal">
+<img width="730" height="319" class="width-100p object-fit-cover border-radius-10px" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20730%20319'%3E%3C/svg%3E" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/themes/tutorialsthemeuplift/public/images/no_image.jpg" /><noscript><img width="730" height="319" class="width-100p object-fit-cover border-radius-10px" src="https://www.hostinger.co.id/tutorial/wp-content/themes/tutorialsthemeuplift/public/images/no_image.jpg"/></noscript>
+</a>
+</div>
+<div class="d-flex flex-column h-pt-2 h-pb-3">
+<div class="d-flex justify-content-sm-between justify-content-center h-mb-1">
+<p class="label text-h-meteorite-dark fw-800 fs-14 related-posts__date-category">
+31 Aug •
+ <a class="text-h-meteorite-dark text-uppercase fw-800 fs-14 links-hover" href="https://www.hostinger.co.id/tutorial/lainnya" data-wpel-link="internal">
+Lainnya </a>
+<span class="related-posts__separator">•</span>
+</p>
+</div>
+<h5 class="text-center text-sm-left pb-10">
+<a href="https://www.hostinger.co.id/tutorial/ux-design-adalah" data-wpel-link="internal">
+Apa Itu UX Design? Pengertian &amp; Perbedaan UI/UX Design </a>
+</h5>
+<p class="text-content-grey text-center text-sm-left">
+UX design adalah singkatan dari User Experience design atau desain pengalaman pengguna. Istilah ini sering digunakan bergantian dengan &#8220;UI... </p>
+<div class="d-flex justify-content-center justify-content-sm-start">
+<a class="subtitle  font-weight-bold hover-text-primary-400 transition-all-3" href="https://www.hostinger.co.id/tutorial/author/fitriwulandari">
+<p class="author-name text-center text-sm-left">
+Oleh Fitri W. </p>
+</a>
+</div>
+</div>
+</div> </div>
+</div>
+</div>
+<script type="rocketlazyloadscript" data-minify="1" data-rocket-type="text/javascript" data-rocket-src="https://www.hostinger.co.id/tutorial/wp-content/cache/min/11/bootstrap/v5/tp.widget.bootstrap.min.js?ver=1681360788" async></script>
+<div class="pb-80 pb-120-lg">
+<h2 class="text-center mb-40 mt-50">Apa Kata Pelanggan Kami</h2>
+<div class="container">
+<div class="trustpilot-widget" data-locale="en" data-template-id="53aa8912dec7e10d38f59f36" data-review-languages="en" data-businessunit-id="580cbf960000ff0005966f44" data-stars="4,5" data-style-height="140px" data-style-width="100%" data-theme="light">
+<a href="https://www.trustpilot.com/review/hostinger.com" target="_blank" rel="noopener follow noreferrer" data-wpel-link="exclude">Trustpilot</a>
+</div>
+</div>
+</div>
+<div class="container justify-content-center">
+<div id="comment-form" class="bg-white h-pt-7-lg h-pt-2 h-pb-7-lg h-mt-2 w-100">
+<div class="d-flex flex-column">
+<div id="respond" class="comment-respond">
+<h3 class="text-h-meteorite-dark fw-800 fs-44 mb-5">Tinggalkan Komentar <small><a rel="nofollow" id="cancel-comment-reply-link" href="/tutorial/cv-web-developer#respond" style="display:none;" data-wpel-link="internal">Cancel reply</a></small></h3><div id="comment-error" class="error-message d-none fs-14 fs-18-sm fs-20-xl pl-15 pl-20-sm pr-15 pr-20-sm"><img width="32" height="32" src="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3C/svg%3E" data-lazy-src="https://www.hostinger.co.id/tutorial/wp-content/themes/tutorialsthemeuplift/public/images/icons/alert.svg" /><noscript><img width="32" height="32" src="https://www.hostinger.co.id/tutorial/wp-content/themes/tutorialsthemeuplift/public/images/icons/alert.svg"/></noscript><span id="required-fields" class="d-none">Silakan isi kolom di bawah ini.</span><span id="required-checkbox" class="d-none">Silakan tandai checkbox persetujuan.</span><span id="required-form" class="d-none">Silakan isi kolom yang tersedia dan beri centang pada checkbox privasi</span></div><form action="https://www.hostinger.co.id/tutorial/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate><div id="comment-texarea-input-border" class="new-input-border position-relative mt-20 mt-30-sm"><textarea id="comment" name="comment" placeholder="Komentar*" style="outline: 0; height: 200px !important;" class="w-100 dark border-0 noresize bg-transparent h-pl-2 h-pt-2 label text-content-grey" style="height: 200px !important;"></textarea></div><p class="mb-20"></p><div id="comment-name-input-border" class="new-input-border position-relative"><input id="comment-name-input" style="outline: 0;" class="dark height-46px bg-transparent border-0 w-100 h-pl-2 label text-content-grey" id="author" name="author" type="text" placeholder="Nama*" value="" aria-required='true'></div>
+<p class="mb-20"></p><div id="comment-email-input-border" class="new-input-border position-relative"><input id="comment-email-input" style="outline: 0;" class="dark height-46px border-0 bg-transparent w-100 h-pl-2 label text-content-grey" id="email" name="email" placeholder="Email*" type="email" value="" aria-required='true'></div>
+<p class="comment-form-cookies-consent mt-20 fs-14 d-flex align-items-center"><input id="wp-comment-cookies-consent" class="mr-5 mb-2" name="wp-comment-cookies-consent" type="checkbox" value="yes" /><label for="wp-comment-cookies-consent">Dengan menggunakan formulir ini, maka Anda setuju bahwa data pribadi Anda akan diproses sesuai dengan <a href="/privasi " target="_blank" data-wpel-link="internal">Kebijakan Privasi</a> Hostinger.</label></p>
+<p class="form-submit"><input name="submit" type="submit" id="submit" class="submit-comment new-h-button-primary button text-white mt-40 float-right w-100 w-30-sm" value="Kirim" /> <input type='hidden' name='comment_post_ID' value='24810' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p><p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="5f6804b4fc" /></p><p style="display: none !important;"><label>&#916;<textarea name="ak_hp_textarea" cols="45" rows="8" maxlength="100"></textarea></label><input type="hidden" id="ak_js_1" name="ak_js" value="25" /><script type="rocketlazyloadscript">document.getElementById( "ak_js_1" ).setAttribute( "value", ( new Date() ).getTime() );</script></p></form> </div>
+<p class="akismet_comment_form_privacy_notice">This site uses Akismet to reduce spam. <a href="https://akismet.com/privacy/" target="_blank" rel="nofollow noopener external noreferrer" data-wpel-link="external">Learn how your comment data is processed</a>.</p> <script type="rocketlazyloadscript" data-rocket-type="text/javascript">
+              var label = document.querySelector("[for='wpgdprc'");
+              var warning = document.getElementsByClassName("akismet_comment_form_privacy_notice");
+              if(label && warning && warning.length > 0) {
+                  label.innerText += " " + warning[0].innerText;
+                  warning[0].innerText = "";
+              }
+
+
+              document.getElementById("submit").addEventListener("click", function displayDate(event) {
+                  var textFieldContainer = document.getElementById("comment-texarea-input-border");
+                  var textField = document.getElementById("comment");
+                  var emailFieldContainer = document.getElementById("comment-email-input-border");
+                  var emailField = document.getElementById("comment-email-input");
+                  var nameFieldContainer = document.getElementById("comment-name-input-border");
+                  var nameField = document.getElementById("comment-name-input");
+                  var checkbox = document.getElementById("wp-comment-cookies-consent");
+                  var errorMessage = document.getElementById("comment-error");
+                  var errorExists = false;
+
+                  textFieldContainer.classList.remove("error");
+                  nameFieldContainer.classList.remove("error");
+                  emailFieldContainer.classList.remove("error");
+                  if(checkbox) checkbox.classList.remove("error");
+                  document.getElementById("required-fields").classList.add("d-none");
+                  document.getElementById("required-checkbox").classList.add("d-none");
+                  document.getElementById("required-form").classList.add("d-none");
+                  errorMessage.classList.add("d-none");
+
+                  if(textField && !textField.value) {
+                      textFieldContainer.classList.add("error");
+                      document.getElementById("required-fields").classList.remove("d-none");
+                      errorExists = true;
+                  }
+                  if(nameField && !nameField.value) {
+                      nameFieldContainer.classList.add("error");
+                      document.getElementById("required-fields").classList.remove("d-none");
+                      errorExists = true;
+                  }
+                  if(emailField && (!emailField.value || !emailField.value.includes('@'))) {
+                      emailFieldContainer.classList.add("error");
+                      document.getElementById("required-fields").classList.remove("d-none");
+                      errorExists = true;
+                  }
+                  if(checkbox && !checkbox.checked) {
+                      checkbox.classList.add("error");
+                      if(errorExists) {
+                          document.getElementById("required-fields").classList.add("d-none");
+                          document.getElementById("required-form").classList.remove("d-none");
+                      }
+                      else {
+                          document.getElementById("required-checkbox").classList.remove("d-none");
+                      }
+                      errorExists = true;
+                  }
+                  if(errorExists) {
+                      event.preventDefault();
+                      errorMessage.classList.remove("d-none");
+                  }
+              });
+
+              var commentForm = document.getElementById('commentform');
+
+              commentForm.addEventListener('submit', function (event) {
+                  event.preventDefault();
+
+                  var submitUrl = commentForm.getAttribute('action');
+
+                  var textField = document.getElementById('comment');
+                  var emailField = document.getElementById('comment-email-input');
+                  var nameField = document.getElementById('comment-name-input');
+                  var checkbox = document.getElementById('wp-comment-cookies-consent');
+                  var commentPostId = 24810;
+                  var commentParentField = document.getElementById('comment_parent');
+                  var commentParentId = commentParentField ? commentParentField.value : 0;
+                  var akismetCommentNonceField = document.getElementById('akismet_comment_nonce');
+                  var akismetCommentNonce = akismetCommentNonceField ? akismetCommentNonceField.value : '';
+                  var akJsField = document.getElementById('ak_js');
+                  var akJsFieldValue = akJsField ? akJsField.value : '';
+
+                  var commentFormData = [];
+
+                  if (textField && textField.value) {
+                      commentFormData.push('comment=' + encodeURIComponent(textField.value));
+                  }
+
+                  if (nameField && nameField.value) {
+                      commentFormData.push('author=' + encodeURIComponent(nameField.value));
+                  }
+
+                  if (emailField && emailField.value) {
+                      commentFormData.push('email=' + encodeURIComponent(emailField.value));
+                  }
+
+                  if (checkbox && checkbox.checked) {
+                      commentFormData.push('wp-comment-cookies-consent=yes');
+                  }
+
+                  commentFormData.push('comment_post_ID=' + commentPostId);
+                  commentFormData.push('comment_parent=' + commentParentId);
+                  commentFormData.push('akismet_comment_nonce=' + akismetCommentNonce);
+                  commentFormData.push('ak_js=' + akJsFieldValue);
+
+                  var encodedFormData = commentFormData.join('&').replace(/%20/g, '+');
+
+                  var httpClient = new XMLHttpRequest();
+
+                  httpClient.onreadystatechange = function () {
+                      if(httpClient.readyState === 4 && httpClient.status === 200) {
+                          var replyNoticeText = document.getElementById('comment-post-notice');
+
+                          replyNoticeText.classList.remove('d-none');
+                          replyNoticeText.classList.add('d-flex');
+
+                          if (textField) {
+                              textField.value = '';
+                          }
+
+                          if (nameField && nameField.value) {
+                              nameField.value = '';
+                          }
+
+                          if (emailField && emailField.value) {
+                              emailField.value = '';
+                          }
+                      }
+                  };
+
+                  httpClient.open('POST', submitUrl, true);
+                  httpClient.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                  httpClient.send(encodedFormData);
+              });
+          </script>
+</div>
+<div id="comment-post-notice" class="d-none bg-light w-100 mt-30 p-20">
+<span class="d-block icon-info w-26-px h-20"></span>
+<span class="color-primary font-14 line-height-20 ml-10 ">Thank you! Your comment has been successfully submitted. It will be approved within the next 24 hours.</span>
+</div>
+</div>
+</div>
+</div>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript'>
+      
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({
+        'tutorialsCategory': "Lainnya"
+      });
+
+      window.optinMonsterCategory = "Lainnya";
+  </script>
+<footer id="footer">
+<div id="footer-new" class="footer-new">
+<Footer-new :menu-items="{&quot;hosting&quot;:{&quot;category&quot;:&quot;Hosting&quot;,&quot;items&quot;:[{&quot;pattern&quot;:&quot;\/web-hosting&quot;,&quot;title&quot;:&quot;Web Hosting&quot;,&quot;category&quot;:&quot;Hosting&quot;,&quot;priority&quot;:1,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/hosting-vps&quot;,&quot;title&quot;:&quot;VPS Hosting&quot;,&quot;category&quot;:&quot;Hosting&quot;,&quot;priority&quot;:3,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/minecraft-server-hosting&quot;,&quot;title&quot;:&quot;Minecraft Hosting&quot;,&quot;category&quot;:&quot;Hosting&quot;,&quot;priority&quot;:4,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/cyberpanel-vps-hosting&quot;,&quot;title&quot;:&quot;CyberPanel VPS Hosting&quot;,&quot;category&quot;:&quot;Hosting&quot;,&quot;priority&quot;:4,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/cloud-hosting&quot;,&quot;title&quot;:&quot;Cloud Hosting&quot;,&quot;category&quot;:&quot;Hosting&quot;,&quot;priority&quot;:5,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/wordpress-hosting&quot;,&quot;title&quot;:&quot;WordPress Hosting&quot;,&quot;category&quot;:&quot;Hosting&quot;,&quot;priority&quot;:6,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/email-hosting&quot;,&quot;title&quot;:&quot;Email Hosting&quot;,&quot;category&quot;:&quot;Hosting&quot;,&quot;priority&quot;:7,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/cms-hosting&quot;,&quot;title&quot;:&quot;CMS Hosting&quot;,&quot;category&quot;:&quot;Hosting&quot;,&quot;priority&quot;:8,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/hosting-gratis&quot;,&quot;title&quot;:&quot;Hosting Gratis&quot;,&quot;category&quot;:&quot;Hosting&quot;,&quot;priority&quot;:11,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/toko-online&quot;,&quot;title&quot;:&quot;Toko Online&quot;,&quot;category&quot;:&quot;Hosting&quot;,&quot;priority&quot;:12,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/hosting-murah&quot;,&quot;title&quot;:&quot;Hosting Murah&quot;,&quot;category&quot;:&quot;Hosting&quot;,&quot;priority&quot;:15,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/website-builder&quot;,&quot;title&quot;:&quot;Website Builder&quot;,&quot;category&quot;:&quot;Hosting&quot;,&quot;priority&quot;:120,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/logo-maker&quot;,&quot;title&quot;:&quot;Logo Maker&quot;,&quot;category&quot;:&quot;Hosting&quot;,&quot;priority&quot;:135,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/template-website&quot;,&quot;title&quot;:&quot;Template Website&quot;,&quot;category&quot;:&quot;Hosting&quot;,&quot;priority&quot;:140,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/beli-hosting&quot;,&quot;title&quot;:&quot;Beli Hosting&quot;,&quot;category&quot;:&quot;Hosting&quot;,&quot;priority&quot;:150,&quot;pathName&quot;:null}]},&quot;domains&quot;:{&quot;category&quot;:&quot;Domain&quot;,&quot;items&quot;:[{&quot;pattern&quot;:&quot;\/domain-murah&quot;,&quot;title&quot;:&quot;Domain Murah&quot;,&quot;category&quot;:&quot;Domain&quot;,&quot;priority&quot;:1,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/transfer-domain&quot;,&quot;title&quot;:&quot;Transfer Domain&quot;,&quot;category&quot;:&quot;Domain&quot;,&quot;priority&quot;:2,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/domain-gratis&quot;,&quot;title&quot;:&quot;Domain Gratis&quot;,&quot;category&quot;:&quot;Domain&quot;,&quot;priority&quot;:3,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/tld\/domain-xyz&quot;,&quot;title&quot;:&quot;Domain .XYZ&quot;,&quot;category&quot;:&quot;Domain&quot;,&quot;priority&quot;:4,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/tld&quot;,&quot;title&quot;:&quot;Beli Domain&quot;,&quot;category&quot;:&quot;Domain&quot;,&quot;priority&quot;:7,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/whois&quot;,&quot;title&quot;:&quot;WHOIS&quot;,&quot;category&quot;:&quot;Domain&quot;,&quot;priority&quot;:8,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/ssl-gratis&quot;,&quot;title&quot;:&quot;SSL Gratis&quot;,&quot;category&quot;:&quot;Domain&quot;,&quot;priority&quot;:30,&quot;pathName&quot;:null}]},&quot;information&quot;:{&quot;category&quot;:&quot;Informasi&quot;,&quot;items&quot;:[{&quot;pattern&quot;:&quot;\/migrasi-website&quot;,&quot;title&quot;:&quot;Migrasi Website&quot;,&quot;category&quot;:&quot;Informasi&quot;,&quot;priority&quot;:1,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;https:\/\/statuspage.hostinger.com\/&quot;,&quot;title&quot;:&quot;Status Sistem&quot;,&quot;category&quot;:&quot;Informasi&quot;,&quot;priority&quot;:2,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/afiliasi&quot;,&quot;title&quot;:&quot;Afiliasi&quot;,&quot;category&quot;:&quot;Informasi&quot;,&quot;priority&quot;:3,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/metode-pembayaran&quot;,&quot;title&quot;:&quot;Metode Pembayaran&quot;,&quot;category&quot;:&quot;Informasi&quot;,&quot;priority&quot;:3,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/penghargaan&quot;,&quot;title&quot;:&quot;Penghargaan&quot;,&quot;category&quot;:&quot;Informasi&quot;,&quot;priority&quot;:4,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/review&quot;,&quot;title&quot;:&quot;Review&quot;,&quot;category&quot;:&quot;Informasi&quot;,&quot;priority&quot;:5,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/harga&quot;,&quot;title&quot;:&quot;Harga&quot;,&quot;category&quot;:&quot;Informasi&quot;,&quot;priority&quot;:6,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/sitemap&quot;,&quot;title&quot;:&quot;Sitemap&quot;,&quot;category&quot;:&quot;Informasi&quot;,&quot;priority&quot;:7,&quot;pathName&quot;:null}]},&quot;legal&quot;:{&quot;category&quot;:&quot;Legal&quot;,&quot;items&quot;:[{&quot;pattern&quot;:&quot;\/kebijakan-privasi&quot;,&quot;title&quot;:&quot;Kebijakan Privasi&quot;,&quot;category&quot;:&quot;Legal&quot;,&quot;priority&quot;:1,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/perjanjian-ketentuan-layanan-universal&quot;,&quot;title&quot;:&quot;Ketentuan Penggunaan&quot;,&quot;category&quot;:&quot;Legal&quot;,&quot;priority&quot;:2,&quot;pathName&quot;:null}]},&quot;company&quot;:{&quot;category&quot;:&quot;Perusahaan&quot;,&quot;items&quot;:[{&quot;pattern&quot;:&quot;\/tentang-kami&quot;,&quot;title&quot;:&quot;Tentang Kami&quot;,&quot;category&quot;:&quot;Perusahaan&quot;,&quot;priority&quot;:10,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/teknologi&quot;,&quot;title&quot;:&quot;Teknologi Kami&quot;,&quot;category&quot;:&quot;Perusahaan&quot;,&quot;priority&quot;:20,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;https:\/\/roadmap.hostinger.com\/&quot;,&quot;title&quot;:&quot;Roadmap (Bahasa Inggris)&quot;,&quot;category&quot;:&quot;Perusahaan&quot;,&quot;priority&quot;:50,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/bantuan-dan-kontak&quot;,&quot;title&quot;:&quot;Hubungi Kami&quot;,&quot;category&quot;:&quot;Perusahaan&quot;,&quot;priority&quot;:60,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;https:\/\/www.hostinger.com\/blog\/&quot;,&quot;title&quot;:&quot;Blog (Bahasa Inggris)&quot;,&quot;category&quot;:&quot;Perusahaan&quot;,&quot;priority&quot;:70,&quot;pathName&quot;:null}]},&quot;help&quot;:{&quot;category&quot;:&quot;Bantuan&quot;,&quot;items&quot;:[{&quot;pattern&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/&quot;,&quot;title&quot;:&quot;Tutorial&quot;,&quot;category&quot;:&quot;Bantuan&quot;,&quot;priority&quot;:1,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;https:\/\/support.hostinger.co.id\/&quot;,&quot;title&quot;:&quot;Pengetahuan Dasar&quot;,&quot;category&quot;:&quot;Bantuan&quot;,&quot;priority&quot;:2,&quot;pathName&quot;:null},{&quot;pattern&quot;:&quot;\/laporkan-penyalahgunaan&quot;,&quot;title&quot;:&quot;Laporkan Penyalahgunaan&quot;,&quot;category&quot;:&quot;Bantuan&quot;,&quot;priority&quot;:3,&quot;pathName&quot;:null}]}}" :payment-methods="[&quot;visa&quot;,&quot;mastercard&quot;,&quot;amex&quot;,&quot;discover&quot;,&quot;jcb&quot;,&quot;maestro&quot;,&quot;dinersclub&quot;]" payment-url="https://www.hostinger.co.id/tutorial/wp-content/themes/tutorialsthemeuplift/public/images/payments/2020/" payment-path="/metode-pembayaran" payment-btn="Dan Lainnya" about="Hostinger memberikan kemudahan bagi siapa pun yang ingin sukses online. Kami terus menyempurnakan teknologi server, menyediakan bantuan profesional, dan memberikan pengalaman web hosting yang mulus." :social-links="[{&quot;id&quot;:&quot;social_linkedin&quot;,&quot;url&quot;:&quot;https:\/\/www.linkedin.com\/company\/hostinger-international&quot;,&quot;img&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/social-icons\/footer\/linked-in.svg&quot;,&quot;alt&quot;:&quot;Linked-in logo&quot;},{&quot;id&quot;:&quot;social_facebook&quot;,&quot;url&quot;:&quot;https:\/\/www.facebook.com\/Hostinger&quot;,&quot;img&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/social-icons\/footer\/facebook.svg&quot;,&quot;alt&quot;:&quot;Facebook logo&quot;},{&quot;id&quot;:&quot;social_instagram&quot;,&quot;url&quot;:&quot;https:\/\/www.instagram.com\/hostinger_global\/&quot;,&quot;img&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/social-icons\/footer\/instagram.svg&quot;,&quot;alt&quot;:&quot;Instagram logo&quot;},{&quot;id&quot;:&quot;social_twitter&quot;,&quot;url&quot;:&quot;https:\/\/twitter.com\/hostinger&quot;,&quot;img&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/social-icons\/footer\/twitter.svg&quot;,&quot;alt&quot;:&quot;Twitter logo&quot;},{&quot;id&quot;:&quot;social_youtube&quot;,&quot;url&quot;:&quot;https:\/\/www.youtube.com\/channel\/UCsfsYJOpJGTOylYe-QS8eJg?sub_confirmation=1&quot;,&quot;img&quot;:&quot;https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/themes\/tutorialsthemeuplift\/public\/images\/social-icons\/footer\/youtube.svg&quot;,&quot;alt&quot;:&quot;Youtube logo&quot;}]" copyright="© 2004-2023 hostinger.co.id - Web Hosting Premium, Layanan Cloud, VPS, & Registrasi Domain." no-vat-txt="Harga belum termasuk PPN">
+ </Footer-new>
+</div>
+</footer>
+
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KL4FQVG"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+<script type="rocketlazyloadscript">(function(d,u,ac){var s=d.createElement('script');s.type='text/javascript';s.src='https://a.omappapi.com/app/js/api.min.js';s.async=true;s.dataset.user=u;s.dataset.account=ac;d.getElementsByTagName('head')[0].appendChild(s);})(document,71036,79832);</script>
+<script type="rocketlazyloadscript">
+  window.intercomSettings = {
+    app_id: "e5dnas5h"
+  };
+</script>
+<script type="rocketlazyloadscript">
+(function () {
+  var w = window;
+  var ic = w.Intercom;
+  if (typeof ic === "function") {
+    ic('reattach_activator');
+    ic('update', w.intercomSettings);
+  } else {
+    var d = document;
+    var i = function () {
+      i.c(arguments);
+    };
+    i.q = [];
+    i.c = function (args) {
+      i.q.push(args);
+    };
+    w.Intercom = i;
+    var l = function () {
+      setTimeout(function () {
+        var s = d.createElement('script');
+        s.type = 'text/javascript';
+        s.async = true;
+        s.src = 'https://widget.intercom.io/widget/e5dnas5h';
+        var x = d.getElementsByTagName('script')[0];
+        x.parentNode.insertBefore(s, x);
+      }, 5000);
+    };
+    if (w.attachEvent) {
+      w.attachEvent('onload', l);
+    } else {
+      w.addEventListener('load', l, false);
+    }
+  }
+})();
+</script><script type="rocketlazyloadscript" data-rocket-type="text/javascript">/* <![CDATA[ */!function(e,n){var r={"selectors":{"block":"pre.EnlighterJSRAW","inline":"code.EnlighterJSRAW"},"options":{"indent":2,"ampersandCleanup":true,"linehover":true,"rawcodeDbclick":false,"textOverflow":"break","linenumbers":false,"theme":"classic","language":"generic","retainCssClasses":false,"collapse":false,"toolbarOuter":"","toolbarTop":"{BTN_RAW}{BTN_COPY}{BTN_WINDOW}{BTN_WEBSITE}","toolbarBottom":""},"resources":["https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/plugins\/enlighter\/cache\/X11_enlighterjs.min.css?C8WMOQJbjTvwSMa","https:\/\/www.hostinger.co.id\/tutorial\/wp-content\/plugins\/enlighter\/resources\/enlighterjs\/enlighterjs.min.js"]},o=document.getElementsByTagName("head")[0],t=n&&(n.error||n.log)||function(){};e.EnlighterJSINIT=function(){!function(e,n){var r=0,l=null;function c(o){l=o,++r==e.length&&(!0,n(l))}e.forEach(function(e){switch(e.match(/\.([a-z]+)(?:[#?].*)?$/)[1]){case"js":var n=document.createElement("script");n.onload=function(){c(null)},n.onerror=c,n.src=e,n.async=!0,o.appendChild(n);break;case"css":var r=document.createElement("link");r.onload=function(){c(null)},r.onerror=c,r.rel="stylesheet",r.type="text/css",r.href=e,r.media="all",o.appendChild(r);break;default:t("Error: invalid file extension",e)}})}(r.resources,function(e){e?t("Error: failed to dynamically load EnlighterJS resources!",e):"undefined"!=typeof EnlighterJS?EnlighterJS.init(r.selectors.block,r.selectors.inline,r.options):t("Error: EnlighterJS resources not loaded yet!")})},(document.querySelector(r.selectors.block)||document.querySelector(r.selectors.inline))&&e.EnlighterJSINIT()}(window,console); /* ]]> */</script><script type="rocketlazyloadscript" data-minify="1" data-rocket-type='text/javascript' data-rocket-src='https://www.hostinger.co.id/tutorial/wp-content/cache/min/11/tutorial/wp-content/themes/tutorialsthemeuplift/resources/js/web-font-loader.js?ver=1681360788' id='fontloader_js-js' defer></script>
+<script type='text/javascript' id='ppress-frontend-script-js-extra'>
+/* <![CDATA[ */
+var pp_ajax_form = {"ajaxurl":"https:\/\/www.hostinger.co.id\/tutorial\/wp-admin\/admin-ajax.php","confirm_delete":"Are you sure?","deleting_text":"Deleting...","deleting_error":"An error occurred. Please try again.","nonce":"55d48ded7a","disable_ajax_form":"false","is_checkout":"0","is_checkout_tax_enabled":"0"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' data-rocket-src='https://www.hostinger.co.id/tutorial/wp-content/plugins/wp-user-avatar/assets/js/frontend.min.js?ver=4.9.0' id='ppress-frontend-script-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' data-rocket-src='https://www.hostinger.co.id/tutorial/wp-content/themes/tutorialsthemeuplift/public/js/theme.min.js?ver=1.0.0.1685358279' id='understrap-scripts-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' data-rocket-src='https://www.hostinger.co.id/tutorial/wp-includes/js/comment-reply.min.js?ver=6.2' id='comment-reply-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' data-rocket-src='https://www.hostinger.co.id/tutorial/wp-content/plugins/easy-table-of-contents/vendor/js-cookie/js.cookie.min.js?ver=2.2.1' id='ez-toc-js-cookie-js' defer></script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' data-rocket-src='https://www.hostinger.co.id/tutorial/wp-content/plugins/easy-table-of-contents/vendor/sticky-kit/jquery.sticky-kit.min.js?ver=1.9.2' id='ez-toc-jquery-sticky-kit-js' defer></script>
+<script type='text/javascript' id='ez-toc-js-js-extra'>
+/* <![CDATA[ */
+var ezTOC = {"smooth_scroll":"1","scroll_offset":"60"};
+/* ]]> */
+</script>
+<script type="rocketlazyloadscript" data-rocket-type='text/javascript' data-rocket-src='https://www.hostinger.co.id/tutorial/wp-content/plugins/easy-table-of-contents/assets/js/front.min.js?ver=2.0.46-1680957260' id='ez-toc-js-js' defer></script>
+<script type="rocketlazyloadscript" data-minify="1" defer data-rocket-type='text/javascript' data-rocket-src='https://www.hostinger.co.id/tutorial/wp-content/cache/min/11/tutorial/wp-content/plugins/akismet/_inc/akismet-frontend.js?ver=1681360788' id='akismet-frontend-js'></script>
+<script>window.lazyLoadOptions=[{elements_selector:"img[data-lazy-src],.rocket-lazyload,iframe[data-lazy-src]",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,callback_loaded:function(element){if(element.tagName==="IFRAME"&&element.dataset.rocketLazyload=="fitvidscompatible"){if(element.classList.contains("lazyloaded")){if(typeof window.jQuery!="undefined"){if(jQuery.fn.fitVids){jQuery(element).parent().fitVids()}}}}}},{elements_selector:".rocket-lazyload",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,}];window.addEventListener('LazyLoad::Initialized',function(e){var lazyLoadInstance=e.detail.instance;if(window.MutationObserver){var observer=new MutationObserver(function(mutations){var image_count=0;var iframe_count=0;var rocketlazy_count=0;mutations.forEach(function(mutation){for(var i=0;i<mutation.addedNodes.length;i++){if(typeof mutation.addedNodes[i].getElementsByTagName!=='function'){continue}
+if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){continue}
+images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
+if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script data-no-minify="1" async src="https://www.hostinger.co.id/tutorial/wp-content/plugins/wp-rocket/assets/js/lazyload/17.8.3/lazyload.min.js"></script>
+<script data-minify="1" src="https://www.hostinger.co.id/tutorial/wp-content/cache/min/11/tutorial/wp-content/themes/tutorialsthemeuplift/public/js/vueapp.js?ver=1681360788" defer></script>
+</body>
+</html>
